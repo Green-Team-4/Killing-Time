@@ -1,16 +1,13 @@
-import { useParams } from "react-router-dom";
+import MovieList from "./MovieList";
 
-const NewsPage = (props) => {
-
-    const params = useParams();
-    // const category = params.category ? params.category : 'all';
-    const category = params.category || 'all';
+const MovieDetail = (props) => {
 
     return (
-        <div>hi
+        <div>
+            <MovieList/>
         </div>
     );
 
 };
 
-export default NewsPage;
+export default MovieDetail;
