@@ -1,26 +1,33 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const PersonApiDemo = (props) => {
 
-    const [person, setPerson] = useState(null);
-    const clickHandler = async (e) => {
-        const apiKey = "52b3ba71c5a67f1429c8e2d3877f3eb4";
-        const url = `https://api.themoviedb.org/3/movie/550?apiKey=${apiKey}`;
-        const response = await axios.get(url);
-        setPerson(response.data);
-    };
-
+    const [persons, setPersons] = useState(null);
+    
+    useEffect( () => {
+        const loadPersons = async (e) => {
+            const person_id = "976";
+            const apiKey = "52b3ba71c5a67f1429c8e2d3877f3eb4";
+            const url = `https://api.themoviedb.org/3/person/${person_id}?api_key=${apiKey}`;
+            const response = await axios.get(url);
+            console.log(response.data);
+            setPersons(response.data.personsResult);
+        }
+        loadPersons();
+    },[]
+    );
     return (
         <div>
-            <button onClick={ clickHandler }>Person 가져오기</button>
-            <hr />
-            <div>
-                { person ? JSON.stringify(person) : "내용 없음" }
-            </div>
+            {
+            persons ? 
+            persons.personsResult.map(person => (
+                <span>{person.id}, {person.name}, {person.popularity}</span>
+            )) 
+            : "로드 실패"
+            }
         </div>
-    );
-
+    );             
 };
 
 export default PersonApiDemo;
