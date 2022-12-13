@@ -42,7 +42,11 @@
     "react-router-dom": "^6.3.0",
     "redux": "4.2.0",
     "simplebar-react": "^2.4.1",
+<<<<<<< HEAD
     "style-component": "^0.0.1"
+=======
+    "styled-components": "^5.3.6"
+>>>>>>> c64224616a4a12e9ec60030e0b7d4124bad5e04e
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",
