@@ -38,12 +38,12 @@ const MovieItem = ({ result }) => {
 
     const { id, poster_path, title, overview, } = result;
     const img_url = `https://www.themoviedb.org/t/p/w220_and_h330_face${ poster_path }`;
-    // const detail_url = 
+    const detail_url = '';
 
     return (
         <>
             <div>
-                <a href={ id }>
+                <a href="#/movieDetails">
                     <img src={ img_url } alt="movie thumbnail" />
                 </a>
             </div>

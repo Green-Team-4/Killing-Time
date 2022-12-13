@@ -2,7 +2,8 @@ import { CCard, CCardBody, CCol, CRow } from "@coreui/react";
 import axios from "axios";
 import { useState } from "react";
 
-const MovieDetails = () => {
+const MovieDetails = (props) => {
+  // const { id }
   const [movie, setMovie] = useState(null);
   const clickHandler = async (e) => {
     const language = "ko-KR";
@@ -25,6 +26,7 @@ const MovieDetails = () => {
       <CCol xs={12}>
         <CCard className="mb-4">
           <CCardBody>
+            hi
             {/* <div>
               <div className="thumbnail">
                 <a href={url}>

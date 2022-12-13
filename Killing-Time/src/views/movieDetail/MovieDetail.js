@@ -4,7 +4,6 @@ const MovieDetail = (props) => {
 
     return (
         <div>
-            
             <MovieList/>
         </div>
     );
