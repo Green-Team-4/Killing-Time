@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 const PersonApiDemo = (props) => {
 
-    const [persons, setPersons] = useState(null);
+    const [persons, setPersons] = useState([]);
     
     useEffect( () => {
         const loadPersons = async (e) => {
@@ -11,8 +11,8 @@ const PersonApiDemo = (props) => {
             const apiKey = "52b3ba71c5a67f1429c8e2d3877f3eb4";
             const url = `https://api.themoviedb.org/3/person/${person_id}?api_key=${apiKey}`;
             const response = await axios.get(url);
-            console.log(response.data);
-            setPersons(response.data.personsResult);
+            console.log(response);
+            setPersons(response.data);
         }
         loadPersons();
     },[]
@@ -21,7 +21,7 @@ const PersonApiDemo = (props) => {
         <div>
             {
             persons ? 
-            persons.personsResult.map(person => (
+            persons.map(person => (
                 <span>{person.id}, {person.name}, {person.popularity}</span>
             )) 
             : "로드 실패"
