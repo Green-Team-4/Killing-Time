@@ -3,7 +3,7 @@ import BoxOffice from './BoxOffice';
 const Main = (props) => {
    
   
-    
+   
     return (
       <BoxOffice /> 
     );

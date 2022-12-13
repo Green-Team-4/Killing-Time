@@ -31,10 +31,10 @@ const BoxOffice = (props) => {
               <CTable striped>
                 <CTableHead>
                   <CTableRow>
-                    <CTableHeaderCell>순위</CTableHeaderCell>
-                    <CTableHeaderCell>제목</CTableHeaderCell>
-                    <CTableHeaderCell>개봉일 </CTableHeaderCell>
-                    <CTableHeaderCell>관객 증가 비율</CTableHeaderCell>                    
+                    <CTableHeaderCell scope="col" >순위</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">제목</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">개봉일 </CTableHeaderCell>
+                    <CTableHeaderCell scope="col">관객 증가 비율</CTableHeaderCell>                    
                   </CTableRow>
                 </CTableHead>
                 <CTableBody>
