@@ -279,8 +279,8 @@ const _nav = [
   },
   {
     component: CNavItem,
-    name: 'Docs',
-    href: 'https://coreui.io/react/docs/templates/installation/',
+    name: 'Movie Detail',
+    to: '/movieDetail',
     icon: <CIcon icon={cilDescription} customClassName="nav-icon" />,
   },
 ]
