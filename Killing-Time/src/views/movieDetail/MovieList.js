@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import NewsItem from "./NewsItem";
+import MovieItem from "./MovieItem";
 import styled from 'styled-components';
 import axios from "axios";
 
-const NewsListBlock = styled.div`
+const MovieListBlock = styled.div`
     box-sizing: border-box;
     padding-bottom: 3rem;
     width: 768px;
@@ -16,38 +16,37 @@ const NewsListBlock = styled.div`
     }
 `;
 
-const NewsList = (props) => {
+const MovieList = (props) => {
 
-    const { category } = props;
-    const [articles, setArticles] = useState(null);
+    const [results, setResults] = useState(null);
 
     // useEffect : mount(초기화), update(상태변화) 이벤트 처리기 등록
     useEffect( () => {
-        const loadNews = async (e) => {
-            const countryQs = "country=kr";
-            const apiKeyQs = "&apikey=db4defe7779a4b8c9d3d65b8ce37798e";
-            const categoryQs = category === 'all' ? '' : `&category=${ category }`;
-            const url = `https://newsapi.org/v2/top-headlines?${ countryQs }${ categoryQs }${ apiKeyQs }`;
+        const loadMoiveList = async (e) => {
+            const language = 'ko-KR';
+            const apiKey = "403cc00da7a7725917c9acd69484bde6";
+            const baseUrl = 'https://api.themoviedb.org/3/movie';
+            const url = `${ baseUrl }/popular?api_key=${ apiKey }&language=${ language }&page=1`;
             const response = await axios.get(url)
-            setArticles(response.data.articles);
+            setResults(response.data.results);
         }
-        loadNews();
-    }, [category] );
+        loadMoiveList();
+    }, [] );
 
-    if (!articles) {
+    if (!results) {
         return;
     }
 
     return (
-        <NewsListBlock>
+        <MovieListBlock>
             {
-                articles.map( (article) => {
-                    return (<NewsItem key={ article.url } article={ article } />);
+                results.map( (result) => {
+                    return (<MovieItem key={ result.url } result={ result } />);
                 })
             }
-        </NewsListBlock>
+        </MovieListBlock>
     );
 
 };
 
-export default NewsList;
+export default MovieList;

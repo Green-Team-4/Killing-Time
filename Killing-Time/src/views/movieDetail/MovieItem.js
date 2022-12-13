@@ -4,7 +4,7 @@ import styled from 'styled-components';
 // .scss ( or .sass )
 // css-in-js : styled-components
 
-const NewsItemBlock = styled.div`
+const MoiveItemBlock = styled.div`
     display: flex;
     .thumbnail {
         margin-right: 1rem;
@@ -34,27 +34,28 @@ const NewsItemBlock = styled.div`
     }
 `;
 
-const NewsItem = (props) => {
+const MovieItem = ({ result }) => {
 
-    const {article } = props;
-    const {url, urlToImage, title, description} = article;
-    
+    const { id, poster_path, title, overview, } = result;
+    const img_url = `https://www.themoviedb.org/t/p/w220_and_h330_face${ poster_path }`;
+    // const detail_url = 
+
     return (
-        <NewsItemBlock>
-            <div className="thumbnail">
-                <a href={ url }>
-                    <img src={ urlToImage } alt="news thumbnail" />
+        <>
+            <div>
+                <a href={ id }>
+                    <img src={ img_url } alt="movie thumbnail" />
                 </a>
             </div>
-            <div className="contents">
+            <div>
                 <h2>
-                    <a href={ url }>{ title }</a>
+                    <a href={ id }>{ title }</a>
                 </h2>
-                <p>{ description }</p>
+                <p>{ overview }</p>
             </div>
-        </NewsItemBlock>
+        </>
     );
 
 };
 
-export default NewsItem;
+export default MovieItem;
