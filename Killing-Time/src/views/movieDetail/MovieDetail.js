@@ -1,6 +1,4 @@
 import { useParams } from "react-router-dom";
-import NewsCategories from "./NewsCategories";
-import NewsList from "./NewsList";
 
 const NewsPage = (props) => {
 
