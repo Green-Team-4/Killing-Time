@@ -10,8 +10,8 @@ const PersonItemBlock = styled.div`
     margin-left: 20px;
     margin-bottom: 30px;
     img {
-        width:235px;
-        height:235px:
+        width:200px;
+        height:200px:
     }
 
     h3 {
