@@ -1,5 +1,6 @@
 import { CCard, CCardBody, CCol, CRow } from '@coreui/react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 // .css
 // .scss ( or .sass )
@@ -35,30 +36,32 @@ import { Link } from 'react-router-dom';
 //     }
 // `;
 
+const MovieItemBlock = styled.div`
+  display: inline-block;
+  margin: 10px;
+`;
+
 const MovieListItem = ({ result }) => {
 
     const { id, poster_path, title, } = result;
     const img_url = `https://www.themoviedb.org/t/p/w220_and_h330_face${ poster_path }`;
     
     return (
-      <CRow>
-        <CCol xs={5}>
-          <CCard className="mb-4">
-            <CCardBody>
-              <div>
+      
+      <MovieItemBlock>
+              <div style={{width: 220}}>
                 <Link to="/movieDetail" state={{ id: id }}>
-                  <img src={img_url} alt="movie thumbnail" />
+                  <img  src={img_url} alt="movie thumbnail" />
                 </Link>
               </div>
               <div>
-                <h2>
-                  <a href={id}>{title}</a>
-                </h2>
+                <Link to="/movieDetail" state={{ id: id }}>
+                  {title}
+                </Link>
               </div>
-            </CCardBody>
-          </CCard>
-        </CCol>
-      </CRow>
+        
+      </MovieItemBlock>
+      
     );
 
 };

@@ -38,13 +38,13 @@ const MovieList = (props) => {
     }
 
     return (
-        <MovieListBlock>
+        <>
             {
                 results.map( (result) => {
                     return (<MovieListItem key={ result.id } result={ result } />);
                 })
             }
-        </MovieListBlock>
+        </>
     );
 
 };
