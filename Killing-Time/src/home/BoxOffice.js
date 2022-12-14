@@ -11,8 +11,15 @@ const BoxOffice = (props) => {
     useEffect( () => {
 
     const boxOfficeLoad = async (e) => {
+
+      let today = new Date();
+      let year = today.getFullYear(); // 년도
+      let month = today.getMonth() + 1;  // 월
+      let date = today.getDate() - 1;  // 날짜
+
+
       const apikey = "9ec0af98ce7854a7d4109bd050f4e2cf";
-      const targetDt = 20221130;
+      const targetDt = `${year}${month}${date}`;
       const itemPerPage = 5;
       const url = `http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=${apikey}&targetDt=${targetDt}&itemPerPage=${itemPerPage}`
       const response = await axios.get(url);
@@ -21,6 +28,9 @@ const BoxOffice = (props) => {
     }
     boxOfficeLoad();
   },[]);
+  
+ 
+
     return(
         <CCol xs={12}>
         <CCard className="mb-4">
@@ -32,6 +42,7 @@ const BoxOffice = (props) => {
                 <CTableHead>
                   <CTableRow>
                     <CTableHeaderCell scope="col" style={{width:50}}>순위</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">포스터</CTableHeaderCell>
                     <CTableHeaderCell scope="col">제목</CTableHeaderCell>
                     <CTableHeaderCell scope="col">개봉일 </CTableHeaderCell>
                     <CTableHeaderCell scope="col">관객 증가 비율</CTableHeaderCell>                    
@@ -39,11 +50,13 @@ const BoxOffice = (props) => {
                 </CTableHead>
                 <CTableBody>                  
                     {
+                      
                        boxOffice ?  
                         boxOffice.dailyBoxOfficeList.map((dailyBoxOfficeLists, idx) => {
                           return (
                             <CTableRow key={idx}>
                               <CTableHeaderCell>{dailyBoxOfficeLists.rank}</CTableHeaderCell>
+                              <CTableDataCell><img src={dailyBoxOfficeLists.movieNm} alt="aaaa"></img></CTableDataCell>
                               <CTableDataCell>{dailyBoxOfficeLists.movieNm}</CTableDataCell>
                               <CTableDataCell>{dailyBoxOfficeLists.openDt}</CTableDataCell>
                               <CTableDataCell>{dailyBoxOfficeLists.audiChange}%</CTableDataCell>

@@ -254,8 +254,8 @@ const _nav = [
     },
   {
     component: CNavItem,
-    name: 'Movie Detail',
-    to: '/movieDetail',
+    name: '영화',
+    to: '/moviePage',
     icon: <CIcon icon={cilDescription} customClassName="nav-icon" />,
   },
 ]
