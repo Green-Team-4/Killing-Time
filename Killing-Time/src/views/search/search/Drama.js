@@ -15,8 +15,8 @@ const setVoteClass = (vote) => {
 }
 
 // 가져올 목록  
-const Movie = ({title, poster_path, overview, vote_average }) => (
-    <div className="movie">
+const Drama = ({title, poster_path, overview, vote_average }) => (
+    <div className="drama">
         <img 
             src={
                 poster_path 
@@ -26,21 +26,20 @@ const Movie = ({title, poster_path, overview, vote_average }) => (
                 } 
                 alt={title} />
                 <div className="movie-info">
-                &nbsp;
                     <h3>{title}</h3>
                     <span className={
                             `tag ${setVoteClass(vote_average)}`
                             }>
-                       평점 :  {vote_average}
+                        {vote_average}
                     </span>
                 </div>
-            &nbsp;
-        <div className="movie-over">
+
+        <div className="drama-over">
             {/* 영화 소개 */}
-            <h3>줄거리</h3>
+            <h2>줄거리</h2>
             <p>{overview}</p>
         </div>
     </div>
 );
 
-export default Movie;
+export default Drama;
