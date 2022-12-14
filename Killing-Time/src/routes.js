@@ -53,9 +53,9 @@ const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 //home
 const Main = React.lazy(() => import('./home/Main'))
 
-// Movie Detail
-const MovieDetail = React.lazy(() => import('./views/movieDetail/MovieDetail'))
-const MovieDetails = React.lazy(() => import('./views/movieDetail/MovieDetails'))
+// Movie Page
+const MoviePage = React.lazy(() => import('./views/moviePage/MoviePage'))
+const MovieDetail = React.lazy(() => import('./views/moviePage/MovieDetail'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -101,8 +101,8 @@ const routes = [
   { path: '/notifications/toasts', name: 'Toasts', element: Toasts },
   { path: '/widgets', name: 'Widgets', element: Widgets },
   { path: '/home/main', name: 'Main', element: Main },
+  { path: '/moviePage', name: 'MoviePage', element: MoviePage },
   { path: '/movieDetail', name: 'MovieDetail', element: MovieDetail },
-  { path: '/movieDetails', name: 'MovieDetails', element: MovieDetails },
 ]
 
 export default routes

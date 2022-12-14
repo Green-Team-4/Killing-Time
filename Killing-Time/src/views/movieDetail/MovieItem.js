@@ -1,3 +1,5 @@
+import { CCard, CCardBody, CCol, CRow } from '@coreui/react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 // .css
@@ -38,22 +40,26 @@ const MovieItem = ({ result }) => {
 
     const { id, poster_path, title, overview, } = result;
     const img_url = `https://www.themoviedb.org/t/p/w220_and_h330_face${ poster_path }`;
-    const detail_url = `#/movieDetails?id=${ id }`;
-
+    
     return (
-        <>
-            <div>
-                <a href={ detail_url }>
-                    <img src={ img_url } alt="movie thumbnail" />
-                </a>
-            </div>
-            <div>
+      <CRow>
+        <CCol xs={5}>
+          <CCard className="mb-4">
+            <CCardBody>
+              <div>
+                <Link to="/movieDetails" state={{ id: id }}>
+                  <img src={img_url} alt="movie thumbnail" />
+                </Link>
+              </div>
+              <div>
                 <h2>
-                    <a href={ id }>{ title }</a>
+                  <a href={id}>{title}</a>
                 </h2>
-                <p>{ overview }</p>
-            </div>
-        </>
+              </div>
+            </CCardBody>
+          </CCard>
+        </CCol>
+      </CRow>
     );
 
 };
