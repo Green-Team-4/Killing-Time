@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import MovieInfoItem from "./MovieInfoItem";
 
 const MovieInfo = ({ id }) => {
-  
   const [result, setResult] = useState(null);
   useEffect(() => {
     const loadMoiveDetail = async (e) => {
@@ -23,7 +22,7 @@ const MovieInfo = ({ id }) => {
 
   return (
     <>
-      <MovieInfoItem result={ result } />
+      <MovieInfoItem result={result} />
     </>
   );
 };

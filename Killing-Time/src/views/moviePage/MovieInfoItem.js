@@ -1,9 +1,10 @@
 import { CCard, CCardBody, CCol, CRow } from "@coreui/react";
 
 const MovieInfoItem = ({ result }) => {
-  
-  const { id, poster_path, title, overview, /*genres,*/ release_date, runtime, tagline } = result;
-  const img_url = `https://www.themoviedb.org/t/p/w220_and_h330_face${ poster_path }`;
+  // genres
+  const { id, poster_path, title, overview, release_date, runtime, tagline } =
+    result;
+  const img_url = `https://www.themoviedb.org/t/p/w220_and_h330_face${poster_path}`;
 
   return (
     <CRow>
@@ -26,11 +27,6 @@ const MovieInfoItem = ({ result }) => {
               <i>{tagline}</i>
               <p>{overview}</p>
             </div>
-          </CCardBody>
-        </CCard>
-        <CCard>
-          <CCardBody>
-            <div>hi</div>
           </CCardBody>
         </CCard>
       </CCol>
