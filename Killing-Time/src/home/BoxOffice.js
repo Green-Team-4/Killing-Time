@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import MovieImage from "./MovieImage";
+import MoviePosterItem from "./MoviePosterItem";
 
 const { CCol, CCard, CCardHeader, CCardBody, CTable, CTableRow, CTableHead, CTableHeaderCell, CTableBody, CTableDataCell } = require("@coreui/react")
 const { DocsExample } = require("src/components")
@@ -55,8 +57,11 @@ const BoxOffice = (props) => {
                         boxOffice.dailyBoxOfficeList.map((dailyBoxOfficeLists, idx) => {
                           return (
                             <CTableRow key={idx}>
-                              <CTableHeaderCell>{dailyBoxOfficeLists.rank}</CTableHeaderCell>
-                              <CTableDataCell><img src={dailyBoxOfficeLists.movieNm} alt="aaaa"></img></CTableDataCell>
+                              <CTableHeaderCell>{dailyBoxOfficeLists.rank}</CTableHeaderCell>                              
+                              <CTableDataCell style={{width:141, height:91}}>
+                                <MovieImage movieName={dailyBoxOfficeLists.movieNm} openDate={dailyBoxOfficeLists.openDt}/>
+                                
+                              </CTableDataCell>
                               <CTableDataCell>{dailyBoxOfficeLists.movieNm}</CTableDataCell>
                               <CTableDataCell>{dailyBoxOfficeLists.openDt}</CTableDataCell>
                               <CTableDataCell>{dailyBoxOfficeLists.audiChange}%</CTableDataCell>
