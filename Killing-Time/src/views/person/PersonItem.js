@@ -30,8 +30,8 @@ const PersonItem = ({ result }) => {
 
     const { id, profile_path, name, } = result;
     const img_url =`https://www.themoviedb.org/t/p/w235_and_h235_face${ profile_path }`;
-    const detail_url = `person?id=${ id }`;
-    console.log(profile_path);
+    const detail_url = `#/personDetail?id=${ id }`;
+    //console.log(profile_path);
     return (
         <PersonItemBlock>
             <div>

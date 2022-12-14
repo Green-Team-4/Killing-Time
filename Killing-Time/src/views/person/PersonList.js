@@ -40,8 +40,8 @@ const PersonList = (props) => {
         }
         loadPersonList();
     }, [page] );
-    console.log(results);
-    console.log(page);
+    //console.log(results);
+    //console.log(page);
 
     if (!results) {
         return;
