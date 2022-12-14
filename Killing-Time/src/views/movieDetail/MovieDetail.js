@@ -3,9 +3,9 @@ import MovieList from "./MovieList";
 const MovieDetail = (props) => {
 
     return (
-        <div>
+        <>
             <MovieList/>
-        </div>
+        </>
     );
 
 };

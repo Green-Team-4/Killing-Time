@@ -29,7 +29,7 @@ const MovieList = (props) => {
             const url = `${ baseUrl }/popular?api_key=${ apiKey }&language=${ language }&page=1`;
             const response = await axios.get(url)
             setResults(response.data.results);
-        }
+        };
         loadMoiveList();
     }, [] );
 
@@ -41,7 +41,7 @@ const MovieList = (props) => {
         <MovieListBlock>
             {
                 results.map( (result) => {
-                    return (<MovieItem key={ result.url } result={ result } />);
+                    return (<MovieItem key={ result.id } result={ result } />);
                 })
             }
         </MovieListBlock>
