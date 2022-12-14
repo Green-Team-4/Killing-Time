@@ -5,7 +5,15 @@ import styled from 'styled-components';
 // css-in-js : styled-components
 
 const PersonItemBlock = styled.div`
-    display: flex;
+    display: inline-flex;
+    margin: 0 auto;
+    margin-left: 20px;
+    margin-bottom: 30px;
+    img {
+        width:235px;
+        height:235px:
+    }
+
     h3 {
         text-align: center;
     }
@@ -28,8 +36,7 @@ const PersonItem = ({ result }) => {
             <div>
                 <a href={ detail_url }>
                     <img src={ img_url } alt="thumbnail" />
-                </a>
-                <br/>
+                </a><br/>
                 <h3>
                     <a href={ id }>{ name }</a>
                 </h3>
