@@ -6,15 +6,6 @@ import styled from 'styled-components';
 
 const PersonItemBlock = styled.div`
     display: flex;
-    .thumbnail {
-        margin-right: 1rem;
-        img {
-            display: block;
-            width: 160px;
-            height: 100px;
-            object-fit: cover;
-        }
-    }
     h3 {
         text-align: center;
     }
