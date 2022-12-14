@@ -21,7 +21,8 @@ const Tables = React.lazy(() => import('./views/base/tables/Tables'))
 const Tooltips = React.lazy(() => import('./views/base/tooltips/Tooltips'))
 
 // Search
-const Search = React.lazy(() => import('./views/search/search/Search'))
+const SearchMovie = React.lazy(() => import('./views/search/search/SearchMovie'))
+const SearchDrama = React.lazy(() => import('./views/search/search/SearchDrama'))
 
 
 //Forms
@@ -60,6 +61,9 @@ const MovieDetail = React.lazy(() => import('./views/moviePage/MovieDetail'))
 const DramaDetail = React.lazy(() => import('./views/dramaDetail/DramaDetail'))
 const DramaDetails = React.lazy(() => import('./views/dramaDetail/DramaDetails'))
 
+// Person Page
+const PersonList = React.lazy(() => import('./views/person/PersonList'))
+const PersonDetail = React.lazy(() => import('./views/person/PersonDetail'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -82,7 +86,8 @@ const routes = [
   { path: '/base/spinners', name: 'Spinners', element: Spinners },
   { path: '/base/tables', name: 'Tables', element: Tables },
   { path: '/base/tooltips', name: 'Tooltips', element: Tooltips },
-  { path: '/search', name: 'Search', element: Search, exact: true },
+  { path: '/search', name: 'Search', element: SearchMovie, exact: true },
+  { path: '/search2', name: 'Search', element: SearchDrama, exact: true },
   { path: '/charts', name: 'Charts', element: Charts },
   { path: '/forms', name: 'Forms', element: FormControl, exact: true },
   { path: '/forms/form-control', name: 'Form Control', element: FormControl },
@@ -108,6 +113,8 @@ const routes = [
   { path: '/movieDetail', name: 'MovieDetail', element: MovieDetail },
   { path: '/dramaDetail', name: 'DramaDetail', element: DramaDetail },
   { path: '/dramaDetails', name: 'DramaDetails', element: DramaDetails },
+  { path: '/personList', name: 'PersonList', element: PersonList },
+  { path: '/personDetail', name: 'PersonDetail', element: PersonDetail }
 ]
 
 export default routes

@@ -6,8 +6,8 @@ import Movie from './Movie';
 // const page = 1;
 // const query = 'black';
 // const apiKey = 'e937a96ff64a1a83e17dac4c4abc7d43';
-const URL1 = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=e937a96ff64a1a83e17dac4c4abc7d43&language=ko-KR&page=";
-const URL2 = "https://api.themoviedb.org/3/search/movie?&api_key=e937a96ff64a1a83e17dac4c4abc7d43&language=ko-KR&query=";
+const URL1 = "https://api.themoviedb.org/3/discover/movie?&language=ko-KR&api_key=e937a96ff64a1a83e17dac4c4abc7d43&page=";
+const URL2 = "https://api.themoviedb.org/3/search/movie?&api_key=e937a96ff64a1a83e17dac4c4abc7d43&language=ko-KR&page=&query=";
 
 function SearchContents() {
 
