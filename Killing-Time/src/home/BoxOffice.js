@@ -25,20 +25,19 @@ const BoxOffice = (props) => {
         <CCol xs={12}>
         <CCard className="mb-4">
           <CCardHeader>
-            <strong>일일 박스오피스</strong> <small>일별 박스오피스</small>
+            <strong>일일 박스오피스</strong>
           </CCardHeader>
           <CCardBody>           
               <CTable striped>
                 <CTableHead>
                   <CTableRow>
-                    <CTableHeaderCell scope="col" >순위</CTableHeaderCell>
+                    <CTableHeaderCell scope="col" style={{width:50}}>순위</CTableHeaderCell>
                     <CTableHeaderCell scope="col">제목</CTableHeaderCell>
                     <CTableHeaderCell scope="col">개봉일 </CTableHeaderCell>
                     <CTableHeaderCell scope="col">관객 증가 비율</CTableHeaderCell>                    
                   </CTableRow>
                 </CTableHead>
-                <CTableBody>
-                  <div >
+                <CTableBody>                  
                     {
                        boxOffice ?  
                         boxOffice.dailyBoxOfficeList.map((dailyBoxOfficeLists, idx) => {
@@ -52,8 +51,7 @@ const BoxOffice = (props) => {
                           )
                         })           
                      : "박스 오피스 로드 실패"
-                     }
-                  </div>
+                     }                  
                 </CTableBody>
               </CTable>
          </CCardBody>
