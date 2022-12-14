@@ -248,7 +248,7 @@ const _nav = [
   },
   {
     component: CNavItem,
-    name: 'Drama Detail',
+    name: '드라마',
     to: '/dramaDetail',
     icon: <CIcon icon={cilStar} customClassName="nav-icon" />,
     },
