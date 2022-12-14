@@ -1,7 +1,7 @@
 import MovieInfo from "./MovieInfo";
 import { useLocation } from 'react-router-dom';
 
-const MovieDetail = (props) => {
+const MovieCredit = (props) => {
 
   const location = useLocation();
   const id = location.state.id;
@@ -14,4 +14,4 @@ const MovieDetail = (props) => {
 
 };
 
-export default MovieDetail;
+export default MovieCredit;
