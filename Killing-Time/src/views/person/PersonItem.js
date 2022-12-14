@@ -29,16 +29,23 @@ const PersonItemBlock = styled.div`
 const PersonItem = ({ result }) => {
 
     const { id, profile_path, name, } = result;
-    const img_url = `https://www.themoviedb.org/t/p/w235_and_h235_face${ profile_path }`;
-    const detail_url = `#/person?id=${ id }`;
+    const img_url =`https://www.themoviedb.org/t/p/w235_and_h235_face${ profile_path }`;
+    const detail_url = `person?id=${ id }`;
+    console.log(profile_path);
     return (
         <PersonItemBlock>
             <div>
                 <a href={ detail_url }>
-                    <img src={ img_url } alt="thumbnail" />
+                    {
+                        profile_path != null
+                        ?
+                        <img src={img_url} alt={name} />
+                        :
+                        <img src="https://via.placeholder.com/235" alt={name} />
+                    }
                 </a><br/>
                 <h3>
-                    <a href={ id }>{ name }</a>
+                    <a href={ detail_url }>{ name }</a>
                 </h3>
             </div>
         </PersonItemBlock>
