@@ -127,12 +127,6 @@ const _nav = [
     icon: <CIcon icon={cilCursor} customClassName="nav-icon" />,
   },
   {
-    component: CNavItem,
-    name: 'Search2',
-    to: '/search2',
-    icon: <CIcon icon={cilCursor} customClassName="nav-icon" />,
-  },
-  {
     component: CNavGroup,
     name: 'Forms',
     icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,

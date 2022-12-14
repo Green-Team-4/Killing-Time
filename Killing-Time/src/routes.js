@@ -21,8 +21,7 @@ const Tables = React.lazy(() => import('./views/base/tables/Tables'))
 const Tooltips = React.lazy(() => import('./views/base/tooltips/Tooltips'))
 
 // Search
-const SearchMovie = React.lazy(() => import('./views/search/search/SearchMovie'))
-const SearchDrama = React.lazy(() => import('./views/search/search/SearchDrama'))
+const SearchMovie = React.lazy(() => import('./views/search/search/Search'))
 
 
 //Forms
@@ -84,7 +83,6 @@ const routes = [
   { path: '/base/tables', name: 'Tables', element: Tables },
   { path: '/base/tooltips', name: 'Tooltips', element: Tooltips },
   { path: '/search', name: 'Search', element: SearchMovie, exact: true },
-  { path: '/search2', name: 'Search', element: SearchDrama, exact: true },
   { path: '/charts', name: 'Charts', element: Charts },
   { path: '/forms', name: 'Forms', element: FormControl, exact: true },
   { path: '/forms/form-control', name: 'Form Control', element: FormControl },
