@@ -10,11 +10,11 @@ const PersonItemBlock = styled.div`
     margin-left: 20px;
     margin-bottom: 30px;
     img {
-        width:235px;
-        height:235px:
+        width:200px;
+        height:200px:
     }
 
-    h3 {
+    h5 {
         text-align: center;
     }
     a {
@@ -30,8 +30,8 @@ const PersonItem = ({ result }) => {
 
     const { id, profile_path, name, } = result;
     const img_url =`https://www.themoviedb.org/t/p/w235_and_h235_face${ profile_path }`;
-    const detail_url = `person?id=${ id }`;
-    console.log(profile_path);
+    const detail_url = `#/personDetail?id=${ id }`;
+    //console.log(profile_path);
     return (
         <PersonItemBlock>
             <div>
@@ -44,9 +44,9 @@ const PersonItem = ({ result }) => {
                         <img src="https://via.placeholder.com/235" alt={name} />
                     }
                 </a><br/>
-                <h3>
+                <h5>
                     <a href={ detail_url }>{ name }</a>
-                </h3>
+                </h5>
             </div>
         </PersonItemBlock>
     );

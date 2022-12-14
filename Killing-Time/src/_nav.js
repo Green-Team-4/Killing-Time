@@ -251,11 +251,17 @@ const _nav = [
     name: '드라마',
     to: '/dramaDetail',
     icon: <CIcon icon={cilStar} customClassName="nav-icon" />,
-    },
+  },
   {
     component: CNavItem,
     name: '영화',
     to: '/moviePage',
+    icon: <CIcon icon={cilDescription} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
+    name: 'People List',
+    to: '/personList',
     icon: <CIcon icon={cilDescription} customClassName="nav-icon" />,
   },
 ]

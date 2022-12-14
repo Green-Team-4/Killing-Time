@@ -1,6 +1,6 @@
 import MovieList from "./MovieList";
 
-const MovieDetail = (props) => {
+const MoviePage = (props) => {
 
     return (
         <>
@@ -10,4 +10,4 @@ const MovieDetail = (props) => {
 
 };
 
-export default MovieDetail;
+export default MoviePage;
