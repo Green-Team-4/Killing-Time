@@ -1,11 +1,18 @@
 import BoxOffice from './BoxOffice';
+import MovieNews from './MovieNews';
 
 const Main = (props) => {
    
   
    
     return (
-      <BoxOffice /> 
+      <>
+      
+      <BoxOffice />
+      
+      <MovieNews />
+      
+      </>
     );
 };
 

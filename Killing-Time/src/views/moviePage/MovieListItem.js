@@ -1,4 +1,3 @@
-import { CCard, CCardBody, CCol, CRow } from '@coreui/react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -59,7 +58,6 @@ const MovieListItem = ({ result }) => {
                   {title}
                 </Link>
               </div>
-        
       </MovieItemBlock>
       
     );

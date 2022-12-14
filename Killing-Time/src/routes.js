@@ -60,6 +60,9 @@ const MovieDetail = React.lazy(() => import('./views/moviePage/MovieDetail'))
 const DramaDetail = React.lazy(() => import('./views/dramaDetail/DramaDetail'))
 const DramaDetails = React.lazy(() => import('./views/dramaDetail/DramaDetails'))
 
+// Person Page
+const PersonList = React.lazy(() => import('./views/person/PersonList'))
+const PersonDetail = React.lazy(() => import('./views/person/PersonDetail'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -108,6 +111,8 @@ const routes = [
   { path: '/movieDetail', name: 'MovieDetail', element: MovieDetail },
   { path: '/dramaDetail', name: 'DramaDetail', element: DramaDetail },
   { path: '/dramaDetails', name: 'DramaDetails', element: DramaDetails },
+  { path: '/personList', name: 'PersonList', element: PersonList },
+  { path: '/personDetail', name: 'PersonDetail', element: PersonDetail }
 ]
 
 export default routes

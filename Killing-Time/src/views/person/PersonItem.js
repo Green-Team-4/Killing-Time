@@ -10,11 +10,11 @@ const PersonItemBlock = styled.div`
     margin-left: 20px;
     margin-bottom: 30px;
     img {
-        width:235px;
-        height:235px:
+        width:200px;
+        height:200px:
     }
 
-    h3 {
+    h5 {
         text-align: center;
     }
     a {
@@ -44,9 +44,9 @@ const PersonItem = ({ result }) => {
                         <img src="https://via.placeholder.com/235" alt={name} />
                     }
                 </a><br/>
-                <h3>
+                <h5>
                     <a href={ detail_url }>{ name }</a>
-                </h3>
+                </h5>
             </div>
         </PersonItemBlock>
     );
