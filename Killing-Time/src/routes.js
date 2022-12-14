@@ -63,7 +63,7 @@ const DramaDetails = React.lazy(() => import('./views/dramaDetail/DramaDetails')
 
 // Person Page
 const PersonList = React.lazy(() => import('./views/person/PersonList'))
-const PersonDetail = React.lasy(() => import('./views/person/PersonDetail'))
+const PersonDetail = React.lazy(() => import('./views/person/PersonDetail'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
