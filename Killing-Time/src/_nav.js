@@ -9,6 +9,7 @@ import {
   cilDrop,
   cilNotes,
   cilPencil,
+  cilPeople,
   cilPuzzle,
   cilSpeedometer,
   cilStar,
@@ -260,9 +261,9 @@ const _nav = [
   },
   {
     component: CNavItem,
-    name: 'People List',
+    name: '인물',
     to: '/personList',
-    icon: <CIcon icon={cilDescription} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilPeople} customClassName="nav-icon" />,
   },
 ]
 

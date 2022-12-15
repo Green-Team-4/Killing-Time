@@ -60,7 +60,7 @@ const BoxOffice = (props) => {
                               <CTableHeaderCell>{dailyBoxOfficeLists.rank}</CTableHeaderCell>                              
                               <CTableDataCell style={{width:141, height:91}}>
                                 <MovieImage movieName={dailyBoxOfficeLists.movieNm} openDate={dailyBoxOfficeLists.openDt}/>
-                                
+                                <MoviePosterItem />
                               </CTableDataCell>
                               <CTableDataCell>{dailyBoxOfficeLists.movieNm}</CTableDataCell>
                               <CTableDataCell>{dailyBoxOfficeLists.openDt}</CTableDataCell>

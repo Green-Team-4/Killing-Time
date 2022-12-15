@@ -9,14 +9,11 @@ const MovieImage = ({ movieName, openDate }) => {
     
     useEffect ( () => {
         const loadMoivePoster = async (e) => {
-            //const query = {movieName};
-            //const primaryYear = {openDate};
-            const apikey = "6b4c779cba85c26ce5e2fc716ac93b81";
+            const apikey = "e937a96ff64a1a83e17dac4c4abc7d43";
             const url = `https://api.themoviedb.org/3/search/movie?api_key=${apikey}&language=ko&page=1&primary_release_year=${openDate}&query=${movieName}`;
-            const response = await axios.get(url);
-            
+            const response = await axios.get(url);            
             console.log(response.data)
-            setMoviePoster(response.data)
+            setMoviePoster(response.data.results[0])
         }
         loadMoivePoster();
     }, [movieName, openDate]);
@@ -29,12 +26,10 @@ const MovieImage = ({ movieName, openDate }) => {
     return (
         <>
             {
-                moviePoster ? 
-                        
-                        <MoviePosterItem moviePoster={moviePoster.results[0].poster_path} />
-          
-
-             : "aaaaaaaaaaaaaaaaa"   
+                moviePoster ?                         
+                    <MoviePosterItem MoviePoster={moviePoster.poster_path} />         
+             : 
+             "aaaaaaaaaaaaaaaaa"   
             }
 
 

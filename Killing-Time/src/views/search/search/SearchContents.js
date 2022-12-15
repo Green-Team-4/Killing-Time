@@ -2,36 +2,18 @@ import React, { useEffect, useState } from 'react';
 import Drama from './Drama';
 import Movie from './Movie';
 
-// const category = 'movie';
-// const language = 'ko';
-// const page = 1;
-// const query = 'black';
-// const apiKey = 'e937a96ff64a1a83e17dac4c4abc7d43';
-const URL1 = "https://api.themoviedb.org/3/discover/movie?&language=ko-KR&api_key=e937a96ff64a1a83e17dac4c4abc7d43&page=";
-const URL2 = "https://api.themoviedb.org/3/discover/tv?&language=ko-KR&api_key=e937a96ff64a1a83e17dac4c4abc7d43&page=";
 const URL3 = "https://api.themoviedb.org/3/search/movie?&api_key=e937a96ff64a1a83e17dac4c4abc7d43&language=ko-KR&page=&query=";
 const URL4 = "https://api.themoviedb.org/3/search/tv?&api_key=e937a96ff64a1a83e17dac4c4abc7d43&language=ko-KR&page=&query=";
 
-// const ContainerBlock = styled.div`
-// display: flex;
-// .container {
-// 	grid-template-rows: 4fr;
-//     grid-template-columns: 1fr 1fr 1fr 1fr;
-// }
-// `
+function SearchContents() {
 
-function Search() {
+    
 
     const [contents, setContents] = useState([]);
     const [tvContents, setTvContents] = useState([]);
     const [search, setSearch] = useState("");
-    const [movieTitle, setMovieTitle] = useState("인기 영화 TOP 20");
-    const [tvTitle, setTvTitle] = useState("인기 드라마 TOP 20");
-
-    useEffect( () => {
-        getContents(URL1, "movie");
-        getContents(URL2, "drama");
-    },[]);
+    
+    
 
     const getContents = (API, type) => {
         fetch(API)
@@ -55,9 +37,7 @@ function Search() {
             
             setSearch("");
         }
-        setMovieTitle(`"${search}" 영화 검색 결과`);
-        setTvTitle(`"${search}" 드라마 검색 결과`);
-        
+        window.location.href = "#/SearchContents";
     }
 
     const handleOnChange = (e) => {
@@ -66,7 +46,6 @@ function Search() {
 
     return (
         <>
-            
             <header>
                 <div className='logo'>
                     <h1 className='search'>Contents View</h1>
@@ -84,7 +63,8 @@ function Search() {
                 </form>
             </header>
             &nbsp;<hr />&nbsp;
-            <h3>{movieTitle}</h3>
+            <h2>영화</h2>
+            <h5>검색 결과입니다.</h5>
             <div style={{width: "300px",
                         display: "grid",
                         gridTemplateRows: "1fr ",
@@ -96,7 +76,7 @@ function Search() {
                 }
             </div>
             <hr />&nbsp;
-            <h3>{tvTitle}</h3>
+            <h2>드라마</h2>
             <div style={{width: "300px",
                         display: "grid",
                         gridTemplateRows: "1fr ",
@@ -111,4 +91,4 @@ function Search() {
     );
 }
 
-export default Search;
+export default SearchContents;
