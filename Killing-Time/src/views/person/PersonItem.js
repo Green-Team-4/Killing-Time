@@ -70,7 +70,7 @@ const PersonItem = ({ result }) => {
     return (
         <PersonItemBlock>
             <div className="peopleBox">
-                <Link to="/personDetail" state={{ id: id }}>
+                <Link to="/personList/personDetail" state={{ id: id }}>
                     {
                         profile_path != null
                         ?
@@ -80,7 +80,7 @@ const PersonItem = ({ result }) => {
                     }
                 </Link><br/>
                 <h5>
-                    <Link to="/personDetail" state={{ id: id }}>
+                    <Link to="/personList/personDetail" state={{ id: id }}>
                         { name.slice(0, 20)}
                     {
                         nameLength < 20
