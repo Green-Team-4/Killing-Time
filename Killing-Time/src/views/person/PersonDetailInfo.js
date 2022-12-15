@@ -11,10 +11,12 @@ const PROFILE_BOX = styled.div`
     }
     div.profile_photo > img {
         border-radius:2.5%;
+        margin-left:20px;
+        margin-top:10px;
     }
     div.profile_detail {
         display: inline-block;
-        margin-left: 30px;
+        margin-left: 70px;
     }
     div.profile_detail > h1 {
         font-weight: bold;
