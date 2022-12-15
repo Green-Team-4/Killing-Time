@@ -1,15 +1,7 @@
+import { CCard, CCardBody, CCol, CRow } from "@coreui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import styled from 'styled-components';
 import PersonDetailCastItem from "./PersonDetailCastItem";
-
-const CastListBlock = styled.div`
-    box-sizing: border-box;
-    padding-bottom: 3rem;
-    margin : 0;
-    margin-top: 2rem;
-    
-`;
 
 const PersonDetailCast = ({id}) => {
     console.log('id: ', id);
@@ -30,23 +22,27 @@ const PersonDetailCast = ({id}) => {
         loadCastList();
     }, [id] );
 
-    console.log('castResults:', castResults);
     if (!castResults) {
         return;
     }
 
     return (
-        <CastListBlock>
-            <br/><br/>
-            <h2>Movie Credits</h2>
-            <br/>
-            {
-                castResults.map( (castResult, idx) => {
-                    return (<PersonDetailCastItem key={ castResult.id } castResult={ castResult } />);
-                    
-                })
-            }
-        </CastListBlock>
+        <CRow>
+        <CCol xs={12}>
+            <CCard className="mb-4">
+                <CCardBody>
+                    <h2 style={{fontWeight:"bold"}}>Movie Credits</h2>
+                    <br/>
+                    {
+                        castResults.map( (castResult, idx) => {
+                            return (<PersonDetailCastItem key={ castResult.id } castResult={ castResult } />);
+                            
+                        })
+                    }
+                </CCardBody>
+            </CCard>
+        </CCol>
+        </CRow>
     );
 };
 

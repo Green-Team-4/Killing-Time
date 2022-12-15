@@ -11,8 +11,7 @@ const PersonDetailCastItemBlock = styled.div`
     margin-left: 20px;
     margin-bottom: 30px;
     img {
-        width:200px;
-        height:200px:
+        width:225px;
     }
 
     h5 {
@@ -25,13 +24,20 @@ const PersonDetailCastItemBlock = styled.div`
     a:hover {
         text-decoration-line : underline;
     }
+
+    div.poster {
+        margin-bottom: 10px;
+    }
+    div.description {
+        
+    }
 `;
 
 const PersonDetailCastItem = ({ castResult }) => {
 
     const { id, poster_path, title, } = castResult;
     const img_url =`https://www.themoviedb.org/t/p/w300_and_h450_bestv2${ poster_path }`;
-    console.log(poster_path);
+    //console.log(poster_path);
 
     
     const nameLength = title.length;
@@ -39,27 +45,31 @@ const PersonDetailCastItem = ({ castResult }) => {
     return (
         <PersonDetailCastItemBlock>
             <div>
-                <Link to="/movieDetail" state={{ id: id }}>
-                    {
-                        poster_path != null
-                        ?
-                        <img src={img_url} alt={title} />
-                        :
-                        <img src="https://via.placeholder.com/300x450" alt={title} />
-                    }
-                </Link><br/>
-                <h5>
+                <div className="poster">
                     <Link to="/movieDetail" state={{ id: id }}>
-                        { title.slice(0, 18)}
-                    {
-                        nameLength < 18
-                        ?
-                        <></>
-                        :
-                        <>...</>
-                    }
-                    </Link>
-                </h5>
+                        {
+                            poster_path != null
+                            ?
+                            <img src={img_url} alt={title} />
+                            :
+                            <img src="https://via.placeholder.com/300x450" alt={title} />
+                        }
+                    </Link><br/>
+                </div>
+                <div className="description">
+                    <h5>
+                        <Link to="/movieDetail" state={{ id: id }}>
+                            { title.slice(0, 18)}
+                        {
+                            nameLength < 18
+                            ?
+                            <></>
+                            :
+                            <>...</>
+                        }
+                        </Link>
+                    </h5>
+                </div>
             </div>
         </PersonDetailCastItemBlock>
     );

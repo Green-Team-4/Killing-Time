@@ -1,24 +1,9 @@
+import { CCard, CCardBody, CCol, CRow } from "@coreui/react";
 import { useEffect, useState } from "react";
 import PersonItem from "./PersonItem";
-import styled from 'styled-components';
 import axios from "axios";
 import Pagination from "./PersonPage";
 
-const PersonListBlock = styled.div`
-    box-sizing: border-box;
-    padding-bottom: 3rem;
-    width: 1100px;
-    margin: 0 auto;
-    margin-top: 2rem;
-    @media screen and (max-width: 1413px) {
-        width: 90%;
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
-    #pager{
-        text-align:center;
-    }
-`;
 
 const PersonList = (props) => {
 
@@ -49,21 +34,24 @@ const PersonList = (props) => {
     }
 
     return (
-        <PersonListBlock>
-            {
-                results.map( (result) => {
-                    return (<PersonItem key={ result.id } result={ result } />);
-                })
-            }
-            
-            <Pagination 
-                total={total_pages} 
-                page={page}
-                setPage={setPage}
-            />
-
-
-        </PersonListBlock>
+        <CRow>
+        <CCol xs={12}>
+            <CCard className="mb-4">
+                <CCardBody>
+                    {
+                        results.map( (result) => {
+                            return (<PersonItem key={ result.id } result={ result } />);
+                        })
+                    }
+                    <Pagination 
+                        total={total_pages} 
+                        page={page}
+                        setPage={setPage}
+                    />
+                </CCardBody>
+            </CCard>
+        </CCol>
+        </CRow>
     );
 
 };

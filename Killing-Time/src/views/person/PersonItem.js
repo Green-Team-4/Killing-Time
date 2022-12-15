@@ -11,8 +11,8 @@ const PersonItemBlock = styled.div`
     margin-left: 20px;
     margin-bottom: 30px;
     img {
-        width:200px;
-        height:200px:
+        width:225px;
+        height:225px:
     }
 
     h5 {
@@ -51,9 +51,9 @@ const PersonItem = ({ result }) => {
                 </Link><br/>
                 <h5>
                     <Link to="/personDetail" state={{ id: id }}>
-                        { name.slice(0, 18)}
+                        { name.slice(0, 20)}
                     {
-                        nameLength < 18
+                        nameLength < 20
                         ?
                         <></>
                         :
