@@ -39,7 +39,7 @@ const PersonDetailCastItem = ({ castResult }) => {
     return (
         <PersonDetailCastItemBlock>
             <div>
-                <Link to="/MovieDetail" state={{ id: id }}>
+                <Link to="/movieDetail" state={{ id: id }}>
                     {
                         poster_path != null
                         ?
@@ -49,7 +49,7 @@ const PersonDetailCastItem = ({ castResult }) => {
                     }
                 </Link><br/>
                 <h5>
-                    <Link to="/MovieDetail" state={{ id: id }}>
+                    <Link to="/movieDetail" state={{ id: id }}>
                         { title.slice(0, 18)}
                     {
                         nameLength < 18

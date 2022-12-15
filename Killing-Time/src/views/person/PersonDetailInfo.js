@@ -11,6 +11,7 @@ const PersonDetailInfo = ({id}) => {
 
     useEffect( () => {
         const loadPersonList = async (e) => {
+            //const language = "ko-KR";
             const apiKey = "52b3ba71c5a67f1429c8e2d3877f3eb4";
             const url = 
             `https://api.themoviedb.org/3/person/${ id }?api_key=${ apiKey }`;
