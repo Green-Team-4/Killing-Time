@@ -9,6 +9,7 @@ import {
   cilDrop,
   cilNotes,
   cilPencil,
+  cilPeople,
   cilPuzzle,
   cilSpeedometer,
   cilStar,
@@ -124,12 +125,6 @@ const _nav = [
     component: CNavItem,
     name: 'Search',
     to: '/search',
-    icon: <CIcon icon={cilCursor} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavItem,
-    name: 'Search2',
-    to: '/search2',
     icon: <CIcon icon={cilCursor} customClassName="nav-icon" />,
   },
   {
@@ -254,15 +249,21 @@ const _nav = [
   },
   {
     component: CNavItem,
-    name: 'Drama Detail',
+    name: '드라마',
     to: '/dramaDetail',
     icon: <CIcon icon={cilStar} customClassName="nav-icon" />,
-    },
+  },
   {
     component: CNavItem,
     name: '영화',
     to: '/moviePage',
     icon: <CIcon icon={cilDescription} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
+    name: '인물',
+    to: '/personList',
+    icon: <CIcon icon={cilPeople} customClassName="nav-icon" />,
   },
 ]
 

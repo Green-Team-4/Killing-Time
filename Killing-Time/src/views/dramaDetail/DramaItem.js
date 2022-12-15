@@ -41,7 +41,7 @@ const DramaItem = ({ result }) => {
     const detail_url = `#/dramaDetails?id=${ id }`;
   
     return (
-        <div>
+        <div className='mb-3'>
             <a href={ detail_url }>
                 <img src={ img_url } style={{padding:3}} alt="drama thumbnail" /><br />
             </a>

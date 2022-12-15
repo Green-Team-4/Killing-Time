@@ -1,9 +1,18 @@
+import { useLocation } from 'react-router-dom';
+import PersonDetailCast from './PersonDetailCast';
+import PersonDetailInfo from './PersonDetailInfo';
 
-const PersonDetail = () => {
+const PersonDetail = (props) => {
+
+    const location = useLocation();
+    const id = location.state.id;
+    //console.log(id);
 
     return (
-        <>
-        </>
+        <div>
+            <PersonDetailInfo id={id} />
+            <PersonDetailCast id={id} />
+        </div>
     );
 };
 

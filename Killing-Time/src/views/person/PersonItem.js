@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 // .css
@@ -10,8 +11,8 @@ const PersonItemBlock = styled.div`
     margin-left: 20px;
     margin-bottom: 30px;
     img {
-        width:200px;
-        height:200px:
+        width:225px;
+        height:225px:
     }
 
     h5 {
@@ -30,12 +31,16 @@ const PersonItem = ({ result }) => {
 
     const { id, profile_path, name, } = result;
     const img_url =`https://www.themoviedb.org/t/p/w235_and_h235_face${ profile_path }`;
-    const detail_url = `person?id=${ id }`;
-    console.log(profile_path);
+    //console.log(profile_path);
+
+    //console.log(name);
+    //console.log(name.length);
+    const nameLength = name.length;
+
     return (
         <PersonItemBlock>
             <div>
-                <a href={ detail_url }>
+                <Link to="/personDetail" state={{ id: id }}>
                     {
                         profile_path != null
                         ?
@@ -43,9 +48,18 @@ const PersonItem = ({ result }) => {
                         :
                         <img src="https://via.placeholder.com/235" alt={name} />
                     }
-                </a><br/>
+                </Link><br/>
                 <h5>
-                    <a href={ detail_url }>{ name }</a>
+                    <Link to="/personDetail" state={{ id: id }}>
+                        { name.slice(0, 20)}
+                    {
+                        nameLength < 20
+                        ?
+                        <></>
+                        :
+                        <>...</>
+                    }
+                    </Link>
                 </h5>
             </div>
         </PersonItemBlock>
