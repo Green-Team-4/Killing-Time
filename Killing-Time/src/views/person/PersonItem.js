@@ -76,7 +76,7 @@ const PersonItem = ({ result }) => {
                         ?
                         <img src={img_url} alt={name} />
                         :
-                        <img src="https://via.placeholder.com/235" alt={name} />
+                        <img src="https://via.placeholder.com/235?text=Unknown+Photo" alt={name} />
                     }
                 </Link><br/>
                 <h5>

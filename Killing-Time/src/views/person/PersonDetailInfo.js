@@ -85,7 +85,7 @@ const PersonDetailInfo = ({id}) => {
                         ?
                         <img src={img_url} alt={name} />
                         :
-                        <img src="https://via.placeholder.com/300x450" alt={name} />
+                        <img src="https://via.placeholder.com/300x450?text=Unknown+Photo" alt={name} />
                     }
                     </div>
                     <div className="profile_detail">

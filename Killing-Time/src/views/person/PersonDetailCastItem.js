@@ -52,7 +52,7 @@ const PersonDetailCastItem = ({ castResult }) => {
                             ?
                             <img src={img_url} alt={title} />
                             :
-                            <img src="https://via.placeholder.com/300x450" alt={title} />
+                            <img src="https://via.placeholder.com/300x450?text=Unknown+Poster" alt={title} />
                         }
                     </Link><br/>
                 </div>
