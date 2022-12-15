@@ -40,7 +40,7 @@ const PersonList = (props) => {
         }
         loadPersonList();
     }, [page] );
-    //console.log(results);
+    console.log(results);
     //console.log(page);
 
     if (!results) {
@@ -51,7 +51,7 @@ const PersonList = (props) => {
         <PersonListBlock>
             {
                 results.map( (result) => {
-                    return (<PersonItem key={ result.url } result={ result } />);
+                    return (<PersonItem key={ result.id } result={ result } />);
                 })
             }
             

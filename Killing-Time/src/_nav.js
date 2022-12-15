@@ -260,7 +260,7 @@ const _nav = [
   },
   {
     component: CNavItem,
-    name: 'People List',
+    name: '인물',
     to: '/personList',
     icon: <CIcon icon={cilDescription} customClassName="nav-icon" />,
   },
