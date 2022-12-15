@@ -27,7 +27,7 @@ const MovieImage = ({ movieName, openDate }) => {
         <>
             {
                 moviePoster ?                         
-                    <MoviePosterItem MoviePoster={moviePoster.poster_path} />         
+                    <MoviePosterItem MoviePoster={moviePoster.poster_path} MovieId={moviePoster.id} />         
              : 
              "aaaaaaaaaaaaaaaaa"   
             }
