@@ -11,25 +11,36 @@ const MovieItemBlock = styled.div`
 const MovieMainCastItem = ({ result }) => {
   const { id, name, profile_path, character } = result;
   const img_url = `https://www.themoviedb.org/t/p/w220_and_h330_face${profile_path}`;
-  const detail_url = `#/personDetail?id=${ id }`;
 
   return (
     <MovieItemBlock>
       <div>
         <div>
-        
-        <a href={ detail_url }>
-          <img
-            style={{ width: 140 }}
-            src={img_url}
-            alt="movie thumbnail"
-            title={id}
-          />
-          </a>
-          <br /><br />
+          <Link to="/personDetail" state={{ id: id }}>
+            {profile_path !== null ? (
+              <img src={img_url} alt={name} title={id} style={{ width: 140 }} />
+            ) : (
+              <img
+                src="https://via.placeholder.com/300x450"
+                alt={name}
+                title={id}
+                style={{ width: 140 }}
+              />
+            )}
+          </Link>
+          <br />
+          <br />
         </div>
-        <div style={{ width: 140, overflow: "hidden", textOverflow: "ellipsis"}}>
-          <a style={{textDecoration: "none", color: "black"}} href={ detail_url }><strong>{name}</strong></a>
+        <div
+          style={{ width: 140, overflow: "hidden", textOverflow: "ellipsis" }}
+        >
+          <Link
+            to="/personDetail"
+            state={{ id: id }}
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            <strong>{name}</strong>
+          </Link>
           <br />
           <span style={{ fontSize: 14 }}>{character}</span>
         </div>

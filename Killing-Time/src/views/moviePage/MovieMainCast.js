@@ -41,7 +41,7 @@ const MovieMainCast = ({ id }) => {
           <tr>
             <td>
               {cast.map((result) => {
-                if (result.order < 10 && result.profile_path !== null) {
+                if (result.order < 10) {
                   return <MovieMainCastItem key={result.id} result={result} />;
                 } else {
                   return "";
