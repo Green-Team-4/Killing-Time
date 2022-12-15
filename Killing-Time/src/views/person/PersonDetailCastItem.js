@@ -5,7 +5,7 @@ import styled from 'styled-components';
 // .scss ( or .sass )
 // css-in-js : styled-components
 
-const PersonItemBlock = styled.div`
+const PersonDetailCastItemBlock = styled.div`
     display: inline-flex;
     margin: 0 auto;
     margin-left: 20px;
@@ -27,31 +27,30 @@ const PersonItemBlock = styled.div`
     }
 `;
 
-const PersonItem = ({ result }) => {
+const PersonDetailCastItem = ({ castResult }) => {
 
-    const { id, profile_path, name, } = result;
-    const img_url =`https://www.themoviedb.org/t/p/w235_and_h235_face${ profile_path }`;
-    //console.log(profile_path);
+    const { id, poster_path, title, } = castResult;
+    const img_url =`https://www.themoviedb.org/t/p/w300_and_h450_bestv2${ poster_path }`;
+    console.log(poster_path);
 
-    //console.log(name);
-    //console.log(name.length);
-    const nameLength = name.length;
+    
+    const nameLength = title.length;
 
     return (
-        <PersonItemBlock>
+        <PersonDetailCastItemBlock>
             <div>
-                <Link to="/personDetail" state={{ id: id }}>
+                <Link to="/MovieDetail" state={{ id: id }}>
                     {
-                        profile_path != null
+                        poster_path != null
                         ?
-                        <img src={img_url} alt={name} />
+                        <img src={img_url} alt={title} />
                         :
-                        <img src="https://via.placeholder.com/235" alt={name} />
+                        <img src="https://via.placeholder.com/300x450" alt={title} />
                     }
                 </Link><br/>
                 <h5>
-                    <Link to="/personDetail" state={{ id: id }}>
-                        { name.slice(0, 18)}
+                    <Link to="/MovieDetail" state={{ id: id }}>
+                        { title.slice(0, 18)}
                     {
                         nameLength < 18
                         ?
@@ -62,9 +61,9 @@ const PersonItem = ({ result }) => {
                     </Link>
                 </h5>
             </div>
-        </PersonItemBlock>
+        </PersonDetailCastItemBlock>
     );
 
 };
 
-export default PersonItem;
+export default PersonDetailCastItem;
