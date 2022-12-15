@@ -1,5 +1,5 @@
-import MovieInfo from "./MovieInfo";
 import { useLocation } from 'react-router-dom';
+import MovieCreditList from './MovieCreditList';
 
 const MovieCredit = (props) => {
 
@@ -8,7 +8,7 @@ const MovieCredit = (props) => {
   
   return (
     <>
-      <MovieInfo id={id} />
+      <MovieCreditList id={id} />
     </>
   );
 

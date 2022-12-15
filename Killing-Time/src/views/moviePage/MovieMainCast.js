@@ -1,7 +1,14 @@
 import { CButton } from "@coreui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 import MovieMainCastItem from "./MovieMainCastItem";
+
+const MovieMainCastBlock = styled.div`
+  overflow: auto;
+  white-space: nowrap;
+`;
 
 const MovieMainCast = ({ id }) => {
   const [cast, setCast] = useState(null);
@@ -27,24 +34,37 @@ const MovieMainCast = ({ id }) => {
   return (
     <>
     <h2>주요 출연진</h2>
-    <table>
-      <tr>
-        <td>
-      {
-        cast.map((result) => {
-          if(result.order < 6) {
-            return <MovieMainCastItem key={result.id} result={result} />;
-          } else {
-            return '';
-          }
-        })
-      }
-      </td>
-      <td>
-      <CButton color="secondary" shape="rounded-pill"><storng>More ▶</storng></CButton>
-      </td>
-      </tr>
-    </table>
+    <MovieMainCastBlock>
+      
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              {cast.map((result) => {
+                if (result.order < 10) {
+                  return <MovieMainCastItem key={result.id} result={result} />;
+                } else {
+                  return "";
+                }
+              })}
+            </td>
+            <td>
+              <div style={{ display: "inline-block" }}>
+                <Link to="/moviePage/movieCredit" state={{ id: id }}>
+                  <CButton
+                    style={{ marginLeft: 20, marginRight: 20 }}
+                    color="secondary"
+                    shape="rounded-pill"
+                  >
+                    More ▶
+                  </CButton>
+                </Link>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </MovieMainCastBlock>
     </>
   );
 };

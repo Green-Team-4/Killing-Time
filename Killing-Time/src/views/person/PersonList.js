@@ -1,9 +1,8 @@
 import { CCard, CCardBody, CCol, CRow } from "@coreui/react";
 import { useEffect, useState } from "react";
-import PersonItem from "./PersonItem";
 import axios from "axios";
+import PersonItem from "./PersonItem";
 import Pagination from "./PersonPage";
-
 
 const PersonList = (props) => {
 
@@ -38,6 +37,8 @@ const PersonList = (props) => {
         <CCol xs={12}>
             <CCard className="mb-4">
                 <CCardBody>
+                    <h1 style={{fontWeight:"bold"}}>Popular People</h1>
+                    <br/>
                     {
                         results.map( (result) => {
                             return (<PersonItem key={ result.id } result={ result } />);

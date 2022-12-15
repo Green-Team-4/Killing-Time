@@ -2,26 +2,26 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const MovieItemBlock = styled.div`
-  display: inline-block;
+  
   margin: 20px;
   margin-left: 30px;
   padding: 0;
 `;
 
-const MovieMainCastItem = ({ result }) => {
+const MovieCreditListCast = ({ result }) => {
   const { id, name, profile_path, character } = result;
   const img_url = `https://www.themoviedb.org/t/p/w220_and_h330_face${profile_path}`;
 
   return (
     <MovieItemBlock>
       <div>
-        <div>
-          <Link to="/personDetail" state={{ id: id }}>
-            {profile_path !== null ? (
+        <div style={{display: "inline-block"}}>
+        <Link to="/personDetail" state={{ id: id }}>
+        {profile_path !== null ? (
               <img src={img_url} alt={name} title={id} style={{ width: 140 }} />
             ) : (
               <img
-                src="https://via.placeholder.com/300x450"
+                src="https://via.placeholder.com/140x210"
                 alt={name}
                 title={id}
                 style={{ width: 140 }}
@@ -29,18 +29,9 @@ const MovieMainCastItem = ({ result }) => {
             )}
           </Link>
           <br />
-          <br />
         </div>
-        <div
-          style={{ width: 140, overflow: "hidden", textOverflow: "ellipsis" }}
-        >
-          <Link
-            to="/personDetail"
-            state={{ id: id }}
-            style={{ textDecoration: "none", color: "black" }}
-          >
-            <strong>{name}</strong>
-          </Link>
+        <div style={{ display: "inline-block", marginLeft: 25}}>
+        <Link to="/personDetail" state={{ id: id }} style={{textDecoration: "none", color: "black"}}><strong>{name}</strong></Link>
           <br />
           <span style={{ fontSize: 14 }}>{character}</span>
         </div>
@@ -49,4 +40,4 @@ const MovieMainCastItem = ({ result }) => {
   );
 };
 
-export default MovieMainCastItem;
+export default MovieCreditListCast;

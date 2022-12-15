@@ -6,13 +6,17 @@ import { useEffect, useState } from "react";
 const PROFILE_BOX = styled.div`
     div.profile_photo {
         display: inline-flex;
-        margin-bottom:20px;
         width:300px;
         height:450px:
     }
+    div.profile_photo > img {
+        border-radius:2.5%;
+        margin-left:20px;
+        margin-top:10px;
+    }
     div.profile_detail {
         display: inline-block;
-        margin-left: 30px;
+        margin-left: 70px;
     }
     div.profile_detail > h1 {
         font-weight: bold;
@@ -37,6 +41,7 @@ const PersonDetailInfo = ({id}) => {
     const [name, setName] = useState(null);
     const [profile_path, setProfile_path] = useState(null);
     const [birthday, setBirthday] = useState(null);
+    const [pob, setPob] = useState(null);
     const [gender, setGender] = useState(0);
     const [kfd, setKfd] = useState(null);
     const [biography, setBiography] = useState(null);    
@@ -51,8 +56,9 @@ const PersonDetailInfo = ({id}) => {
             console.log(response.data)
             setName(response.data.name);
             setProfile_path(response.data.profile_path);
-            setBirthday(response.data.birthday);
             setGender(response.data.gender);
+            setBirthday(response.data.birthday);
+            setPob(response.data.place_of_birth);
             setKfd(response.data.known_for_department);
             setBiography(response.data.biography);
         }
@@ -60,7 +66,10 @@ const PersonDetailInfo = ({id}) => {
     }, [id] );
     const img_url =`https://www.themoviedb.org/t/p/w300_and_h450_bestv2${ profile_path }`;
     const genderValue = `${gender}`;
-    //console.log('Gender Value:', genderValue);
+    //console.log('Gender Value: ', genderValue);
+    const placeOfBirth = `${pob}`
+    console.log('Place of Birth: ', placeOfBirth);
+    
     const knownForDepartment = `${kfd}`;
     const Biography = `${biography}`;
 
@@ -76,22 +85,13 @@ const PersonDetailInfo = ({id}) => {
                         ?
                         <img src={img_url} alt={name} />
                         :
-                        <img src="https://via.placeholder.com/300x450" alt={name} />
+                        <img src="https://via.placeholder.com/300x450?text=Unknown+Photo" alt={name} />
                     }
                     </div>
                     <div className="profile_detail">
                         <h1>{name}</h1>
                         <br/>
                         <div className="profile_detail_details">
-                            <span>BirthDay</span>
-                            <br/>
-                            {
-                                birthday != null
-                                ?
-                                <p>{birthday}</p>
-                                :
-                                <p>Unknown</p>
-                            }
                             <span>Gender</span>
                             <br/>
                             {
@@ -106,18 +106,32 @@ const PersonDetailInfo = ({id}) => {
                                     <p>Unknown</p>
                                 )
                             }
+                            <span>BirthDay</span>
+                            <br/>
+                            {
+                                birthday != null
+                                ?
+                                <p>{birthday}</p>
+                                :
+                                <p>Unknown</p>
+                            }
+                            <span>Place of Birth</span>
+                            {
+                                placeOfBirth !== "null"
+                                ?
+                                <p>{pob}</p>
+                                :
+                                <p>Unknown</p>
+                            }
                             <span>Known for department</span>
                             <br/>
                             {
-                                knownForDepartment != null
+                                knownForDepartment !== "null"
                                 ?
                                 <p>{kfd}</p>
                                 :
                                 <p>Unknown</p>
                             }
-                            <br/>
-                            <br/>
-                            <br/>
                             <br/>
                             <br/>
                             <br/>
