@@ -60,14 +60,16 @@ function Search() {
         <>
             <header>
                 <div className='logo'>
-                    <h1 className='search'>Contents View</h1>
+                    <h1 className='search'>영화 & 드라마 검색</h1>
                 </div>
+                <br />
                 <form onSubmit={handleOnSubmit}>
                     <div className='msearch'>
-                        <input 
+                        <input
+                            style={{width:500, height:50, borderRadius:20, backgroundColor:'#E6E6FA'}} 
                             className='search'
                             type="text"
-                            placeholder='검색어를 입력하세요.'
+                            placeholder='  검색어를 입력하세요.'
                             value={search}
                             onChange={handleOnChange}
                         />
@@ -92,6 +94,7 @@ function Search() {
             &nbsp;
             <div style={{width: "300px",
                         display: "grid",
+
                         gridTemplateRows: "1fr ",
                         gridTemplateColumns: "1fr 1fr 1fr 1fr"
                         }} className='content-container2'>

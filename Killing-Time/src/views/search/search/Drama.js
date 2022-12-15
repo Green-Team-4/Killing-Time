@@ -19,14 +19,18 @@ const setVoteClass = (vote) => {
 const Drama = ({id, name, poster_path, first_air_date, vote_average }) => (
     <div className="drama">
         <p className='dramaa'>
-        <img style={{ width:300, height: 300}}
-            src={
-                poster_path 
-                ? IMG_API + poster_path
-                // 영화 포스터 깨질경우 아래 이미지로 대처
-                : "https://images.unsplash.com/photo-1485846234645-a62644f84728?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=740&q=80"
-                } 
-                alt={name} />
+            <Link to="/dramaDetail" state={{ id: id }}>
+                <div style={{width:290}}>
+                    <img style={{ width:270, height: 300}}
+                        src={
+                            poster_path 
+                            ? IMG_API + poster_path
+                            // 영화 포스터 깨질경우 아래 이미지로 대처
+                            : "https://images.unsplash.com/photo-1485846234645-a62644f84728?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=740&q=80"
+                            } 
+                            alt={name} />
+                    </div>
+                </Link>
                 <div className="movie-info">
                 &nbsp;
                     <Link to="/dramaDetail" state={{ id: id }}><h5>{name}</h5></Link>
