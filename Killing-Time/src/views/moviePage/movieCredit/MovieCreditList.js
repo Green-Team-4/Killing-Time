@@ -3,19 +3,22 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import MovieMainCastItem from "./MovieMainCastItem";
+import MovieCreditListCast from "./MovieCreditListCast";
+import MovieCreditListCrew from "./MovieCreditListCrew";
 
 const MovieMainCastBlock = styled.div`
   overflow: auto;
   white-space: nowrap;
 `;
 
-const MovieMainCast = ({ id }) => {
+const MovieCreditList = ({ id }) => {
   const [cast, setCast] = useState(null);
+  const [crew, setCrew] = useState(null);
 
   // useEffect : mount(초기화), update(상태변화) 이벤트 처리기 등록
   useEffect(() => {
     const loadMainCast = async (e) => {
+      console.log(id);
       const language = "ko-KR";
       const apiKey = "403cc00da7a7725917c9acd69484bde6";
       const baseUrl = "https://api.themoviedb.org/3/movie";
@@ -23,6 +26,7 @@ const MovieMainCast = ({ id }) => {
       // https://api.themoviedb.org/3/movie/436270/credits?api_key=403cc00da7a7725917c9acd69484bde6&language=ko-KR
       const response = await axios.get(url);
       setCast(response.data.cast);
+      setCrew(response.data.crew);
     };
     loadMainCast();
   }, [id]);
@@ -33,40 +37,34 @@ const MovieMainCast = ({ id }) => {
 
   return (
     <>
-    <h2>주요 출연진</h2>
-    <MovieMainCastBlock>
-      
-      <table>
-        <tbody>
-          <tr>
-            <td>
+      {/* <MovieMainCastBlock> */}
+      <div style={{display: "inline-block"}}>
+          <h4>출연진</h4>
               {cast.map((result) => {
-                if (result.order < 10 && result.profile_path !== null) {
-                  return <MovieMainCastItem key={result.id} result={result} />;
+                if (result.profile_path !== null) {
+                  return (
+                    <MovieCreditListCast key={result.id} result={result} />
+                  );
                 } else {
                   return "";
                 }
               })}
-            </td>
-            <td>
-              <div style={{ display: "inline-block" }}>
-                <Link to="/moviePage/movieCredit" state={{ id: id }}>
-                  <CButton
-                    style={{ marginLeft: 20, marginRight: 20 }}
-                    color="secondary"
-                    shape="rounded-pill"
-                  >
-                    More ▶
-                  </CButton>
-                </Link>
               </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </MovieMainCastBlock>
+              <div style={{display: "inline-block",verticalAlign: "top", marginLeft: 100}}>
+              <h4>제작진</h4>
+              {crew.map((result) => {
+                if (result.profile_path !== null) {
+                  return (
+                    <MovieCreditListCrew key={result.id} result={result} />
+                  );
+                } else {
+                  return "";
+                }
+              })}
+      </div>
+      {/* </MovieMainCastBlock> */}
     </>
   );
 };
 
-export default MovieMainCast;
+export default MovieCreditList;

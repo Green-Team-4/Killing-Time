@@ -55,6 +55,7 @@ const Main = React.lazy(() => import('./home/Main'))
 // Movie Page
 const MoviePage = React.lazy(() => import('./views/moviePage/MoviePage'))
 const MovieDetail = React.lazy(() => import('./views/moviePage/MovieDetail'))
+const MovieCredit = React.lazy(() => import('./views/moviePage/movieCredit/MovieCredit'))
 
 // Drama Detail
 const DramaDetail = React.lazy(() => import('./views/dramaDetail/DramaDetail'))
@@ -108,7 +109,8 @@ const routes = [
   { path: '/widgets', name: 'Widgets', element: Widgets },
   { path: '/home/main', name: 'Main', element: Main },
   { path: '/moviePage', name: 'MoviePage', element: MoviePage },
-  { path: '/movieDetail', name: 'MovieDetail', element: MovieDetail },
+  { path: '/moviePage/movieDetail', name: 'MovieDetail', element: MovieDetail },
+  { path: '/moviePage/movieCredit', name: 'MovieCredit', element: MovieCredit },
   { path: '/dramaDetail', name: 'DramaDetail', element: DramaDetail },
   { path: '/dramaDetails', name: 'DramaDetails', element: DramaDetails },
   { path: '/personList', name: 'PersonList', element: PersonList },
