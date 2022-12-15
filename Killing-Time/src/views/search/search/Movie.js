@@ -15,15 +15,9 @@ const setVoteClass = (vote) => {
     }
 }
 
-const MovieItemBlock = styled.div`
-  display: inline-block;
-  margin: 10px;
-`;
-
 //가져올 목록
 const Movie = ({id, title, poster_path, release_date, vote_average }) => (
     <div className="movie">
-        &nbsp;
         <p className='moviee'>
         <Link to="/movieDetail" state={{ id: id }}>  
         <img style={{ width:300, height: 300}}
@@ -37,7 +31,7 @@ const Movie = ({id, title, poster_path, release_date, vote_average }) => (
                 </Link>
                 <div className="movie-info">
                 &nbsp;
-                    <Link to="/movieDetail" state={{ id: id }}><h3>{title}</h3></Link>
+                    <Link to="/movieDetail" state={{ id: id }}><h5>{title}</h5></Link>
                     <br />
                     <span className={
                             `tag ${setVoteClass(release_date)}`
@@ -51,9 +45,7 @@ const Movie = ({id, title, poster_path, release_date, vote_average }) => (
                        평점 :  {vote_average}
                     </span>
                 </div>
-                <br /><br />
-            &nbsp;
-        &nbsp;
+            <br />
         </p>
     </div>
 );

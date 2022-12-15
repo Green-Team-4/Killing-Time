@@ -12,14 +12,6 @@ const URL2 = "https://api.themoviedb.org/3/discover/tv?&language=ko-KR&api_key=e
 const URL3 = "https://api.themoviedb.org/3/search/movie?&api_key=e937a96ff64a1a83e17dac4c4abc7d43&language=ko-KR&page=&query=";
 const URL4 = "https://api.themoviedb.org/3/search/tv?&api_key=e937a96ff64a1a83e17dac4c4abc7d43&language=ko-KR&page=&query=";
 
-// const ContainerBlock = styled.div`
-// display: flex;
-// .container {
-// 	grid-template-rows: 4fr;
-//     grid-template-columns: 1fr 1fr 1fr 1fr;
-// }
-// `
-
 function Search() {
 
     const [contents, setContents] = useState([]);
@@ -66,7 +58,6 @@ function Search() {
 
     return (
         <>
-            
             <header>
                 <div className='logo'>
                     <h1 className='search'>Contents View</h1>
@@ -84,7 +75,8 @@ function Search() {
                 </form>
             </header>
             &nbsp;<hr />&nbsp;
-            <h3>{movieTitle}</h3>
+            <h2>{movieTitle}</h2>
+            &nbsp;
             <div style={{width: "300px",
                         display: "grid",
                         gridTemplateRows: "1fr ",
@@ -95,8 +87,9 @@ function Search() {
                         < Movie key={contents.id} {...contents}/>)
                 }
             </div>
-            <hr />&nbsp;
-            <h3>{tvTitle}</h3>
+            &nbsp;<hr />&nbsp;
+            <h2>{tvTitle}</h2>
+            &nbsp;
             <div style={{width: "300px",
                         display: "grid",
                         gridTemplateRows: "1fr ",

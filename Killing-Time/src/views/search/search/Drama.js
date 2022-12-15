@@ -18,7 +18,6 @@ const setVoteClass = (vote) => {
 // 가져올 목록
 const Drama = ({id, name, poster_path, first_air_date, vote_average }) => (
     <div className="drama">
-        &nbsp;
         <p className='dramaa'>
         <img style={{ width:300, height: 300}}
             src={
@@ -30,7 +29,7 @@ const Drama = ({id, name, poster_path, first_air_date, vote_average }) => (
                 alt={name} />
                 <div className="movie-info">
                 &nbsp;
-                    <Link to="/dramaDetail" state={{ id: id }}><h3>{name}</h3></Link>
+                    <Link to="/dramaDetail" state={{ id: id }}><h5>{name}</h5></Link>
                     <br />
                     <span className={
                             `tag ${setVoteClass(vote_average)}`
@@ -44,9 +43,7 @@ const Drama = ({id, name, poster_path, first_air_date, vote_average }) => (
                        평점 :  {vote_average}
                     </span>
                 </div>
-            &nbsp;
-            <br /><br />
-        &nbsp;
+            <br />
         </p>
     </div>
 );
