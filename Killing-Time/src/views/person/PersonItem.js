@@ -32,6 +32,11 @@ const PersonItem = ({ result }) => {
     const img_url =`https://www.themoviedb.org/t/p/w235_and_h235_face${ profile_path }`;
     const detail_url = `#/personDetail?id=${ id }`;
     //console.log(profile_path);
+
+    //console.log(name);
+    //console.log(name.length);
+    const nameLength = name.length;
+
     return (
         <PersonItemBlock>
             <div>
@@ -45,7 +50,14 @@ const PersonItem = ({ result }) => {
                     }
                 </a><br/>
                 <h5>
-                    <a href={ detail_url }>{ name }</a>
+                    <a href={ detail_url }>{ name.slice(0, 18)}</a>
+                    {
+                        nameLength < 18
+                        ?
+                        <></>
+                        :
+                        <>...</>
+                    }
                 </h5>
             </div>
         </PersonItemBlock>

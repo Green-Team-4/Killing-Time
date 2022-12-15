@@ -7,11 +7,11 @@ import Pagination from "./PersonPage";
 const PersonListBlock = styled.div`
     box-sizing: border-box;
     padding-bottom: 3rem;
-    width: 1000px;
+    width: 1100px;
     margin: 0 auto;
     margin-top: 2rem;
-    @media screen and (max-width: 1000px) {
-        width: 100%;
+    @media screen and (max-width: 1413px) {
+        width: 90%;
         padding-left: 1rem;
         padding-right: 1rem;
     }
@@ -40,7 +40,7 @@ const PersonList = (props) => {
         }
         loadPersonList();
     }, [page] );
-    console.log(results);
+    //console.log(results);
     //console.log(page);
 
     if (!results) {
