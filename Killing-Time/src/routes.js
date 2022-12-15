@@ -115,7 +115,7 @@ const routes = [
   { path: '/dramaDetail', name: 'DramaDetail', element: DramaDetail },
   { path: '/dramaDetails', name: 'DramaDetails', element: DramaDetails },
   { path: '/personList', name: 'PersonList', element: PersonList },
-  { path: '/personDetail', name: 'PersonDetail', element: PersonDetail }
+  { path: '/personList/personDetail', name: 'PersonDetail', element: PersonDetail }
 ]
 
 export default routes

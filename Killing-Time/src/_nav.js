@@ -122,12 +122,6 @@ const _nav = [
     ],
   },
   {
-    component: CNavItem,
-    name: 'Search',
-    to: '/search',
-    icon: <CIcon icon={cilCursor} customClassName="nav-icon" />,
-  },
-  {
     component: CNavGroup,
     name: 'Forms',
     icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
@@ -246,6 +240,12 @@ const _nav = [
   {
     component: CNavTitle,
     name: 'Extras',
+  },
+  {
+    component: CNavItem,
+    name: '영화 & 드라마 검색',
+    to: '/search',
+    icon: <CIcon icon={cilCursor} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
