@@ -34,9 +34,8 @@ const PersonDetailCast = ({id}) => {
                     <h2 style={{fontWeight:"bold"}}>Movie Credits</h2>
                     <br/>
                     {
-                        castResults.map( (castResult, idx) => {
+                        castResults.map( (castResult) => {
                             return (<PersonDetailCastItem key={ castResult.id } castResult={ castResult } />);
-                            
                         })
                     }
                 </CCardBody>

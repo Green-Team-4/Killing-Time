@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import PersonItemMiniList from './PersonItemMiniList';
 
 // .css
 // .scss ( or .sass )
@@ -13,8 +14,8 @@ const PersonItemBlock = styled.div`
     margin-left: 20px;
     margin-bottom: 30px;
     img {
-        width:225px;
-        height:225px:
+        width:220px;
+        height:220px:
     }
     h5 {
         text-align: left;
@@ -34,7 +35,12 @@ const PersonItemBlock = styled.div`
         box-shadow:3px 3px 3px Gainsboro;
     }
     .MiniMovieCredit {
-        padding-left: 20px;
+        width:220px;
+        height:30px;
+        padding-left: 10px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 `;
 
@@ -43,21 +49,24 @@ const PersonItem = ({ result }) => {
     const { id, profile_path, name, } = result;
     const img_url =`https://www.themoviedb.org/t/p/w235_and_h235_face${ profile_path }`;
     const nameLength = name.length;
-    const [miniResults, setMiniResults] = useState([]);
+    const [miniResults, setMiniResults] = useState(null);
 
     // useEffect : mount(초기화), update(상태변화) 이벤트 처리기 등록
     useEffect( () => {
-        const loadPersonList = async (e) => {
+        const loadMiniList = async (e) => {
             const apiKey = "52b3ba71c5a67f1429c8e2d3877f3eb4";
             const url = 
             `https://api.themoviedb.org/3/person/${id}/movie_credits?api_key=${ apiKey }`;
             const response = await axios.get(url)
-            console.log(response.data);
-            setMiniResults(response.data.title);
+            console.log('response.data :', response.data);
+            setMiniResults(response.data.cast);
         }
-        loadPersonList();
+        loadMiniList();
     }, [id] );
 
+    if(!miniResults) {
+        return null;
+    }
     return (
         <PersonItemBlock>
             <div className="peopleBox">
@@ -83,7 +92,15 @@ const PersonItem = ({ result }) => {
                     </Link>
                 </h5>
                 <div className="MiniMovieCredit">
-                    <p>JSON.stringify({miniResults})</p>
+                    {
+                        // miniResults
+                        // ?
+                        miniResults.map( (miniResults, idx) => {
+                            return (<PersonItemMiniList key={ idx } castResult={ miniResults } />); 
+                        })
+                        // :
+                        // <div></div>
+                    }
                 </div>
             </div>
         </PersonItemBlock>
