@@ -10,7 +10,7 @@ const Main = (props) => {
       
       <BoxOffice />
       
-      <MovieNews />
+      {/* <MovieNews /> */}
       
       </>
     );
