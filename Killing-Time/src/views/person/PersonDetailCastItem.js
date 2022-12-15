@@ -12,8 +12,8 @@ const PersonDetailCastItemBlock = styled.div`
     margin-bottom: 30px;
     img {
         width:225px;
+        border-radius:2.5%;
     }
-
     h5 {
         text-align: center;
     }

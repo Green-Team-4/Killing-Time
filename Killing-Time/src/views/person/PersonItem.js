@@ -1,3 +1,5 @@
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -14,9 +16,10 @@ const PersonItemBlock = styled.div`
         width:225px;
         height:225px:
     }
-
     h5 {
-        text-align: center;
+        text-align: left;
+        padding-top: 5px;
+        padding-left: 10px;
     }
     a {
         color: black;
@@ -25,21 +28,39 @@ const PersonItemBlock = styled.div`
     a:hover {
         text-decoration-line : underline;
     }
+    .peopleBox {
+        background-color: GhostWhite;
+        border: 1px solid LightGray;
+        box-shadow:3px 3px 3px Gainsboro;
+    }
+    .MiniMovieCredit {
+        padding-left: 20px;
+    }
 `;
 
 const PersonItem = ({ result }) => {
 
     const { id, profile_path, name, } = result;
     const img_url =`https://www.themoviedb.org/t/p/w235_and_h235_face${ profile_path }`;
-    //console.log(profile_path);
-
-    //console.log(name);
-    //console.log(name.length);
     const nameLength = name.length;
+    const [miniResults, setMiniResults] = useState([]);
+
+    // useEffect : mount(초기화), update(상태변화) 이벤트 처리기 등록
+    useEffect( () => {
+        const loadPersonList = async (e) => {
+            const apiKey = "52b3ba71c5a67f1429c8e2d3877f3eb4";
+            const url = 
+            `https://api.themoviedb.org/3/person/${id}/movie_credits?api_key=${ apiKey }`;
+            const response = await axios.get(url)
+            console.log(response.data);
+            setMiniResults(response.data.title);
+        }
+        loadPersonList();
+    }, [id] );
 
     return (
         <PersonItemBlock>
-            <div>
+            <div className="peopleBox">
                 <Link to="/personDetail" state={{ id: id }}>
                     {
                         profile_path != null
@@ -61,6 +82,9 @@ const PersonItem = ({ result }) => {
                     }
                     </Link>
                 </h5>
+                <div className="MiniMovieCredit">
+                    <p>JSON.stringify({miniResults})</p>
+                </div>
             </div>
         </PersonItemBlock>
     );

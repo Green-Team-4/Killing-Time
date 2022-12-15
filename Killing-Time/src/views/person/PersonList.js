@@ -1,9 +1,8 @@
 import { CCard, CCardBody, CCol, CRow } from "@coreui/react";
 import { useEffect, useState } from "react";
-import PersonItem from "./PersonItem";
 import axios from "axios";
+import PersonItem from "./PersonItem";
 import Pagination from "./PersonPage";
-
 
 const PersonList = (props) => {
 
