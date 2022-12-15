@@ -13,7 +13,7 @@ const MovieImage = ({ movieName, openDate }) => {
             const url = `https://api.themoviedb.org/3/search/movie?api_key=${apikey}&language=ko&page=1&primary_release_year=${openDate}&query=${movieName}`;
             const response = await axios.get(url);            
             console.log(response.data)
-            setMoviePoster(response.data)
+            setMoviePoster(response.data.results[0])
         }
         loadMoivePoster();
     }, [movieName, openDate]);
@@ -27,7 +27,7 @@ const MovieImage = ({ movieName, openDate }) => {
         <>
             {
                 moviePoster ?                         
-                    <MoviePosterItem MoviePoster={moviePoster.results[0].poster_path} />         
+                    <MoviePosterItem MoviePoster={moviePoster.poster_path} />         
              : 
              "aaaaaaaaaaaaaaaaa"   
             }
