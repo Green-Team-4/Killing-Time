@@ -101,24 +101,24 @@ const Button = styled.button`
   border-radius: 8px;
   padding: 8px;
   margin: 0;
-  background: black;
-  color: white;
+  background: White;
+  color: Black;
   font-size: 1rem;
 
   &:hover {
-    background: tomato;
+    color: Gray;
     cursor: pointer;
     transform: translateY(-2px);
   }
 
   &[disabled] {
-    background: grey;
+    color: LightGray;
     cursor: revert;
     transform: revert;
   }
 
   &[aria-current] {
-    background: deeppink;
+    color: royalBlue;
     font-weight: bold;
     cursor: revert;
     transform: revert;
