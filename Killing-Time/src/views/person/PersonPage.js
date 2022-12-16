@@ -1,9 +1,12 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 function Pagination({ total, page, setPage }) {
 
     const start = Math.max(page - 2, 1);
     const pages = [];
+    const [pageInputNum, setPageInputNum] = useState(0);
+
     if (start >= total-3) {
         for (let idx = start; idx < start+3; idx++) {
             pages.push(idx);  
@@ -84,6 +87,15 @@ function Pagination({ total, page, setPage }) {
             &gt;
             </Button>
         </Nav>
+        <div style={{textAlign:"center", margin:"0", marginBottom:"100px"}}>
+            <input id="pageInput" style={{width:"50px", height:"20px"}}
+            onChange={(event) => setPageInputNum(event.target.value)}
+            ></input>
+            <Button style={{width:"100px", height:"20px", fontSize:"14px"}} 
+            onClick={() => setPage(pageInputNum)}
+            >페이지 이동</Button>
+        </div>
+        
         </>
     );
 }
@@ -94,14 +106,14 @@ const Nav = styled.nav`
   align-items: center;
   gap: 4px;
   margin: 16px;
+  margin-bottom: 0px;
 `;
 
 const Button = styled.button`
   border: none;
-  border-radius: 8px;
   padding: 8px;
   margin: 0;
-  background: White;
+  background-color: transparent;
   color: Black;
   font-size: 1rem;
 

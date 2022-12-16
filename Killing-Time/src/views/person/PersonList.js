@@ -44,7 +44,7 @@ const PersonList = (props) => {
                             return (<PersonItem key={ result.id } result={ result } />);
                         })
                     }
-                    <Pagination 
+                    <Pagination
                         total={total_pages} 
                         page={page}
                         setPage={setPage}
