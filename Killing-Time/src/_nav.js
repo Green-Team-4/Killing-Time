@@ -250,7 +250,7 @@ const _nav = [
   {
     component: CNavItem,
     name: '드라마',
-    to: '/drama',
+    to: '/dramaMain',
     icon: <CIcon icon={cilStar} customClassName="nav-icon" />,
   },
   {

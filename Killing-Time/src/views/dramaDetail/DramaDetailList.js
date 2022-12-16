@@ -15,7 +15,8 @@ const DramaDetailList = ({id}) => {
             //https://api.themoviedb.org/3/tv/popular?api_key=<<api_key>>&language=en-US&page=1
             //https://api.themoviedb.org/3/tv/{tv_id}?api_key=<<api_key>>&language=en-US
             const response = await axios.get(url)
-            setResult(response.data.results);
+            console.log(response.data);
+            setResult(response.data);
         }
         loadDramaDetail();
     }, [id] );
@@ -26,7 +27,7 @@ const DramaDetailList = ({id}) => {
 
     return (
        <div>
-            <DramaDetailItem id={id} result={ result } />
+            <DramaDetailItem result={ result } />
        </div>
         
     );

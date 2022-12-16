@@ -43,7 +43,7 @@ const DramaItem = ({ result }) => {
   
     return (
         <div className='mb-3'>
-            <Link to="/dramaDetails" state={{ id:id }}>
+            <Link to="/dramaMain/dramaDetails" state={{ id:id }}>
                 <img src={ img_url } style={{borderRadius:20, padding:3}} alt="drama thumbnail" /><br />
             </Link>
                 <h4>{ name }<br /></h4>
