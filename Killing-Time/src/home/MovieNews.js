@@ -28,7 +28,7 @@ const MovieNews = (props) => {
 
     return (
         <>
-        <CCol xs={12}>
+        <CCol xs={10} style={{margin: "auto"}}>
         <CCard className="mb-4">
           <CCardHeader>
             <strong>영화 뉴스</strong>
@@ -48,10 +48,10 @@ const MovieNews = (props) => {
                         return (
                     
                     <CTableRow key={idx}>
-                    <Link to="/movieNews/movieNewsDetails" state={{ title: movie.title.replaceAll('&apos;', "'").replaceAll('&quot;', '"').replaceAll('<b>', '').replaceAll('</b>', '')}}>
-                      <CTableHeaderCell>{movie.title.replaceAll('&apos;', "'").replaceAll('&quot;', '"').replaceAll('<b>', '').replaceAll('</b>', '')}</CTableHeaderCell>
+                    
+                      <CTableHeaderCell><a href={movie.link} style={{textDecoration:"none", color:"black"}}>{movie.title.replaceAll('&apos;', "'").replaceAll('&quot;', '"').replaceAll('<b>', '').replaceAll('</b>', '').replaceAll('&lt;', '<').replaceAll('&gt;', '>')}</a></CTableHeaderCell>
+                    
                       <CTableDataCell>{moment(movie.pubDate).format('YYYY-MM-DD')}</CTableDataCell>
-                    </Link>
                     </CTableRow>
                     
                     )
