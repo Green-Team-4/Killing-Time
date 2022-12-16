@@ -25,7 +25,6 @@ const BoxOffice = (props) => {
       const itemPerPage = 5;
       const url = `http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=${apikey}&targetDt=${targetDt}&itemPerPage=${itemPerPage}`
       const response = await axios.get(url);
-      console.log(response.data);
       setBoxOffice(response.data.boxOfficeResult);
     }
     boxOfficeLoad();
