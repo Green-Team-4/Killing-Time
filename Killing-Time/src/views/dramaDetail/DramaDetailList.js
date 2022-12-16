@@ -7,7 +7,7 @@ const DramaDetailList = ({id}) => {
     const [result, setResult] = useState(null);
     useEffect(() => {
         const loadDramaDetail = async (e) => {
-            const language = 'ko-KR';
+            const language = 'ko';
             const apiKey = "da88cf78c356139f9420b764c0d77208";
             const baseUrl = "https://api.themoviedb.org/3/tv";
             const url = `${baseUrl}/${id}?api_key=${apiKey}&language=${language}`;

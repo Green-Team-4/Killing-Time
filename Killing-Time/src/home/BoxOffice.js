@@ -33,7 +33,7 @@ const BoxOffice = (props) => {
  
 
     return(
-        <CCol xs={12}>
+      <CCol xs={10} style={{margin: "auto"}}>
         <CCard className="mb-4">
           <CCardHeader>
             <strong>일일 박스오피스</strong>

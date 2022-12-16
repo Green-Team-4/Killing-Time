@@ -36,7 +36,7 @@ const DramaList = (props) => {
                 display: "grid",
                 gridTemplateRows: "1fr ",
                 gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr",
-                backgroundColor: "hotpink",
+                backgroundColor: "white",
             }}
     >
         
