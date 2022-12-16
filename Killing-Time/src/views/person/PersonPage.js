@@ -107,11 +107,10 @@ function Pagination({ total, page, setPage }) {
                 }} 
                 onClick={() => 
                     {
-                        pageInputNum <= parseInt(total)
+                        pageInputNum <= total
                         ?
                         setPage(pageInputNum)
                         :
-                        <></>
                         setPage(total)
                     }
                 }
