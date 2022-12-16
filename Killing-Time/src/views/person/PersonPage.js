@@ -87,7 +87,7 @@ function Pagination({ total, page, setPage }) {
             &gt;
             </Button>
         </Nav>
-        <div style={{textAlign:"center", margin:"0", marginBottom:"100px"}}>
+        <div style={{textAlign:"center", margin:"0", marginBottom:"20px"}}>
             <input id="pageInput" style={{width:"50px", height:"20px"}}
             onChange={(event) => setPageInputNum(event.target.value)}
             ></input>

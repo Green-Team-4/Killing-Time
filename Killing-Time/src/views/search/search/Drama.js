@@ -7,7 +7,7 @@ const IMG_API = "https://image.tmdb.org/t/p/w1280";
 const Drama = ({id, name, poster_path, first_air_date, vote_average }) => (
     <div className="drama">
         <p className='dramaa'>
-            <Link to="/dramaMain/dramaDetail" state={{ id: id }}>
+            <Link to="/dramaMain/dramaDetails" state={{ id: id }}>
                 <div style={{width:240}}>
                     <img style={{ width:220, height: 330, borderRadius:20}}
                         src={
