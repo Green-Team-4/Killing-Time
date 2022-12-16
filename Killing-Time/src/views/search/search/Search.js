@@ -1,7 +1,13 @@
+import { CCard, CRow } from '@coreui/react';
 import React, { useEffect, useState } from 'react';
+import styled from "styled-components";
 import Drama from './Drama';
 import Movie from './Movie';
 
+
+const SearchBlock = styled.div`
+
+`;
 // const category = 'movie';
 // const language = 'ko';
 // const page = 1;
@@ -18,7 +24,7 @@ function Search() {
     const [tvContents, setTvContents] = useState([]);
     const [search, setSearch] = useState("");
     const [movieTitle, setMovieTitle] = useState("인기 영화 TOP 20");
-    const [tvTitle, setTvTitle] = useState("인기 드라마 TOP 20");
+    const [tvTitle, setTvTitle] = useState("인기 TV TOP 20");
 
     useEffect( () => {
         getContents(URL1, "movie");
@@ -40,6 +46,11 @@ function Search() {
 
     const handleOnSubmit = (e) => {
         e.preventDefault();
+        
+        if (!search || search === " " || search === "  "|| search === "   ") {
+            alert('검색어를 입력해주세요.');
+            return Search;
+        }
 
         if (search) {
             getContents(URL3 + search, 'movie');
@@ -47,9 +58,9 @@ function Search() {
             
             setSearch("");
         }
-        setMovieTitle(`"${search}" 영화 검색 결과`);
-        setTvTitle(`"${search}" 드라마 검색 결과`);
         
+        setMovieTitle(`"${search}" 영화 검색 결과`);
+        setTvTitle(`"${search}" TV 프로그램 검색 결과`);
     }
 
     const handleOnChange = (e) => {
@@ -57,19 +68,26 @@ function Search() {
     }
 
     return (
-        <>
+        <SearchBlock style={{paddingLeft:20, backgroundColor:'#F8F8FF', width:1220}}>
             <header>
+                <br />
                 <div className='logo'>
-                    <h1 className='search'>영화 & 드라마 검색</h1>
+                    <h1 style={{fontWeight:'bold'}} className='search'>영화 & TV 검색</h1>
                 </div>
                 <br />
                 <form onSubmit={handleOnSubmit}>
                     <div className='msearch'>
                         <input
-                            style={{width:500, height:50, borderRadius:20, backgroundColor:'#E6E6FA'}} 
+                            style={{fontWeight:'bold',
+                                    width:500,
+                                    height:50, 
+                                    paddingLeft:30,
+                                    borderRadius:20, 
+                                    backgroundColor:'#E6E6FA'
+                                    }} 
                             className='search'
                             type="text"
-                            placeholder='  검색어를 입력하세요.'
+                            placeholder='검색어를 입력하세요.'
                             value={search}
                             onChange={handleOnChange}
                         />
@@ -77,12 +95,12 @@ function Search() {
                 </form>
             </header>
             &nbsp;<hr />&nbsp;
-            <h2>{movieTitle}</h2>
+            <h2 style={{fontWeight:'bold'}}>{movieTitle}</h2>
             &nbsp;
             <div style={{width: "300px",
                         display: "grid",
                         gridTemplateRows: "1fr ",
-                        gridTemplateColumns: "1fr 1fr 1fr 1fr"
+                        gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr"
                         }} className='content-container'>
                 {
                     contents.length > 0 && contents.map((contents) =>
@@ -90,20 +108,20 @@ function Search() {
                 }
             </div>
             &nbsp;<hr />&nbsp;
-            <h2>{tvTitle}</h2>
+            <h2 style={{fontWeight:'bold'}}>{tvTitle}</h2>
             &nbsp;
             <div style={{width: "300px",
                         display: "grid",
 
                         gridTemplateRows: "1fr ",
-                        gridTemplateColumns: "1fr 1fr 1fr 1fr"
+                        gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr"
                         }} className='content-container2'>
                 {
                     tvContents.length > 0 && tvContents.map((tvContents) => 
                         < Drama key={tvContents.id} {...tvContents}/>)
                 }
             </div>
-        </>
+            </SearchBlock>
     );
 }
 

@@ -1,10 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-// .css
-// .scss ( or .sass )
-// css-in-js : styled-components
-
 const PersonDetailCastItemBlock = styled.div`
     display: inline-flex;
     margin: 0 auto;
@@ -14,65 +10,85 @@ const PersonDetailCastItemBlock = styled.div`
         width:225px;
         border-radius:2.5%;
     }
-    h5 {
-        text-align: center;
-    }
     a {
         color: black;
         text-decoration-line : none;
     }
     a:hover {
-        text-decoration-line : underline;
+        color: gray;
     }
-
     div.poster {
         margin-bottom: 10px;
     }
     div.description {
-        
+        width:225px;
+        height:30px;
+        padding-left: 10px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: center;
+        font-size: 20px;
     }
 `;
 
-const PersonDetailCastItem = ({ castResult }) => {
+const PersonDetailCastItem = ({ castResult, MovieOrTv}) => {
 
-    const { id, poster_path, title, } = castResult;
+    const { id, poster_path, title, name } = castResult;
     const img_url =`https://www.themoviedb.org/t/p/w300_and_h450_bestv2${ poster_path }`;
-    //console.log(poster_path);
+    // console.log(poster_path);
+    // console.log('MovieOrTv: ', MovieOrTv);
 
-    
-    const nameLength = title.length;
-
-    return (
-        <PersonDetailCastItemBlock>
-            <div>
-                <div className="poster">
-                    <Link to="/moviePage/movieDetail" state={{ id: id }}>
-                        {
-                            poster_path != null
-                            ?
-                            <img src={img_url} alt={title} />
-                            :
-                            <img src="https://via.placeholder.com/300x450?text=Unknown+Poster" alt={title} />
-                        }
-                    </Link><br/>
-                </div>
-                <div className="description">
-                    <h5>
+    if (MovieOrTv === "movie") {
+        return (
+            <PersonDetailCastItemBlock>
+                <div>
+                    <div className="poster">
                         <Link to="/moviePage/movieDetail" state={{ id: id }}>
-                            { title.slice(0, 18)}
-                        {
-                            nameLength < 18
-                            ?
-                            <></>
-                            :
-                            <>...</>
-                        }
+                            {
+                                poster_path != null
+                                ?
+                                <img src={img_url} alt={title} />
+                                :
+                                <img src="https://via.placeholder.com/300x450?text=Unknown+Poster" alt={title} />
+                            }
+                        </Link><br/>
+                    </div>
+                    <div className="description">
+                        <Link to="/moviePage/movieDetail" state={{ id: id }}>
+                            { title }
                         </Link>
-                    </h5>
+                    </div>
                 </div>
-            </div>
-        </PersonDetailCastItemBlock>
-    );
+            </PersonDetailCastItemBlock>
+        );
+    } else if (MovieOrTv === "tv") {
+        return (
+            <PersonDetailCastItemBlock>
+                <div>
+                    <div className="poster">
+                        <Link to="/dramaMain/dramaDetails" state={{ id: id }}>
+                            {
+                                poster_path != null
+                                ?
+                                <img src={img_url} alt={name} />
+                                :
+                                <img src="https://via.placeholder.com/300x450?text=Unknown+Poster" alt={name} />
+                            }
+                        </Link><br/>
+                    </div>
+                    <div className="description">
+                        <Link to="/dramaMain/dramaDetails" state={{ id: id }}>
+                            { name }
+                        </Link>
+                    </div>
+                </div>
+            </PersonDetailCastItemBlock>
+        );
+    } else {
+        return;
+    }
+    
 
 };
 

@@ -33,6 +33,18 @@ const PROFILE_BOX = styled.div`
     div.profile_description > h4 {
         font-weight: bold;
     }
+    div.ExternalLink {
+        display: inline-block;
+    }
+    div.ExternalLink > a {
+        margin-right: 15px;
+        color: black;
+        font-weight: bold;
+        text-decoration-line : none;
+    }
+    div.ExternalLink > a:hover {
+        color: gray;
+    }
 `;
 
 const PersonDetailInfo = ({id}) => {
@@ -44,16 +56,33 @@ const PersonDetailInfo = ({id}) => {
     const [pob, setPob] = useState(null);
     const [gender, setGender] = useState(0);
     const [kfd, setKfd] = useState(null);
-    const [biography, setBiography] = useState(null);    
+    const [biography, setBiography] = useState(null);
+    
+    const [facebookId, setFacebookId] = useState(null);
+    const [instagramId, setInstagramId] = useState(null);
+    const [twitterId, setTwitterId] = useState(null);
+
+    const [ creditNum, setCreditNum] = useState(0);
 
     useEffect( () => {
         const loadPersonList = async (e) => {
-            //const language = "ko-KR";
             const apiKey = "52b3ba71c5a67f1429c8e2d3877f3eb4";
+            
             const url = 
             `https://api.themoviedb.org/3/person/${ id }?api_key=${ apiKey }`;
-            const response = await axios.get(url)
-            console.log(response.data)
+            const externalUrl = 
+            `https://api.themoviedb.org/3/person/${ id }/external_ids?api_key=${ apiKey }`;
+            const MovieCreditUrl = 
+            `https://api.themoviedb.org/3/person/${ id }/movie_credits?api_key=${ apiKey }`;
+            const TvCreditUrl =
+            `https://api.themoviedb.org/3/person/${ id }/tv_credits?api_key=${ apiKey }`;
+            
+            const response = await axios.get(url);
+            const responseEx = await axios.get(externalUrl);
+            const responseMC = await axios.get(MovieCreditUrl);
+            const responseTC = await axios.get(TvCreditUrl);
+
+            // console.log(response.data);
             setName(response.data.name);
             setProfile_path(response.data.profile_path);
             setGender(response.data.gender);
@@ -61,18 +90,34 @@ const PersonDetailInfo = ({id}) => {
             setPob(response.data.place_of_birth);
             setKfd(response.data.known_for_department);
             setBiography(response.data.biography);
+
+            // console.log(responseEx.data);
+            setFacebookId(responseEx.data.facebook_id);
+            setInstagramId(responseEx.data.instagram_id);
+            setTwitterId(responseEx.data.twitter_id);
+
+            // console.log(responseMC.data);
+            // console.log(responseTC.data)
+            // console.log('Movie, Tv cast : ', 
+            //     responseMC.data.cast.length +
+            //     responseTC.data.cast.length);
+            setCreditNum(
+                responseMC.data.cast.length +
+                responseTC.data.cast.length);
         }
         loadPersonList();
     }, [id] );
     const img_url =`https://www.themoviedb.org/t/p/w300_and_h450_bestv2${ profile_path }`;
     const genderValue = `${gender}`;
-    //console.log('Gender Value: ', genderValue);
     const placeOfBirth = `${pob}`
-    console.log('Place of Birth: ', placeOfBirth);
-    
     const knownForDepartment = `${kfd}`;
     const Biography = `${biography}`;
-
+    const facebook = `${facebookId}`
+    const instagram = `${instagramId}`
+    const twitter = `${twitterId}`
+    const facebookUrl = `https://www.facebook.com/${facebookId}`;
+    const instagramUrl = `https://www.instagram.com/${instagramId}/`;
+    const twitterUrl = `https://twitter.com/${twitterId}`;
     return (
         <PROFILE_BOX>
         <CRow>
@@ -92,60 +137,82 @@ const PersonDetailInfo = ({id}) => {
                         <h1>{name}</h1>
                         <br/>
                         <div className="profile_detail_details">
-                            <span>Gender</span>
+                            <span>성별</span>
                             <br/>
                             {
                                 genderValue === "2"
                                 ?
-                                <p>Male</p>
+                                <p>남성</p>
                                 : (
                                     genderValue === "1"
                                     ?
-                                    <p>Female</p>
+                                    <p>여성</p>
                                     : 
-                                    <p>Unknown</p>
+                                    <p>-</p>
                                 )
                             }
-                            <span>BirthDay</span>
+                            <span>생년월일</span>
                             <br/>
                             {
                                 birthday != null
                                 ?
                                 <p>{birthday}</p>
                                 :
-                                <p>Unknown</p>
+                                <p>-</p>
                             }
-                            <span>Place of Birth</span>
+                            <span>출생지</span>
                             {
                                 placeOfBirth !== "null"
                                 ?
                                 <p>{pob}</p>
                                 :
-                                <p>Unknown</p>
+                                <p>-</p>
                             }
-                            <span>Known for department</span>
+                            <span>유명 분야</span>
                             <br/>
                             {
                                 knownForDepartment !== "null"
                                 ?
                                 <p>{kfd}</p>
                                 :
-                                <p>Unknown</p>
+                                <p>-</p>
                             }
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
+                            <span>출연 작품 수</span>
+                            <p>{creditNum}</p>
+                            <div className="ExternalLink">
+                            {
+                                facebook !== "null"
+                                ?
+                                <a href={facebookUrl}>Facebook</a>
+                                :
+                                <></>
+                            }
+                            {
+                                instagram !== "null"
+                                ?
+                                <a href={instagramUrl}>Instagram</a>
+                                :
+                                <></>
+                            }
+                            {
+                                twitter !== "null"
+                                ?
+                                <a href={twitterUrl}>Twitter</a>
+                                :
+                                <></>
+                            }
+                            </div>
+                            <br/><br/>
                         </div>
                     </div>
                     <div className="profile_description">
-                        <h4>Biography</h4>
+                        <h4>약력</h4>
                         {
                             Biography !== ""
                             ?
                             <p>{biography}</p>
                             :
-                            <p>No Discription</p>
+                            <p>-</p>
                         }
                     </div>
                 </CCardBody>

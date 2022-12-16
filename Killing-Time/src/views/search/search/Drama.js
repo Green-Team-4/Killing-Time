@@ -1,27 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-
 const IMG_API = "https://image.tmdb.org/t/p/w1280";
-
-// 평점별 색상주기 
-const setVoteClass = (vote) => {
-    if (vote >= 8) {
-        return "green";
-    } else if (vote >= 6) {
-        return "orange";
-    } else {
-        return "red";
-    }
-}
 
 // 가져올 목록
 const Drama = ({id, name, poster_path, first_air_date, vote_average }) => (
     <div className="drama">
         <p className='dramaa'>
-            <Link to="/dramaDetail" state={{ id: id }}>
-                <div style={{width:290}}>
-                    <img style={{ width:270, height: 300}}
+            <Link to="/dramaMain/dramaDetails" state={{ id: id }}>
+                <div style={{width:240}}>
+                    <img style={{ width:220, height: 330, borderRadius:20}}
                         src={
                             poster_path 
                             ? IMG_API + poster_path
@@ -31,21 +19,20 @@ const Drama = ({id, name, poster_path, first_air_date, vote_average }) => (
                             alt={name} />
                     </div>
                 </Link>
-                <div className="movie-info">
+                <div style={{fontSize:15, color:'black'}} className="movie-info">
                 &nbsp;
-                    <Link to="/dramaDetail" state={{ id: id }}><h5>{name}</h5></Link>
+                    <Link style={{fontSize:20, textDecoration:'none', color:'black'}} to="/dramaDetail" state={{ id: id }}>
+                        <h5 style={{fontWeight:'bold'}}>{name}</h5>
+                    </Link>
                     <br />
-                    <span className={
-                            `tag ${setVoteClass(vote_average)}`
-                            }>
+                </div>
+                <div>
+                    <span>
                        첫 방송일 : {first_air_date}
-                    </span>
-                    <br />
-                    <span className={
-                            `tag ${setVoteClass(vote_average)}`
-                            }>
+                       <br />
                        평점 :  {vote_average}
                     </span>
+                    <br />
                 </div>
             <br />
         </p>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
+const Dashboard = React.lazy(() => import('./home/Main'))
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
 const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
 
@@ -51,6 +51,8 @@ const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 
 //home
 const Main = React.lazy(() => import('./home/Main'))
+const MovieNewsList = React.lazy(() => import('./home/MovieNewsList'))
+const MovieNewsDetails = React.lazy(() => import('./home/MovieNewsDetails'))
 
 // Movie Page
 const MoviePage = React.lazy(() => import('./views/moviePage/MoviePage'))
@@ -58,7 +60,7 @@ const MovieDetail = React.lazy(() => import('./views/moviePage/MovieDetail'))
 const MovieCredit = React.lazy(() => import('./views/moviePage/movieCredit/MovieCredit'))
 
 // Drama Detail
-const DramaDetail = React.lazy(() => import('./views/dramaDetail/DramaDetail'))
+const DramaMain = React.lazy(() => import('./views/dramaDetail/DramaMain'))
 const DramaDetails = React.lazy(() => import('./views/dramaDetail/DramaDetails'))
 
 // Person Page
@@ -112,10 +114,12 @@ const routes = [
   { path: '/moviePage', name: 'MoviePage', element: MoviePage },
   { path: '/moviePage/movieDetail', name: 'MovieDetail', element: MovieDetail },
   { path: '/moviePage/movieCredit', name: 'MovieCredit', element: MovieCredit },
-  { path: '/dramaDetail', name: 'DramaDetail', element: DramaDetail },
-  { path: '/dramaDetails', name: 'DramaDetails', element: DramaDetails },
+  { path: '/dramaMain', name: 'DramaMain', element: DramaMain },
+  { path: '/dramaMain/dramaDetails', name: 'DramaDetails', element: DramaDetails },
   { path: '/personList', name: 'PersonList', element: PersonList },
-  { path: '/personList/personDetail', name: 'PersonDetail', element: PersonDetail }
+  { path: '/personList/personDetail', name: 'PersonDetail', element: PersonDetail },
+  { path: '/movieNewsList/movieNewsDetails', name: 'MovieNewsDetails', element: MovieNewsDetails },
+  { path: '/movieNewsList', name: 'MovieNewsList', element: MovieNewsList }
 ]
 
 export default routes

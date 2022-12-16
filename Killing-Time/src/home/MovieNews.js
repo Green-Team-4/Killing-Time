@@ -1,38 +1,31 @@
+import { Alert } from "@coreui/coreui";
 import { CCard, CCardBody, CCardHeader, CCol, CTable, CTableBody, CTableDataCell, CTableHead, CTableHeaderCell, CTableRow } from "@coreui/react";
 import axios from "axios";
+import moment from "moment/moment";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 
 const MovieNews = (props) => {
-  
 
-  const [movieNews, setMovieNews] = useState(null);
-    useEffect( () => {
-      const loadMovieNews = async (e) => {
-        const query = "영화";
-        const ClientId = "wU2XN4bqPL76KvebczSA";
-        const ClientSecret = "In0G2tK4lo";
-        const display = 5;
-        const url = `/v1/search/news.json`; 
-        
-        const response = await axios.get(url, {
-          params:{
-            query: query,
-            display: display,
-            sort:'sim',
-            start: 1
-          },
-          headers: {
-            'X-Naver-Client-Id': ClientId,
-            'X-Naver-Client-Secret': ClientSecret,
-            'Access-Control-Allow-Origin': '*'
-          }
-        });
-        console.log(response.data);
-        setMovieNews(response.data);
-      }
-      loadMovieNews();
-    },[]);
+    
+    const [movieNews, setMovieNews] = useState([]);
+    useEffect(() => {
+        const start = 1;
+        const display = 10;
+        const url = `http://localhost:8080/web-scraping/movie-news?start=${start}&display=${display}`;
+        axios.get(url)
+             .then( (response) => {
+                if (response.data.result === "success") {
+                    setMovieNews(response.data.movieNews);
+                    console.log(response.data.movieNews);
+                } else {
+                    Alert("스프링 서버 연결 실패");
+                }
+             });      
+    }, []);
+
+
     return (
         <>
         <CCol xs={12}>
@@ -44,28 +37,51 @@ const MovieNews = (props) => {
               <CTable hover>
                 <CTableHead>
                   <CTableRow>
-                    <CTableHeaderCell scope="col">#</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Class</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">뉴스 타이틀</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">게시일</CTableHeaderCell>
                   </CTableRow>
                 </CTableHead>
                 <CTableBody>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">1</CTableHeaderCell>
-                    <CTableDataCell>Mark</CTableDataCell>
-                    <CTableDataCell>Otto</CTableDataCell>
-                    <CTableDataCell>@mdo</CTableDataCell>
-                  </CTableRow>
-                  
+                  {
+                    movieNews ?
+                    movieNews.map((movie, idx) => {
+                        return (
+                    
+                    <CTableRow key={idx}>
+                    <Link to="/movieNews/movieNewsDetails" state={{ title: movie.title.replaceAll('&apos;', "'").replaceAll('&quot;', '"').replaceAll('<b>', '').replaceAll('</b>', '')}}>
+                      <CTableHeaderCell>{movie.title.replaceAll('&apos;', "'").replaceAll('&quot;', '"').replaceAll('<b>', '').replaceAll('</b>', '')}</CTableHeaderCell>
+                      <CTableDataCell>{moment(movie.pubDate).format('YYYY-MM-DD')}</CTableDataCell>
+                    </Link>
+                    </CTableRow>
+                    
+                    )
+                    })
+                  :
+                  ""
+                  }                  
                 </CTableBody>
               </CTable>
           </CCardBody>
         </CCard>
       </CCol>
         </>
-    );
 
+
+
+
+
+        // <div>
+        //     <h2>movie news</h2>
+        // {
+        //     movieNews ?
+        //     movieNews.map((movie, idx) => {
+        //         return (<p key={idx}>{movie.title}</p>);
+        //     })
+        //     :
+        //     <div>No Data Found</div>
+        // }
+        // </div>
+    );
 };
 
 export default MovieNews;
