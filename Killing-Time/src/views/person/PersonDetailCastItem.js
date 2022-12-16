@@ -34,7 +34,7 @@ const PersonDetailCastItemBlock = styled.div`
 
 const PersonDetailCastItem = ({ castResult, MovieOrTv}) => {
 
-    const { id, poster_path, title, original_name } = castResult;
+    const { id, poster_path, title, name } = castResult;
     const img_url =`https://www.themoviedb.org/t/p/w300_and_h450_bestv2${ poster_path }`;
     //console.log(poster_path);
     console.log('MovieOrTv: ', MovieOrTv);
@@ -79,7 +79,7 @@ const PersonDetailCastItem = ({ castResult, MovieOrTv}) => {
                     </div>
                     <div className="description">
                         <Link to="/dramaMain/dramaDetails" state={{ id: id }}>
-                            { original_name }
+                            { name }
                         </Link>
                     </div>
                 </div>
