@@ -82,12 +82,12 @@ const PersonDetailCast = ({id}) => {
                     {
                         castPage === "movie"
                         ?
-                        movieCastResults.map( (movieCastResult) => {
-                            return (<PersonDetailCastItem key={ movieCastResult.id } castResult={ movieCastResult } MovieOrTv="movie" />);
+                        movieCastResults.map( (movieCastResult, idx) => {
+                            return (<PersonDetailCastItem key={ idx } castResult={ movieCastResult } MovieOrTv="movie" />);
                         })
                         :
-                        tvCastResults.map( (tvCastResult) => {
-                            return (<PersonDetailCastItem key={ tvCastResult.id } castResult={ tvCastResult } MovieOrTv="tv" />);
+                        tvCastResults.map( (tvCastResult, idx) => {
+                            return (<PersonDetailCastItem key={ idx } castResult={ tvCastResult } MovieOrTv="tv" />);
                         })
                     }
                 </CCardBody>
