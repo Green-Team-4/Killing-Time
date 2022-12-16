@@ -1,5 +1,6 @@
 import BoxOffice from './BoxOffice';
 import DramaChart from './DramaChart';
+import MovieNews from './MovieNews';
 
 
 const Main = (props) => {
@@ -12,6 +13,8 @@ const Main = (props) => {
       <BoxOffice />
       
       <DramaChart />
+
+      <MovieNews />
       
       </>
     );
