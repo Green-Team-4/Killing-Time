@@ -26,7 +26,7 @@ const Movie = ({id, title, poster_path, release_date, vote_average }) => (
                     </Link>
                     <br />
                     </div>
-                    <div>
+                    <div style={{display:'inline-block'}}>
                         <span>
                         개봉일 :  {release_date}
                         <br />
