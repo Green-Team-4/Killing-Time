@@ -38,6 +38,7 @@
     "react": "^18.2.0",
     "react-app-polyfill": "^3.0.0",
     "react-dom": "^18.2.0",
+    "react-number-format": "^5.1.2",
     "react-redux": "^8.0.2",
     "react-router-dom": "^6.3.0",
     "redux": "4.2.0",
@@ -60,5 +61,5 @@
     "node": ">=10",
     "npm": ">=6"
   },
-  "proxy" : "https://openapi.naver.com"
+  "proxy": "https://openapi.naver.com"
 }
