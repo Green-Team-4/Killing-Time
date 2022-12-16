@@ -113,6 +113,7 @@ const Button = styled.button`
   border: none;
   padding: 8px;
   margin: 0;
+  background-color: transparent;
   color: Black;
   font-size: 1rem;
 
