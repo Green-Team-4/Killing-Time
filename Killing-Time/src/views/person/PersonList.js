@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import PersonItem from "./PersonItem";
 import Pagination from "./PersonPage";
+import SearchPagination from "./PersonSearchPage";
 
 const PersonList = (props) => {
 
@@ -20,32 +21,33 @@ const PersonList = (props) => {
 
     // useEffect : mount(초기화), update(상태변화) 이벤트 처리기 등록
     useEffect( () => {
-        const loadPersonList = async (e) => {
-            const url = 
-            `https://api.themoviedb.org/3/person/popular?api_key=${ apiKey }&page=${page}&language=${language}`;
-            const response = await axios.get(url);
-            //console.log(response.data);
-            setResults(response.data.results);
-            setPage(response.data.page);
-            setTotal_pages(response.data.total_pages);
-            setSearchKeyword("");
-            setPageType("popular");
-        }
-        loadPersonList();
-        const searchPersonList = async (e) =>{
-            const searchUrl = 
-            `https://api.themoviedb.org/3/search/person?&api_key=${ apiKey }&page=${page}&language=${language}&query=${searchKeyword}`;
-            const responseSearch = await axios.get(searchUrl);
-            console.log(responseSearch.data);
+        if (searchKeyword === null) {
+            const loadPersonList = async (e) => {
+                const url = 
+                `https://api.themoviedb.org/3/person/popular?api_key=${ apiKey }&page=${page}&language=${language}`;
+                const response = await axios.get(url);
+                //console.log(response.data);
+                setResults(response.data.results);
+                setPage(response.data.page);
+                setTotal_pages(response.data.total_pages);
+                setPageType("popular");
+                setSearchKeyword("");
+            }
+            loadPersonList();
             
-            if (searchKeyword !== "null") {
+        } else {
+            const searchPersonList = async (e) =>{
+                const searchUrl = 
+                `https://api.themoviedb.org/3/search/person?&api_key=${ apiKey }&page=${page}&language=${language}&query=${searchKeyword}`;
+                const responseSearch = await axios.get(searchUrl);
+                console.log(responseSearch.data);
                 setSearchResult(responseSearch.data.results);
                 setPage(responseSearch.data.page);
-                setTotal_pages(responseSearch.data.total_pages);
                 setPageType("search");
+                
             }
+            searchPersonList();
         }
-        searchPersonList();
     }, [page, searchKeyword, language, apiKey] );
     //console.log(results);
     //console.log(page);
@@ -54,7 +56,6 @@ const PersonList = (props) => {
     if (!results) {
         return;
     }
-
 
     if(pageType === "popular") {
         return (
@@ -136,8 +137,7 @@ const PersonList = (props) => {
                             :
                             <></>
                         }
-                        <Pagination
-                            total={total_pages} 
+                        <SearchPagination
                             page={page}
                             setPage={setPage}
                         />
