@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import DramaDetails from './DramaDetails';
 
 // .css
 // .scss ( or .sass )
@@ -38,14 +40,13 @@ const DramaItem = ({ result }) => {
 
     const { id, poster_path, name, first_air_date, vote_average} = result;
     const img_url = `https://www.themoviedb.org/t/p/w220_and_h330_face${ poster_path }`;
-    const detail_url = `#/dramaDetails?id=${ id }`;
   
     return (
         <div className='mb-3'>
-            <a href={ detail_url }>
-                <img src={ img_url } style={{padding:3}} alt="drama thumbnail" /><br />
-            </a>
-                <h3>{ name }<br /></h3>
+            <Link to="/dramaDetails" state={{ id:id }}>
+                <img src={ img_url } style={{borderRadius:20, padding:3}} alt="drama thumbnail" /><br />
+            </Link>
+                <h4>{ name }<br /></h4>
                 출시일 : { first_air_date }<br />
                 회원 점수 : { vote_average }
         

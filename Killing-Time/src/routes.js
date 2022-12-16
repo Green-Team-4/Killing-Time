@@ -58,7 +58,7 @@ const MovieDetail = React.lazy(() => import('./views/moviePage/MovieDetail'))
 const MovieCredit = React.lazy(() => import('./views/moviePage/movieCredit/MovieCredit'))
 
 // Drama Detail
-const DramaDetail = React.lazy(() => import('./views/dramaDetail/DramaDetail'))
+const DramaMain = React.lazy(() => import('./views/dramaDetail/DramaMain'))
 const DramaDetails = React.lazy(() => import('./views/dramaDetail/DramaDetails'))
 
 // Person Page
@@ -112,7 +112,7 @@ const routes = [
   { path: '/moviePage', name: 'MoviePage', element: MoviePage },
   { path: '/moviePage/movieDetail', name: 'MovieDetail', element: MovieDetail },
   { path: '/moviePage/movieCredit', name: 'MovieCredit', element: MovieCredit },
-  { path: '/dramaDetail', name: 'DramaDetail', element: DramaDetail },
+  { path: '/dramaMain', name: 'DramaMain', element: DramaMain },
   { path: '/dramaDetails', name: 'DramaDetails', element: DramaDetails },
   { path: '/personList', name: 'PersonList', element: PersonList },
   { path: '/personList/personDetail', name: 'PersonDetail', element: PersonDetail }
