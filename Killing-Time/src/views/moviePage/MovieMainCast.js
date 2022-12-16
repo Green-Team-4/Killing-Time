@@ -1,4 +1,4 @@
-import { CButton } from "@coreui/react";
+import { CButton, CCard, CCardBody, CCol } from "@coreui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -8,6 +8,17 @@ import MovieMainCastItem from "./MovieMainCastItem";
 const MovieMainCastBlock = styled.div`
   overflow: auto;
   white-space: nowrap;
+  ::-webkit-scrollbar {
+    height: 8px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #217af4;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: rgba(33, 122, 244, .1);
+  }
 `;
 
 const MovieMainCast = ({ id }) => {
@@ -32,10 +43,12 @@ const MovieMainCast = ({ id }) => {
   }
 
   return (
-    <>
+    
+    <CCol xs={10} style={{margin: "auto"}}>
+      <CCard className="mb-4">
+        <CCardBody>
     <h2>주요 출연진</h2>
-    <MovieMainCastBlock>
-      
+    <MovieMainCastBlock style={{marginLeft: 20, marginRight: 20}}>
       <table>
         <tbody>
           <tr>
@@ -65,7 +78,10 @@ const MovieMainCast = ({ id }) => {
         </tbody>
       </table>
     </MovieMainCastBlock>
-    </>
+    </CCardBody>
+    </CCard>
+    </CCol>
+    
   );
 };
 

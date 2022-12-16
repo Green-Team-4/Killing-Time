@@ -31,7 +31,7 @@ const MovieCreditListCast = ({ result }) => {
           <br />
         </div>
         <div style={{ display: "inline-block", marginLeft: 25}}>
-        <Link to="/personDetail" state={{ id: id }} style={{textDecoration: "none", color: "black"}}><strong>{name}</strong></Link>
+        <Link to="/personList/personDetail" state={{ id: id }} style={{textDecoration: "none", color: "black"}}><strong>{name}</strong></Link>
           <br />
           <span style={{ fontSize: 14 }}>{character}</span>
         </div>
