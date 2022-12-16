@@ -18,7 +18,7 @@ function Search() {
     const [tvContents, setTvContents] = useState([]);
     const [search, setSearch] = useState("");
     const [movieTitle, setMovieTitle] = useState("인기 영화 TOP 20");
-    const [tvTitle, setTvTitle] = useState("인기 드라마 TOP 20");
+    const [tvTitle, setTvTitle] = useState("인기 TV TOP 20");
 
     useEffect( () => {
         getContents(URL1, "movie");
@@ -48,7 +48,7 @@ function Search() {
             setSearch("");
         }
         setMovieTitle(`"${search}" 영화 검색 결과`);
-        setTvTitle(`"${search}" 드라마 검색 결과`);
+        setTvTitle(`"${search}" TV 프로그램 검색 결과`);
         
     }
 
@@ -60,16 +60,22 @@ function Search() {
         <>
             <header>
                 <div className='logo'>
-                    <h1 className='search'>영화 & 드라마 검색</h1>
+                    <h1 style={{fontWeight:'bold'}} className='search'>영화 & TV 검색</h1>
                 </div>
                 <br />
                 <form onSubmit={handleOnSubmit}>
                     <div className='msearch'>
                         <input
-                            style={{width:500, height:50, borderRadius:20, backgroundColor:'#E6E6FA'}} 
+                            style={{fontWeight:'bold',
+                                    width:500,
+                                    height:50, 
+                                    paddingLeft:30,
+                                    borderRadius:20, 
+                                    backgroundColor:'#E6E6FA'
+                                    }} 
                             className='search'
                             type="text"
-                            placeholder='  검색어를 입력하세요.'
+                            placeholder='검색어를 입력하세요.'
                             value={search}
                             onChange={handleOnChange}
                         />
@@ -77,12 +83,12 @@ function Search() {
                 </form>
             </header>
             &nbsp;<hr />&nbsp;
-            <h2>{movieTitle}</h2>
+            <h2 style={{fontWeight:'bold'}}>{movieTitle}</h2>
             &nbsp;
             <div style={{width: "300px",
                         display: "grid",
                         gridTemplateRows: "1fr ",
-                        gridTemplateColumns: "1fr 1fr 1fr 1fr"
+                        gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr"
                         }} className='content-container'>
                 {
                     contents.length > 0 && contents.map((contents) =>
@@ -90,13 +96,13 @@ function Search() {
                 }
             </div>
             &nbsp;<hr />&nbsp;
-            <h2>{tvTitle}</h2>
+            <h2 style={{fontWeight:'bold'}}>{tvTitle}</h2>
             &nbsp;
             <div style={{width: "300px",
                         display: "grid",
 
                         gridTemplateRows: "1fr ",
-                        gridTemplateColumns: "1fr 1fr 1fr 1fr"
+                        gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr"
                         }} className='content-container2'>
                 {
                     tvContents.length > 0 && tvContents.map((tvContents) => 
