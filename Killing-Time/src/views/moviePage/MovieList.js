@@ -14,7 +14,7 @@ const MovieList = (props) => {
       const language = "ko-KR";
       const apiKey = "403cc00da7a7725917c9acd69484bde6";
       const baseUrl = "https://api.themoviedb.org/3/movie";
-      const url = `${baseUrl}/popular?api_key=${apiKey}&language=${language}&region=KR&page=${page}`;
+      const url = `${baseUrl}/popular?api_key=${apiKey}&language=${language}&page=${page}`;
       // https://api.themoviedb.org/3/movie/popular?api_key=403cc00da7a7725917c9acd69484bde6&language=ko-KR&page=1
       const response = await axios.get(url);
       setResults(response.data.results);
