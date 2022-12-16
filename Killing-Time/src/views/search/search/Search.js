@@ -1,7 +1,13 @@
+import { CCard, CRow } from '@coreui/react';
 import React, { useEffect, useState } from 'react';
+import styled from "styled-components";
 import Drama from './Drama';
 import Movie from './Movie';
 
+
+const SearchBlock = styled.div`
+
+`;
 // const category = 'movie';
 // const language = 'ko';
 // const page = 1;
@@ -40,6 +46,11 @@ function Search() {
 
     const handleOnSubmit = (e) => {
         e.preventDefault();
+        
+        if (!search || search === " " || search === "  "|| search === "   ") {
+            alert('검색어를 입력해주세요.');
+            return Search;
+        }
 
         if (search) {
             getContents(URL3 + search, 'movie');
@@ -47,9 +58,9 @@ function Search() {
             
             setSearch("");
         }
+        
         setMovieTitle(`"${search}" 영화 검색 결과`);
         setTvTitle(`"${search}" TV 프로그램 검색 결과`);
-        
     }
 
     const handleOnChange = (e) => {
@@ -57,8 +68,9 @@ function Search() {
     }
 
     return (
-        <>
+        <SearchBlock style={{paddingLeft:20, backgroundColor:'#F8F8FF', width:1220}}>
             <header>
+                <br />
                 <div className='logo'>
                     <h1 style={{fontWeight:'bold'}} className='search'>영화 & TV 검색</h1>
                 </div>
@@ -109,7 +121,7 @@ function Search() {
                         < Drama key={tvContents.id} {...tvContents}/>)
                 }
             </div>
-        </>
+            </SearchBlock>
     );
 }
 

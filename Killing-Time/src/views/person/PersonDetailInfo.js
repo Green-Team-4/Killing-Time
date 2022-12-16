@@ -82,7 +82,7 @@ const PersonDetailInfo = ({id}) => {
             const responseMC = await axios.get(MovieCreditUrl);
             const responseTC = await axios.get(TvCreditUrl);
 
-            console.log(response.data);
+            // console.log(response.data);
             setName(response.data.name);
             setProfile_path(response.data.profile_path);
             setGender(response.data.gender);
@@ -91,23 +91,19 @@ const PersonDetailInfo = ({id}) => {
             setKfd(response.data.known_for_department);
             setBiography(response.data.biography);
 
-            console.log(responseEx.data);
+            // console.log(responseEx.data);
             setFacebookId(responseEx.data.facebook_id);
             setInstagramId(responseEx.data.instagram_id);
             setTwitterId(responseEx.data.twitter_id);
 
-            console.log(responseMC.data);
-            console.log(responseTC.data)
-            console.log('All cast + crew: ', 
-                responseMC.data.cast.length + 
-                responseMC.data.crew.length +
-                responseTC.data.cast.length + 
-                responseTC.data.crew.length);
+            // console.log(responseMC.data);
+            // console.log(responseTC.data)
+            // console.log('Movie, Tv cast : ', 
+            //     responseMC.data.cast.length +
+            //     responseTC.data.cast.length);
             setCreditNum(
-                responseMC.data.cast.length + 
-                responseMC.data.crew.length +
-                responseTC.data.cast.length + 
-                responseTC.data.crew.length);
+                responseMC.data.cast.length +
+                responseTC.data.cast.length);
         }
         loadPersonList();
     }, [id] );
@@ -152,7 +148,7 @@ const PersonDetailInfo = ({id}) => {
                                     ?
                                     <p>여성</p>
                                     : 
-                                    <p>Unknown</p>
+                                    <p>-</p>
                                 )
                             }
                             <span>생년월일</span>
@@ -181,7 +177,7 @@ const PersonDetailInfo = ({id}) => {
                                 :
                                 <p>-</p>
                             }
-                            <span>참여 작품 수</span>
+                            <span>출연 작품 수</span>
                             <p>{creditNum}</p>
                             <div className="ExternalLink">
                             {
