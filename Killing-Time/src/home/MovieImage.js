@@ -11,8 +11,7 @@ const MovieImage = ({ movieName, openDate }) => {
         const loadMoivePoster = async (e) => {
             const apikey = "e937a96ff64a1a83e17dac4c4abc7d43";
             const url = `https://api.themoviedb.org/3/search/movie?api_key=${apikey}&language=ko&page=1&primary_release_year=${openDate}&query=${movieName}`;
-            const response = await axios.get(url);            
-            console.log(response.data)
+            const response = await axios.get(url);
             setMoviePoster(response.data.results[0])
         }
         loadMoivePoster();

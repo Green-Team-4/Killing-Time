@@ -1,27 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 
  const IMG_API = "https://image.tmdb.org/t/p/w1280";
-
-// 평점별 색상주기 
-const setVoteClass = (vote) => {
-    if (vote >= 8) {
-        return "green";
-    } else if (vote >= 6) {
-        return "orange";
-    } else {
-        return "red";
-    }
-}
 
 //가져올 목록
 const Movie = ({id, title, poster_path, release_date, vote_average }) => (
     <div className="movie">
         <p className='moviee'>
                 <Link to="/moviePage/movieDetail" state={{ id: id }}>  
-                        <div style={{width:290}}>
-                        <img style={{ width:270, height: 300}}
+                        <div style={{width:240}}>
+                        <img style={{ width:220, height: 330, textAlign:'center',borderRadius:20}}
                         src={
                             poster_path 
                             ? IMG_API + poster_path
@@ -31,22 +19,21 @@ const Movie = ({id, title, poster_path, release_date, vote_average }) => (
                             alt={title} />
                         </div>
                 </Link>            
-                <div className="movie-info">
+                <div style={{fontSize:15, color:'black'}} className="movie-info">
                 &nbsp;
-                    <Link to="/moviePage/movieDetail" state={{ id: id }}><h5>{title}</h5></Link>
+                    <Link style={{fontSize:20, textDecoration:'none', color:'black'}} to="/moviePage/movieDetail" state={{ id: id }}>
+                        <h5 style={{fontWeight:'bold'}}>{title}</h5>
+                    </Link>
                     <br />
-                    <span className={
-                            `tag ${setVoteClass(release_date)}`
-                            }>
-                       개봉일 :  {release_date}
-                    </span>
-                    <br />
-                    <span className={
-                            `tag ${setVoteClass(vote_average)}`
-                            }>
-                       평점 :  {vote_average}
-                    </span>
-                </div>
+                    </div>
+                    <div>
+                        <span>
+                        개봉일 :  {release_date}
+                        <br />
+                        평점 :  {vote_average}
+                        </span>
+                    </div>
+                <br />
             <br />
         </p>
     </div>

@@ -43,7 +43,7 @@ const DramaList = (props) => {
             {   
                 
                 results.map( (result) => {
-                    return (<DramaItem key={ result.url } result={ result } />);
+                    return (<DramaItem key={ result.id } result={ result } />);
                 })
             }
         
