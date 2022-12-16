@@ -21,7 +21,7 @@ const PersonList = (props) => {
 
     // useEffect : mount(초기화), update(상태변화) 이벤트 처리기 등록
     useEffect( () => {
-        if (searchKeyword === null) {
+        if (searchKeyword === null | searchKeyword === "") {
             const loadPersonList = async (e) => {
                 const url = 
                 `https://api.themoviedb.org/3/person/popular?api_key=${ apiKey }&page=${page}&language=${language}`;
@@ -31,7 +31,7 @@ const PersonList = (props) => {
                 setPage(response.data.page);
                 setTotal_pages(response.data.total_pages);
                 setPageType("popular");
-                setSearchKeyword("");
+                setSearchKeyword(null);
             }
             loadPersonList();
             
@@ -44,7 +44,6 @@ const PersonList = (props) => {
                 setSearchResult(responseSearch.data.results);
                 setPage(responseSearch.data.page);
                 setPageType("search");
-                
             }
             searchPersonList();
         }
