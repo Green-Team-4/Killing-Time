@@ -1,23 +1,33 @@
 import { CCard, CCardBody, CCol, CRow } from "@coreui/react";
 import styled from "styled-components";
 
-const MovieInfoItem = ({ result, provider }) => {
+const MovieInfoItem = ({ result, provider, otherResult }) => {
   const {
     id,
     poster_path,
     title,
-    overview,
     release_date,
     runtime,
-    tagline,
     original_title,
     vote_average,
     production_countries,
     genres,
   } = result;
+  let {overview, tagline} = result;
+  let overview_f = overview;
+  let tagline_f = tagline;
+
   var buy_url = "";
   var rent_url = "";
   var stream_url = "";
+  if (tagline === "") {
+    let {tagline} = otherResult;
+    tagline_f = tagline;
+  }
+  if (overview === "") {
+    let {overview} = otherResult;
+    overview_f = overview;
+  }
   if (provider !== undefined) {
     const { buy, rent, flatrate } = provider;
 
@@ -222,18 +232,18 @@ const MovieInfoItem = ({ result, provider }) => {
               </div>
             </div>
             <div>
-              {tagline ? (
+              {tagline_f ? (
                 <div>
                   <br />
-                  <i style={{ fontWeight: "bold" }}>{tagline}</i>
+                  <i style={{ fontWeight: "bold" }}>{tagline_f}</i>
                 </div>
               ) : (
                 ""
               )}
-              {overview ? (
+              {overview_f ? (
                 <div>
                   <br />
-                  <p>{overview}</p>
+                  <p>{overview_f}</p>
                 </div>
               ) : (
                 ""
