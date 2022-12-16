@@ -36,8 +36,8 @@ const PersonDetailCastItem = ({ castResult, MovieOrTv}) => {
 
     const { id, poster_path, title, name } = castResult;
     const img_url =`https://www.themoviedb.org/t/p/w300_and_h450_bestv2${ poster_path }`;
-    //console.log(poster_path);
-    console.log('MovieOrTv: ', MovieOrTv);
+    // console.log(poster_path);
+    // console.log('MovieOrTv: ', MovieOrTv);
 
     if (MovieOrTv === "movie") {
         return (
@@ -71,9 +71,9 @@ const PersonDetailCastItem = ({ castResult, MovieOrTv}) => {
                             {
                                 poster_path != null
                                 ?
-                                <img src={img_url} alt={title} />
+                                <img src={img_url} alt={name} />
                                 :
-                                <img src="https://via.placeholder.com/300x450?text=Unknown+Poster" alt={title} />
+                                <img src="https://via.placeholder.com/300x450?text=Unknown+Poster" alt={name} />
                             }
                         </Link><br/>
                     </div>

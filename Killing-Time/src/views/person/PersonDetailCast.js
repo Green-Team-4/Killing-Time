@@ -25,7 +25,7 @@ const Button = styled.button`
 `;
 
 const PersonDetailCast = ({id}) => {
-    console.log('id: ', id);
+    // console.log('id: ', id);
     const [movieCastResults, setMovieCastResults] = useState(null);
     const [tvCastResults, setTvCastResults] = useState(null);
     const [castPage, setCastPage] = useState(null);
@@ -42,8 +42,8 @@ const PersonDetailCast = ({id}) => {
             const TvUrl =
             `https://api.themoviedb.org/3/person/${ id }/tv_credits?api_key=${ apiKey }&language=${language}&region=${country}`;
             const responseTv = await axios.get(TvUrl)
-            console.log('responseMovie.data:', responseMovie.data);
-            console.log('responseTv.data:', responseMovie.data)
+            // console.log('responseMovie.data:', responseMovie.data);
+            // console.log('responseTv.data:', responseMovie.data);
             setMovieCastResults(responseMovie.data.cast);
             setTvCastResults(responseTv.data.cast);
             setCastPage("movie");
@@ -83,7 +83,7 @@ const PersonDetailCast = ({id}) => {
                         castPage === "movie"
                         ?
                         movieCastResults.map( (movieCastResult) => {
-                            return (<PersonDetailCastItem key={ movieCastResult.id } castResult={ movieCastResult } MovieOrTv="movie"/>);
+                            return (<PersonDetailCastItem key={ movieCastResult.id } castResult={ movieCastResult } MovieOrTv="movie" />);
                         })
                         :
                         tvCastResults.map( (tvCastResult) => {

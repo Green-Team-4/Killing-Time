@@ -60,7 +60,7 @@ const PersonItem = ({ result }) => {
             const url = 
             `https://api.themoviedb.org/3/person/${id}/movie_credits?api_key=${ apiKey }&language=${language}&region=${country}`;
             const response = await axios.get(url)
-            console.log('response.data :', response.data);
+            // console.log('response.data :', response.data);
             setMiniResults(response.data.cast);
         }
         loadMiniList();

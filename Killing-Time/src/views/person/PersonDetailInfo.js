@@ -82,7 +82,7 @@ const PersonDetailInfo = ({id}) => {
             const responseMC = await axios.get(MovieCreditUrl);
             const responseTC = await axios.get(TvCreditUrl);
 
-            console.log(response.data);
+            // console.log(response.data);
             setName(response.data.name);
             setProfile_path(response.data.profile_path);
             setGender(response.data.gender);
@@ -91,16 +91,16 @@ const PersonDetailInfo = ({id}) => {
             setKfd(response.data.known_for_department);
             setBiography(response.data.biography);
 
-            console.log(responseEx.data);
+            // console.log(responseEx.data);
             setFacebookId(responseEx.data.facebook_id);
             setInstagramId(responseEx.data.instagram_id);
             setTwitterId(responseEx.data.twitter_id);
 
-            console.log(responseMC.data);
-            console.log(responseTC.data)
-            console.log('Movie, Tv cast : ', 
-                responseMC.data.cast.length +
-                responseTC.data.cast.length);
+            // console.log(responseMC.data);
+            // console.log(responseTC.data)
+            // console.log('Movie, Tv cast : ', 
+            //     responseMC.data.cast.length +
+            //     responseTC.data.cast.length);
             setCreditNum(
                 responseMC.data.cast.length +
                 responseTC.data.cast.length);
