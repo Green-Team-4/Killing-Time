@@ -21,7 +21,7 @@ const DramaChart = (props) => {
 
     return (
         <>
-        <CCol xs={12}>
+        <CCol xs={10} style={{margin: "auto"}}>
         <CCard className="mb-4">
           <CCardHeader>
             <strong>드라마 차트</strong>
