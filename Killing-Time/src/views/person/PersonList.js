@@ -37,14 +37,14 @@ const PersonList = (props) => {
         <CCol xs={12}>
             <CCard className="mb-4">
                 <CCardBody>
-                    <h1 style={{fontWeight:"bold"}}>Popular People</h1>
+                    <h3 style={{fontWeight:"bold"}}>인기 인물</h3>
                     <br/>
                     {
                         results.map( (result) => {
                             return (<PersonItem key={ result.id } result={ result } />);
                         })
                     }
-                    <Pagination 
+                    <Pagination
                         total={total_pages} 
                         page={page}
                         setPage={setPage}

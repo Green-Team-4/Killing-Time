@@ -27,7 +27,7 @@ const PersonItemBlock = styled.div`
         text-decoration-line : none;
     }
     a:hover {
-        text-decoration-line : underline;
+        color: gray;
     }
     .peopleBox {
         background-color: GhostWhite;
@@ -54,9 +54,11 @@ const PersonItem = ({ result }) => {
     // useEffect : mount(초기화), update(상태변화) 이벤트 처리기 등록
     useEffect( () => {
         const loadMiniList = async (e) => {
+            const language = "ko-KR";
+            const country = "KR";
             const apiKey = "52b3ba71c5a67f1429c8e2d3877f3eb4";
             const url = 
-            `https://api.themoviedb.org/3/person/${id}/movie_credits?api_key=${ apiKey }`;
+            `https://api.themoviedb.org/3/person/${id}/movie_credits?api_key=${ apiKey }&language=${language}&region=${country}`;
             const response = await axios.get(url)
             console.log('response.data :', response.data);
             setMiniResults(response.data.cast);

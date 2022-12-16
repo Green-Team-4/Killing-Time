@@ -14,22 +14,25 @@ const PersonDetailCastItemBlock = styled.div`
         width:225px;
         border-radius:2.5%;
     }
-    h5 {
-        text-align: center;
-    }
     a {
         color: black;
         text-decoration-line : none;
     }
     a:hover {
-        text-decoration-line : underline;
+        color: gray;
     }
-
     div.poster {
         margin-bottom: 10px;
     }
     div.description {
-        
+        width:225px;
+        height:30px;
+        padding-left: 10px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: center;
+        font-size: 20px;
     }
 `;
 
@@ -38,9 +41,6 @@ const PersonDetailCastItem = ({ castResult }) => {
     const { id, poster_path, title, } = castResult;
     const img_url =`https://www.themoviedb.org/t/p/w300_and_h450_bestv2${ poster_path }`;
     //console.log(poster_path);
-
-    
-    const nameLength = title.length;
 
     return (
         <PersonDetailCastItemBlock>
@@ -57,18 +57,9 @@ const PersonDetailCastItem = ({ castResult }) => {
                     </Link><br/>
                 </div>
                 <div className="description">
-                    <h5>
-                        <Link to="/moviePage/movieDetail" state={{ id: id }}>
-                            { title.slice(0, 18)}
-                        {
-                            nameLength < 18
-                            ?
-                            <></>
-                            :
-                            <>...</>
-                        }
-                        </Link>
-                    </h5>
+                    <Link to="/moviePage/movieDetail" state={{ id: id }}>
+                        { title }
+                    </Link>
                 </div>
             </div>
         </PersonDetailCastItemBlock>
