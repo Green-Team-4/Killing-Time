@@ -48,7 +48,6 @@ const PersonDetailInfo = ({id}) => {
 
     useEffect( () => {
         const loadPersonList = async (e) => {
-            //const language = "ko-KR";
             const apiKey = "52b3ba71c5a67f1429c8e2d3877f3eb4";
             const url = 
             `https://api.themoviedb.org/3/person/${ id }?api_key=${ apiKey }`;
@@ -92,45 +91,45 @@ const PersonDetailInfo = ({id}) => {
                         <h1>{name}</h1>
                         <br/>
                         <div className="profile_detail_details">
-                            <span>Gender</span>
+                            <span>성별</span>
                             <br/>
                             {
                                 genderValue === "2"
                                 ?
-                                <p>Male</p>
+                                <p>남성</p>
                                 : (
                                     genderValue === "1"
                                     ?
-                                    <p>Female</p>
+                                    <p>여성</p>
                                     : 
                                     <p>Unknown</p>
                                 )
                             }
-                            <span>BirthDay</span>
+                            <span>생년월일</span>
                             <br/>
                             {
                                 birthday != null
                                 ?
                                 <p>{birthday}</p>
                                 :
-                                <p>Unknown</p>
+                                <p>-</p>
                             }
-                            <span>Place of Birth</span>
+                            <span>출생지</span>
                             {
                                 placeOfBirth !== "null"
                                 ?
                                 <p>{pob}</p>
                                 :
-                                <p>Unknown</p>
+                                <p>-</p>
                             }
-                            <span>Known for department</span>
+                            <span>유명 분야</span>
                             <br/>
                             {
                                 knownForDepartment !== "null"
                                 ?
                                 <p>{kfd}</p>
                                 :
-                                <p>Unknown</p>
+                                <p>-</p>
                             }
                             <br/>
                             <br/>
@@ -139,13 +138,13 @@ const PersonDetailInfo = ({id}) => {
                         </div>
                     </div>
                     <div className="profile_description">
-                        <h4>Biography</h4>
+                        <h4>약력</h4>
                         {
                             Biography !== ""
                             ?
                             <p>{biography}</p>
                             :
-                            <p>No Discription</p>
+                            <p>-</p>
                         }
                     </div>
                 </CCardBody>

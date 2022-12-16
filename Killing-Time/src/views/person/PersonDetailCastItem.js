@@ -28,7 +28,6 @@ const PersonDetailCastItemBlock = styled.div`
         width:225px;
         height:30px;
         padding-left: 10px;
-        padding-right: 10px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
