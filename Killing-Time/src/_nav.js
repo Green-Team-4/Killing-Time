@@ -243,7 +243,7 @@ const _nav = [
   },
   {
     component: CNavItem,
-    name: '영화 & 드라마 검색',
+    name: '영화 & TV 검색',
     to: '/search',
     icon: <CIcon icon={cilCursor} customClassName="nav-icon" />,
   },

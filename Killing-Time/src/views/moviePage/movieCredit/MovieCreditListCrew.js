@@ -16,7 +16,7 @@ const MovieCreditListCrew = ({ result }) => {
     <MovieItemBlock>
       <div>
         <div style={{display: "inline-block"}}>
-        <Link to="/personDetail" state={{ id: id }}>
+        <Link to="/personList/personDetail" state={{ id: id }}>
         {profile_path !== null ? (
               <img src={img_url} alt={name} title={id} style={{ width: 140 }} />
             ) : (
@@ -31,7 +31,7 @@ const MovieCreditListCrew = ({ result }) => {
           <br />
         </div>
         <div style={{display: "inline-block", marginLeft: 25}}>
-        <Link to="/personDetail" state={{ id: id }} style={{textDecoration: "none", color: "black"}}><strong>{name}</strong></Link>
+        <Link to="/personList/personDetail" state={{ id: id }} style={{textDecoration: "none", color: "black"}}><strong>{name}</strong></Link>
           <br />
           {department}/{job}
         </div>

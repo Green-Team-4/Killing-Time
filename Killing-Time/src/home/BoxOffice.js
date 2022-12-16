@@ -1,10 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { NumericFormat } from "react-number-format";
 import MovieImage from "./MovieImage";
 import MoviePosterItem from "./MoviePosterItem";
 
 const { CCol, CCard, CCardHeader, CCardBody, CTable, CTableRow, CTableHead, CTableHeaderCell, CTableBody, CTableDataCell } = require("@coreui/react")
-const { DocsExample } = require("src/components")
 
 const BoxOffice = (props) => {
 
@@ -25,7 +25,6 @@ const BoxOffice = (props) => {
       const itemPerPage = 5;
       const url = `http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=${apikey}&targetDt=${targetDt}&itemPerPage=${itemPerPage}`
       const response = await axios.get(url);
-      console.log(response.data);
       setBoxOffice(response.data.boxOfficeResult);
     }
     boxOfficeLoad();
@@ -47,12 +46,12 @@ const BoxOffice = (props) => {
                     <CTableHeaderCell scope="col">포스터</CTableHeaderCell>
                     <CTableHeaderCell scope="col">제목</CTableHeaderCell>
                     <CTableHeaderCell scope="col">개봉일 </CTableHeaderCell>
-                    <CTableHeaderCell scope="col">관객 증가 비율</CTableHeaderCell>                    
+                    <CTableHeaderCell scope="col">관객수</CTableHeaderCell>                    
                   </CTableRow>
                 </CTableHead>
                 <CTableBody>                  
                     {
-                      
+                      // {dailyBoxOfficeLists.audiCnt}명
                        boxOffice ?  
                         boxOffice.dailyBoxOfficeList.map((dailyBoxOfficeLists, idx) => {
                           return (
@@ -64,7 +63,14 @@ const BoxOffice = (props) => {
                               </CTableDataCell>
                               <CTableDataCell>{dailyBoxOfficeLists.movieNm}</CTableDataCell>
                               <CTableDataCell>{dailyBoxOfficeLists.openDt}</CTableDataCell>
-                              <CTableDataCell>{dailyBoxOfficeLists.audiChange}%</CTableDataCell>
+                              <CTableDataCell>
+                                <NumericFormat
+                                  value={dailyBoxOfficeLists.audiCnt}
+                                  displayType={'text'}
+                                  thousandSeparator={true}
+                                  renderText={(value) => <>{value}명</>}
+                                />
+                              </CTableDataCell>
                             </CTableRow>
                           )
                         })           
