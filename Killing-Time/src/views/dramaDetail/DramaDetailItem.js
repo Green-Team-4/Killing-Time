@@ -11,7 +11,7 @@ const DramaDetailItem = ({ result }) => {
         
         <div>
             <img style={{ padding:20, borderRadius: 40, opacity:'1'}} src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2${poster_path}`} alt="drama thumbnail" title={id} /><br />
-            <div style={{ height:500, width:700, position: 'absolute', top:300, left:700 }}>
+            <div style={{ height:500, width:800, position: 'absolute', top:300, left:800 }}>
                 <h1>{name}({original_name})</h1><h3>개봉일: {moment(first_air_date).format('YYYY-MM')}</h3>
                 {/* {moment(movie.pubDate).format('YYYY-MM-DD')} */}
                 <h4>개요</h4>
