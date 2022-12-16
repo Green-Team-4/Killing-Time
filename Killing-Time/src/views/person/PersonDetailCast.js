@@ -32,7 +32,7 @@ const PersonDetailCast = ({id}) => {
         <CCol xs={12}>
             <CCard className="mb-4">
                 <CCardBody>
-                    <h3 style={{fontWeight:"bold"}}>출연작</h3>
+                    <h3 style={{fontWeight:"bold", marginTop:"10px", marginLeft:"10px"}}>출연작</h3>
                     <br/>
                     {
                         castResults.map( (castResult) => {

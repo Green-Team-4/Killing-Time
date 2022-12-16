@@ -37,7 +37,7 @@ const PersonList = (props) => {
         <CCol xs={12}>
             <CCard className="mb-4">
                 <CCardBody>
-                    <h3 style={{fontWeight:"bold"}}>인기 인물</h3>
+                    <h3 style={{fontWeight:"bold", marginTop:"10px", marginLeft:"10px"}}>인기 인물</h3>
                     <br/>
                     {
                         results.map( (result) => {
