@@ -87,11 +87,10 @@ function Pagination({ total, page, setPage }) {
             &gt;
             </Button>
         </Nav>
-        <div style={{textAlign:"center", margin:"0"}}>
+        <div style={{textAlign:"center", margin:"0", marginBottom:"100px"}}>
             <input id="pageInput" style={{width:"50px", height:"20px"}}
             onChange={(event) => setPageInputNum(event.target.value)}
             ></input>
-            
             <Button style={{width:"100px", height:"20px", fontSize:"14px"}} 
             onClick={() => setPage(pageInputNum)}
             >페이지 이동</Button>
@@ -107,14 +106,13 @@ const Nav = styled.nav`
   align-items: center;
   gap: 4px;
   margin: 16px;
+  margin-bottom: 0px;
 `;
 
 const Button = styled.button`
   border: none;
-  border-radius: 8px;
   padding: 8px;
   margin: 0;
-  background: White;
   color: Black;
   font-size: 1rem;
 
