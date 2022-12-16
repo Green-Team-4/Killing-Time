@@ -28,6 +28,7 @@ const PersonList = (props) => {
                 const response = await axios.get(url);
                 //console.log(response.data);
                 setResults(response.data.results);
+                setPage(1);
                 setPage(response.data.page);
                 setTotal_pages(response.data.total_pages);
                 setPageType("popular");
@@ -122,7 +123,7 @@ const PersonList = (props) => {
                         }}>|</span>
                         <input type="text" id="pageInput" 
                         style={{width:"120px", height:"20px"}}
-                        onChange={(event) => setSearchKeyword(event.target.value)}
+                        onChange={(event) => setSearchKeyword(event.target.value) | setPage(1)}
                         >
                         </input>
                         </div>
