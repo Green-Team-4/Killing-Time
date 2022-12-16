@@ -4,7 +4,8 @@ import styled from "styled-components";
 const MovieItemBlock = styled.div`
   display: inline-block;
   margin: 20px;
-  margin-left: 30px;
+  margin-left: 0;
+  margin-right: 30px;
   padding: 0;
 `;
 
@@ -16,7 +17,7 @@ const MovieMainCastItem = ({ result }) => {
     <MovieItemBlock>
       <div>
         <div>
-          <Link to="/personDetail" state={{ id: id }}>
+          <Link to="/personList/personDetail" state={{ id: id }}>
             {profile_path !== null ? (
               <img src={img_url} alt={name} title={id} style={{ width: 140 }} />
             ) : (
@@ -35,7 +36,7 @@ const MovieMainCastItem = ({ result }) => {
           style={{ width: 140, overflow: "hidden", textOverflow: "ellipsis" }}
         >
           <Link
-            to="/personDetail"
+            to="/personList/personDetail"
             state={{ id: id }}
             style={{ textDecoration: "none", color: "black" }}
           >
