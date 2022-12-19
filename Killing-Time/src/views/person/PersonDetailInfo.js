@@ -1,7 +1,7 @@
 import { CCard, CCardBody, CCol, CRow } from "@coreui/react";
 import styled from 'styled-components';
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const PROFILE_BOX = styled.div`
     div.profile_photo {
@@ -27,11 +27,22 @@ const PROFILE_BOX = styled.div`
     div.profile_detail_details > span {
         font-weight: bold;
     }
-    div.profile_description {
-        margin: 20px;
-    }
     div.profile_description > h4 {
+        margin-top: 20px;
+        margin-left:20px;
         font-weight: bold;
+    }
+    div#biographyBox {
+        margin-left: 20px;
+        margin-right: 20px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 5;
+        overflow: hidden;
+
+        &.show {
+            -webkit-line-clamp: unset;
+        }                                                                                         div#biographyBox:active ~ d
     }
     div.ExternalLink {
         display: inline-block;
@@ -47,6 +58,32 @@ const PROFILE_BOX = styled.div`
     }
 `;
 
+const DiscriptButton = styled.button`
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border: none;
+    margin: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(2, 0, 36, 1) 0%,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 1) 18%
+    );
+    color: Black;
+    font-size: 1rem;
+
+    &:hover {
+        color: Gray;
+        cursor: pointer;
+        transform: translateY(-2px);
+    }
+
+    &.hide {
+        display: none;
+    }
+`;
+
 const PersonDetailInfo = ({id}) => {
     //console.log('id: ', id);
 
@@ -57,12 +94,14 @@ const PersonDetailInfo = ({id}) => {
     const [gender, setGender] = useState(0);
     const [kfd, setKfd] = useState(null);
     const [biography, setBiography] = useState(null);
+
+    const biographyRef = useRef(null);
     
     const [facebookId, setFacebookId] = useState(null);
     const [instagramId, setInstagramId] = useState(null);
     const [twitterId, setTwitterId] = useState(null);
 
-    const [ creditNum, setCreditNum] = useState(0);
+    const [creditNum, setCreditNum] = useState(0);
 
     useEffect( () => {
         const loadPersonList = async (e) => {
@@ -118,6 +157,8 @@ const PersonDetailInfo = ({id}) => {
     const facebookUrl = `https://www.facebook.com/${facebookId}`;
     const instagramUrl = `https://www.instagram.com/${instagramId}/`;
     const twitterUrl = `https://twitter.com/${twitterId}`;
+
+
     return (
         <PROFILE_BOX>
         <CRow>
@@ -207,13 +248,33 @@ const PersonDetailInfo = ({id}) => {
                     </div>
                     <div className="profile_description">
                         <h4>약력</h4>
+                        <div id="biographyBox" ref={biographyRef}>
                         {
                             Biography !== ""
                             ?
-                            <p>{biography}</p>
+                            <>
+                            {biography}
+                            {
+                            Biography.length > 613
+                            ?
+                            <DiscriptButton 
+                            onClick={(event) => 
+                                {
+                                    biographyRef.current.classList.add("show")
+                                    event.currentTarget.classList.add("hide")
+                                }
+                            }
+                            >...더보기
+                            </DiscriptButton>
+                            :
+                            <></>
+                            }
+                            </>
                             :
                             <p>-</p>
                         }
+                        </div>
+                        
                     </div>
                 </CCardBody>
             </CCard>
