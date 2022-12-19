@@ -1,10 +1,12 @@
-import moment from "moment/moment";
-import { CCard, CCardBody, CCol, CRow } from "@coreui/react";
 
-const DramaDetailItem = ({ result }) => {
+import { CCard, CCardBody, CCol, CRow, CContainer } from "@coreui/react";
+
+
+const DramaDetailItem = ({ result, genres1, creators }) => {
     
-    const { id, poster_path, name,first_air_date, original_name, overview} = result;
-    
+    const { id, poster_path, name,first_air_date, original_name, overview, number_of_episodes, number_of_seasons, origin_country} = result;
+    const genres = genres1 + "";
+    const creator = creators + "";
     
   
     return (
@@ -12,24 +14,57 @@ const DramaDetailItem = ({ result }) => {
             <CCol xs={10} style={{ margin: "auto" }}>
                 <CCard className="mb-4">
                     <CCardBody>
-                        <div>
-                            <div style={{ padding:20, borderRadius: 40, opacity:'1', display: "inline-block"}}>
+                        <div style={{ padding:20, borderRadius: 40, opacity:'1', display: "inline-block"}}>
                             <img src={`https://www.themoviedb.org/t/p/w220_and_h330_bestv2${poster_path}`} alt="drama thumbnail" title={id} /><br />
-                            
-                            </div>
-                            <div style={{ height:500, width:800, top:300, display: "inline-block"}}>
-                                <h1>{name}({original_name})</h1><h3>개봉일: {moment(first_air_date).format('YYYY-MM')}</h3>
-                                
-                                <h4>개요dd</h4>
-                                <h5>{overview}</h5>
-                                <h5>{}</h5>
-                                <h5>{}</h5>
-                                
-                            </div>
-                            
-                            
-                            
                         </div>
+                        <CContainer style={{ width:600, display: "inline-block", verticalAlign:"middle"}}>
+                            <CRow xs={{ gutter: 0 }}>
+                                <CCol xs={{ span: 12 }}>
+                                <div className="p-0"><h1>{name}</h1></div>
+                                </CCol>                                
+                                <CCol xs={{ span: 12 }}>
+                                <div className="p-1">{original_name},{first_air_date} </div>
+                                </CCol>                                
+                                <CCol xs={{ span: 1 }}>
+                                <div className="p-1" style={{fontWeight:"bold"}}>장르</div>
+                                </CCol>
+                                <CCol xs={{ span: 7 }}>
+                                <div className="p-1 ">{genres}</div>
+                                </CCol>
+                                <CCol xs={{ span: 1 }}>
+                                <div className="p-1" style={{fontWeight:"bold"}}>시즌</div>
+                                </CCol>
+                                <CCol xs={{ span: 3 }}>
+                                <div className="p-1">총 {number_of_seasons} 회</div>
+                                </CCol>
+                                <CCol xs={{ span: 1 }}>
+                                <div className="p-1" style={{fontWeight:"bold"}}>국가</div>
+                                </CCol>
+                                <CCol xs={{ span: 7 }}>
+                                <div className="p-1">{origin_country}</div>
+                                </CCol>
+                                <CCol xs={{ span: 1 }}>
+                                <div className="p-1 " style={{fontWeight:"bold"}}>회차</div>
+                                </CCol>
+                                <CCol xs={{ span: 3 }}>
+                                <div className="p-1">총 {number_of_episodes} 회</div>
+                                </CCol>
+                               
+                                <CCol xs={{ span: 1 }}>
+                                <div className="p-1" style={{fontWeight:"bold"}}>제작</div>
+                                </CCol>
+                                <CCol xs={{ span: 11}}>
+                                <div className="p-1"><h6>{creator}</h6></div>
+                                </CCol>
+                                <CCol xs={{ span: 12 }}>
+                                <div className="p-0"><h3>개요</h3></div>
+                                </CCol>
+                                <CCol xs={{ span: 12 }}>
+                                <div className="p-0 ">{overview}</div>
+                                </CCol>
+                            
+                            </CRow>
+                        </CContainer>
                      </CCardBody>
                 </CCard>
              </CCol>

@@ -23,7 +23,7 @@ function Pagination({ total, page, setPage }) {
         <>
             <CPagination align="center" size="sm" aria-label="Page navigation example" >
                 <CPaginationItem onClick={() => setPage(page - 1)} disabled={page === 1}>
-                    Previous
+                <span style={{color:"#3399ff"}} >Previous</span>
                 </CPaginationItem>
 
                 {
@@ -31,7 +31,7 @@ function Pagination({ total, page, setPage }) {
                         ?
                         <>
                             <CPaginationItem onClick={() => setPage(1)}>
-                                1
+                            <span style={{color:"#3399ff"}} >1</span>
                             </CPaginationItem>
                             <p> … </p>
                         </>
@@ -40,7 +40,7 @@ function Pagination({ total, page, setPage }) {
                                 ?
                                 <>
                                     <CPaginationItem onClick={() => setPage(1)}>
-                                        1
+                                    <span style={{color:"#3399ff"}} >1</span>
                                     </CPaginationItem>
                                 </>
                                 :
@@ -50,13 +50,13 @@ function Pagination({ total, page, setPage }) {
                 {
                     pages
                         .map((i) => (
-                            <CPaginationItem
+                            <CPaginationItem 
                                 key={i}
                                 onClick={() => setPage(i)}
                                 active={parseInt(page) === i ? "page" : null}
                             >
 
-                                <>{i}</>
+                            <span style={{color:"#3399ff"}}>{i}</span>
 
                             </CPaginationItem>
                         ))
@@ -67,7 +67,7 @@ function Pagination({ total, page, setPage }) {
                         <>
                             <p> … </p>
                             <CPaginationItem onClick={() => setPage(total)}>
-                                {total}
+                            <span style={{color:"#3399ff"}} >Total</span>
                             </CPaginationItem>
                         </>
                         : (
@@ -80,7 +80,7 @@ function Pagination({ total, page, setPage }) {
                                     ?
                                     <>
                                         <CPaginationItem onClick={() => setPage(total)}>
-                                            {total}
+                                        <span style={{color:"#3399ff"}} >Total</span>
                                         </CPaginationItem>
                                     </>
                                     :
@@ -89,14 +89,16 @@ function Pagination({ total, page, setPage }) {
                         )
                 }
                 <CPaginationItem onClick={() => setPage(page + 1)} disabled={page === total}>
-                    Next
+                    <span style={{color:"#3399ff"}} >Next</span>
                 </CPaginationItem>
+                
                 <div style={{width:30}}></div>
-                <CForm className="row g-3">
-                    <CCol xs="auto">
-                        <CInputGroup style={{width:200, margin:""}} className="mb-1">
-                            <CFormInput style={{width:50}} size="sm"  aria-describedby="button-addon2" onChange={(event) => setPageInputNum(event.target.value)}/>     
-                            <CButton size="sm" color="primary" variant="outline" onClick={() => setPage(pageInputNum)}>페이지로 이동</CButton>
+
+                <CForm>
+                    <CCol>
+                        <CInputGroup style={{width:170}}>
+                            <CFormInput style={{width:50}} size="sm" onChange={(event) => setPageInputNum(event.target.value)}/>     
+                            <CButton size="sm" color="secondary " variant="outline" onClick={() => setPage(pageInputNum)}>페이지로 이동</CButton>
                         </CInputGroup>
                     </CCol>
                  </CForm>

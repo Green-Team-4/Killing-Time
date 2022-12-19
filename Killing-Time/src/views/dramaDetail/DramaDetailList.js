@@ -25,7 +25,9 @@ const DramaDetailList = ({id}) => {
 
     return (
        <div>
-            <DramaDetailItem result={ result } provider={provider} />
+            <DramaDetailItem result={ result } provider={provider} 
+            genres1={result.genres.map((genre) =>{ return (genre.name) } )}
+            creators={result.created_by.map((created) =>{ return (created.name) } )} />
        </div>
         
     );
