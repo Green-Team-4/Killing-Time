@@ -32,7 +32,8 @@ const PersonDetailCast = ({id}) => {
 
     const [loadCount, setLoadCount] = useState(10);
     const [visible, setVisible] = useState(1);
-
+    let [listCount, setListCount] = useState(0);
+    
     // useEffect : mount(초기화), update(상태변화) 이벤트 처리기 등록
     useEffect(() => {
         const loadCastList = async (e) => {
@@ -96,13 +97,16 @@ const PersonDetailCast = ({id}) => {
                         :
                         tvCastResults.map( (tvCastResult, idx) => {
                             if (idx < loadCount) {
-                            return (<PersonDetailCastItem key={ idx } castResult={ tvCastResult } MovieOrTv="tv" />);
+                                return (<PersonDetailCastItem key={ idx } castResult={ tvCastResult } MovieOrTv="tv"/>);
                             } else {
                                 return "";
                             }
                         })
                     }
                     <div style={{textAlign:"center", marginBottom:"50px"}}>
+                    {
+
+                    }
                     {
                         visible === 1
                         ?
