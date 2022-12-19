@@ -42,11 +42,11 @@ const BoxOffice = (props) => {
               <CTable striped>
                 <CTableHead>
                   <CTableRow>
-                    <CTableHeaderCell scope="col" style={{width:50}}>순위</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">포스터</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">제목</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">개봉일 </CTableHeaderCell>
-                    <CTableHeaderCell scope="col">관객수</CTableHeaderCell>                    
+                    <CTableHeaderCell scope="col" style={{width:50,textAlign:'center'}}>순위</CTableHeaderCell>
+                    <CTableHeaderCell scope="col" style={{textAlign:'center'}}>포스터</CTableHeaderCell>
+                    <CTableHeaderCell scope="col" style={{textAlign:'center'}}>제목</CTableHeaderCell>
+                    <CTableHeaderCell scope="col" style={{textAlign:'center'}}>개봉일 </CTableHeaderCell>
+                    <CTableHeaderCell scope="col" style={{textAlign:'center'}}>관객수</CTableHeaderCell>                    
                   </CTableRow>
                 </CTableHead>
                 <CTableBody>                  
@@ -56,14 +56,14 @@ const BoxOffice = (props) => {
                         boxOffice.dailyBoxOfficeList.map((dailyBoxOfficeLists, idx) => {
                           return (
                             <CTableRow key={idx}>
-                              <CTableHeaderCell>{dailyBoxOfficeLists.rank}</CTableHeaderCell>                              
-                              <CTableDataCell style={{width:141, height:91}}>
+                              <CTableHeaderCell style={{textAlign:'center'}}>{dailyBoxOfficeLists.rank}</CTableHeaderCell>                              
+                              <CTableDataCell style={{width:141, height:91, textAlign:'center'}}>
                                 <MovieImage movieName={dailyBoxOfficeLists.movieNm} openDate={dailyBoxOfficeLists.openDt}/>
                                 <MoviePosterItem />
                               </CTableDataCell>
-                              <CTableDataCell>{dailyBoxOfficeLists.movieNm}</CTableDataCell>
-                              <CTableDataCell>{dailyBoxOfficeLists.openDt}</CTableDataCell>
-                              <CTableDataCell>
+                              <CTableDataCell style={{textAlign:'center'}}>{dailyBoxOfficeLists.movieNm}</CTableDataCell>
+                              <CTableDataCell style={{textAlign:'center'}}>{dailyBoxOfficeLists.openDt}</CTableDataCell>
+                              <CTableDataCell style={{textAlign:'center'}}>
                                 <NumericFormat
                                   value={dailyBoxOfficeLists.audiCnt}
                                   displayType={'text'}
