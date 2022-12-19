@@ -7,21 +7,25 @@ import {
   cilCursor,
   cilDescription,
   cilDrop,
+  cilHome,
+  cilMovie,
+  cilNewspaper,
   cilNotes,
   cilPencil,
   cilPeople,
   cilPuzzle,
   cilSpeedometer,
   cilStar,
+  cilTv,
 } from '@coreui/icons'
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
 
 const _nav = [
   {
     component: CNavItem,
-    name: 'Main',
+    name: 'Home',
     to: '/home/main',
-    icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilHome} customClassName="nav-icon" />,
   },
   // {
   //   component: CNavTitle,
@@ -243,6 +247,12 @@ const _nav = [
   // },
   {
     component: CNavItem,
+    name: '영화 뉴스',
+    to: '/movieNewsList',
+    icon: <CIcon icon={cilNewspaper} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
     name: '영화 & TV 검색',
     to: '/search',
     icon: <CIcon icon={cilCursor} customClassName="nav-icon" />,
@@ -251,13 +261,13 @@ const _nav = [
     component: CNavItem,
     name: '드라마',
     to: '/dramaMain',
-    icon: <CIcon icon={cilStar} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilTv} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
     name: '영화',
     to: '/moviePage',
-    icon: <CIcon icon={cilDescription} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilMovie} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,

@@ -1,6 +1,9 @@
+import { cilSearch } from "@coreui/icons";
+import CIcon from "@coreui/icons-react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { NumericFormat } from "react-number-format";
+import { Link } from "react-router-dom";
 import MovieImage from "./MovieImage";
 import MoviePosterItem from "./MoviePosterItem";
 
@@ -31,22 +34,21 @@ const BoxOffice = (props) => {
   },[]);
   
  
-
     return(
       <CCol xs={10} style={{margin: "auto"}}>
         <CCard className="mb-4">
           <CCardHeader>
-            <strong>일일 박스오피스</strong>
+            <strong>일일 박스오피스</strong>&nbsp;&nbsp;<small><Link to="/search"  style={{textDecoration:'none', color:'gray'}}>영화 더 찾아보기 <CIcon style={{width:17, verticalAlign: 'middle'}} icon={cilSearch} customClassName="nav-icon" /></Link></small>
           </CCardHeader>
           <CCardBody>           
               <CTable striped>
                 <CTableHead>
                   <CTableRow>
-                    <CTableHeaderCell scope="col" style={{width:50}}>순위</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">포스터</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">제목</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">개봉일 </CTableHeaderCell>
-                    <CTableHeaderCell scope="col">관객수</CTableHeaderCell>                    
+                    <CTableHeaderCell scope="col" style={{width:50,textAlign:'center', fontWeight:'bold'}}>순위</CTableHeaderCell>
+                    <CTableHeaderCell scope="col" style={{textAlign:'center'}}>포스터</CTableHeaderCell>
+                    <CTableHeaderCell scope="col" style={{textAlign:'center'}}>제목</CTableHeaderCell>
+                    <CTableHeaderCell scope="col" style={{textAlign:'center'}}>개봉일 </CTableHeaderCell>
+                    <CTableHeaderCell scope="col" style={{textAlign:'center'}}>관객수</CTableHeaderCell>                    
                   </CTableRow>
                 </CTableHead>
                 <CTableBody>                  
@@ -56,14 +58,14 @@ const BoxOffice = (props) => {
                         boxOffice.dailyBoxOfficeList.map((dailyBoxOfficeLists, idx) => {
                           return (
                             <CTableRow key={idx}>
-                              <CTableHeaderCell>{dailyBoxOfficeLists.rank}</CTableHeaderCell>                              
-                              <CTableDataCell style={{width:141, height:91}}>
+                              <CTableHeaderCell style={{textAlign:'center', fontWeight:'bold'}}>{dailyBoxOfficeLists.rank}</CTableHeaderCell>                              
+                              <CTableDataCell style={{width:141, height:91, textAlign:'center'}}>
                                 <MovieImage movieName={dailyBoxOfficeLists.movieNm} openDate={dailyBoxOfficeLists.openDt}/>
                                 <MoviePosterItem />
                               </CTableDataCell>
-                              <CTableDataCell>{dailyBoxOfficeLists.movieNm}</CTableDataCell>
-                              <CTableDataCell>{dailyBoxOfficeLists.openDt}</CTableDataCell>
-                              <CTableDataCell>
+                              <CTableDataCell style={{textAlign:'center', fontWeight:'bold'}}>{dailyBoxOfficeLists.movieNm}</CTableDataCell>
+                              <CTableDataCell style={{textAlign:'center', fontWeight:'bold'}}>{dailyBoxOfficeLists.openDt}</CTableDataCell>
+                              <CTableDataCell style={{textAlign:'center' , fontWeight:'bold'}}>
                                 <NumericFormat
                                   value={dailyBoxOfficeLists.audiCnt}
                                   displayType={'text'}
