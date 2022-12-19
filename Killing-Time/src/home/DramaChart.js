@@ -38,7 +38,7 @@ const DramaChart = (props) => {
                     <CTableHeaderCell scope="col" style={{textAlign:'center'}}>첫 방영 일</CTableHeaderCell>
                   </CTableRow>
                 </CTableHead>
-                <CTableBody style={{fontWeight:'bold'}}>
+                <CTableBody style={{fontWeight:'bold',verticalAlign: 'middle'}}>
                   {
                     dramaChart ?
                     <CTableRow>

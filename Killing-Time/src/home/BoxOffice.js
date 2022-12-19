@@ -48,10 +48,10 @@ const BoxOffice = (props) => {
                     <CTableHeaderCell scope="col" style={{textAlign:'center'}}>포스터</CTableHeaderCell>
                     <CTableHeaderCell scope="col" style={{textAlign:'center'}}>제목</CTableHeaderCell>
                     <CTableHeaderCell scope="col" style={{textAlign:'center'}}>개봉일 </CTableHeaderCell>
-                    <CTableHeaderCell scope="col" style={{textAlign:'center'}}>관객수</CTableHeaderCell>                    
+                    <CTableHeaderCell scope="col" style={{textAlign:'center'}}>일일 관객수</CTableHeaderCell>                    
                   </CTableRow>
                 </CTableHead>
-                <CTableBody>                  
+                <CTableBody style={{verticalAlign: 'middle'}}>                  
                     {
                       // {dailyBoxOfficeLists.audiCnt}명
                        boxOffice ?  
