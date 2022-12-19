@@ -3,13 +3,14 @@ import { CCard, CCardBody, CCardHeader, CCol, CTable, CTableBody, CTableDataCell
 import axios from "axios";
 import moment from "moment/moment";
 import { useEffect, useState } from "react";
-import Pagination from "src/views/dramaDetail/DramaPage";
+import Pagination from "./NewsListPage";
+
 
 
 const MovieNewsList = (props) => {
 
-    const [page, setPage] = useState(1);
-    const [total_pages, setTotal_pages] = useState(null);
+    const total = 500;
+    const [page, setPage] = useState(1);    
     const [movieNewsList, setMovieNewsList] = useState([]);
 
     useEffect(() => {
@@ -21,7 +22,6 @@ const MovieNewsList = (props) => {
                 if (response.data.result === "success") {
                     setMovieNewsList(response.data.movieNews);
                     setPage(response.data.page);
-                    setTotal_pages(response.data.total_pages);
                     console.log(response.data.movieNews);
                 } else {
                     Alert("스프링 서버 연결 실패");
@@ -71,7 +71,7 @@ const MovieNewsList = (props) => {
                 <Pagination 
                 setPage={setPage}
                 page={page}
-                total={total_pages} 
+                total={total} 
                 />
             </div>
       </CCol>
