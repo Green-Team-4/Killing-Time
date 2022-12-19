@@ -1,4 +1,4 @@
-import { cilCursor, cilSearch } from "@coreui/icons";
+import { cilSearch } from "@coreui/icons";
 import CIcon from "@coreui/icons-react";
 import { CCard, CCardBody, CCardHeader, CCol, CTable, CTableBody, CTableDataCell, CTableHead, CTableHeaderCell, CTableRow } from "@coreui/react";
 import axios from "axios";
@@ -26,11 +26,11 @@ const DramaChart = (props) => {
         <CCol xs={10} style={{margin: "auto"}}>
         <CCard className="mb-4">
           <CCardHeader>
-            <strong>드라마 차트</strong>&nbsp;&nbsp;<small><Link to="/search"  style={{textDecoration:'none', color:'gray'}}>드라마 더 찾아보기  <CIcon style={{width:17, verticalAlign: 'middle'}} icon={cilSearch} customClassName="nav-icon" /></Link></small>
+            <strong>TV 순위</strong>&nbsp;&nbsp;<small><Link to="/search"  style={{textDecoration:'none', color:'gray'}}>TV 더 찾아보기  <CIcon style={{width:17, verticalAlign: 'middle'}} icon={cilSearch} customClassName="nav-icon" /></Link></small>
           </CCardHeader>
           <CCardBody>
               <CTable hover>
-                <CTableHead>
+                <CTableHead style={{fontWeight:'bold'}}>
                   <CTableRow>
                     <CTableHeaderCell scope="col" style={{width:50, textAlign:'center'}}>순위</CTableHeaderCell>
                     <CTableHeaderCell scope="col" style={{textAlign:'center'}}>포스터</CTableHeaderCell>
@@ -38,7 +38,7 @@ const DramaChart = (props) => {
                     <CTableHeaderCell scope="col" style={{textAlign:'center'}}>첫 방영 일</CTableHeaderCell>
                   </CTableRow>
                 </CTableHead>
-                <CTableBody>
+                <CTableBody style={{fontWeight:'bold'}}>
                   {
                     dramaChart ?
                     <CTableRow>
