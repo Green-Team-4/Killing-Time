@@ -1,3 +1,5 @@
+import { cilCursor, cilSearch } from "@coreui/icons";
+import CIcon from "@coreui/icons-react";
 import { CCard, CCardBody, CCardHeader, CCol, CTable, CTableBody, CTableDataCell, CTableHead, CTableHeaderCell, CTableRow } from "@coreui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -24,7 +26,7 @@ const DramaChart = (props) => {
         <CCol xs={10} style={{margin: "auto"}}>
         <CCard className="mb-4">
           <CCardHeader>
-            <strong>드라마 차트</strong>
+            <strong>드라마 차트</strong>&nbsp;&nbsp;<small><Link to="/search"  style={{textDecoration:'none', color:'gray'}}>드라마 더 찾아보기  <CIcon style={{width:17, verticalAlign: 'middle'}} icon={cilSearch} customClassName="nav-icon" /></Link></small>
           </CCardHeader>
           <CCardBody>
               <CTable hover>

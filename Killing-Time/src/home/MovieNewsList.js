@@ -9,19 +9,19 @@ import Pagination from "./NewsListPage";
 
 const MovieNewsList = (props) => {
 
-    const total = 500;
+    
     const [page, setPage] = useState(1);    
     const [movieNewsList, setMovieNewsList] = useState([]);
 
     useEffect(() => {
-        const start = page;
-        const display = 10;
-        const url = `http://localhost:8080/web-scraping/movie-news?start=${start}&display=${display}`;
+        
+        const display = 15;
+        const url = `http://localhost:8080/web-scraping/movie-news?start=${page}&display=${display}`;
         axios.get(url)
              .then( (response) => {
                 if (response.data.result === "success") {
                     setMovieNewsList(response.data.movieNews);
-                    setPage(response.data.page);
+                    
                     console.log(response.data.movieNews);
                 } else {
                     Alert("스프링 서버 연결 실패");
@@ -68,10 +68,9 @@ const MovieNewsList = (props) => {
           </CCardBody>
         </CCard>
         <div> 
-                <Pagination 
+                <Pagination
                 setPage={setPage}
                 page={page}
-                total={total} 
                 />
             </div>
       </CCol>

@@ -1,6 +1,9 @@
+import { cilSearch } from "@coreui/icons";
+import CIcon from "@coreui/icons-react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { NumericFormat } from "react-number-format";
+import { Link } from "react-router-dom";
 import MovieImage from "./MovieImage";
 import MoviePosterItem from "./MoviePosterItem";
 
@@ -36,7 +39,7 @@ const BoxOffice = (props) => {
       <CCol xs={10} style={{margin: "auto"}}>
         <CCard className="mb-4">
           <CCardHeader>
-            <strong>일일 박스오피스</strong>
+            <strong>일일 박스오피스</strong>&nbsp;&nbsp;<small><Link to="/search"  style={{textDecoration:'none', color:'gray'}}>영화 더 찾아보기  <CIcon style={{width:17, verticalAlign: 'middle'}} icon={cilSearch} customClassName="nav-icon" /></Link></small>
           </CCardHeader>
           <CCardBody>           
               <CTable striped>

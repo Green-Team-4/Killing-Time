@@ -31,7 +31,7 @@ const MovieNews = (props) => {
         <CCol xs={10} style={{margin: "auto"}}>
         <CCard className="mb-4">
           <CCardHeader>
-            <strong>영화 뉴스</strong>
+            <strong>영화 뉴스</strong> &nbsp;&nbsp;<small><Link to="/movieNewsList"  style={{textDecoration:'none', color:'gray'}}>뉴스 더보기</Link></small>
           </CCardHeader>
           <CCardBody>
               <CTable hover >
