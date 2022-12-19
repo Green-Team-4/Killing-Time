@@ -34,7 +34,6 @@ const BoxOffice = (props) => {
   },[]);
   
  
-
     return(
       <CCol xs={10} style={{margin: "auto"}}>
         <CCard className="mb-4">
