@@ -57,11 +57,23 @@ function SearchPagination({ page, setPage }) {
             </Button>
         </Nav>
         <div style={{textAlign:"center", margin:"0", marginBottom:"20px"}}>
-            <input id="pageInput" style={{width:"50px", height:"20px"}}
-            onChange={(event) => setPageInputNum(event.target.value)}
+            <input 
+                id="pageInput" 
+                style={{
+                    width:"50px", 
+                    height:"20px"
+                }}
+                type="number"
+                min="1"
+                onChange={(event) => setPageInputNum(event.target.value)}
             ></input>
-            <Button style={{width:"100px", height:"20px", fontSize:"14px"}} 
-            onClick={() => setPage(pageInputNum)}
+            <Button 
+                style={{
+                    width:"100px", 
+                    height:"20px", 
+                    fontSize:"14px"
+                }}
+                onClick={() => setPage(pageInputNum)}
             >페이지 이동</Button>
         </div>
         
