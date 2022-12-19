@@ -12,13 +12,7 @@ const Main = (props) => {
       <>
         <div className="content" >
                 <TabList />
-        </div>
-      {/* <BoxOffice />
-      
-      <DramaChart /> */}
-
-      {/* <MovieNews /> */}
-      
+        </div>     
       </>
     );
 };

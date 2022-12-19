@@ -1,6 +1,6 @@
 import { cilSearch } from "@coreui/icons";
 import CIcon from "@coreui/icons-react";
-import { CCard, CCardBody, CCardHeader, CCol, CTable, CTableBody, CTableDataCell, CTableHead, CTableHeaderCell, CTableRow } from "@coreui/react";
+import { CCard, CCardBody, CCardHeader, CCol, CTable, CTableBody, CTableDataCell, CTableHead, CTableHeaderCell, CTableRow, CTooltip } from "@coreui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -26,7 +26,7 @@ const DramaChart = (props) => {
         <CCol xs={10} style={{margin: "auto"}}>
         <CCard className="mb-4">
           <CCardHeader>
-            <strong>TV 순위</strong>&nbsp;&nbsp;<small><Link to="/search"  style={{textDecoration:'none', color:'gray'}}>TV 더 찾아보기  <CIcon style={{width:17, verticalAlign: 'middle'}} icon={cilSearch} customClassName="nav-icon" /></Link></small>
+            <strong>TV 순위</strong>&nbsp;&nbsp;<small><CTooltip content="더 많은 TV 시리즈 찾아보기" placement="top"><Link to="/search"  style={{textDecoration:'none', color:'gray'}}>TV 더 찾아보기  <CIcon style={{width:17, verticalAlign: 'middle'}} icon={cilSearch} customClassName="nav-icon" /></Link></CTooltip></small>
           </CCardHeader>
           <CCardBody>
               <CTable hover>
