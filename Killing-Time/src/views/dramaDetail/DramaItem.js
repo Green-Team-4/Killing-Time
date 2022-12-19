@@ -1,40 +1,7 @@
-import styled from 'styled-components';
+
 import { Link } from 'react-router-dom';
-import DramaDetails from './DramaDetails';
 
-// .css
-// .scss ( or .sass )
-// css-in-js : styled-components
-
-const DramaItemBlock = styled.div`
-    display: flex;
-    .thumbnail {
-        margin-right: 1rem;
-        img {
-            display: block;
-            width: 160px;
-            height: 100px;
-            object-fit: cover;
-        }
-    }
-    .contents {
-        h2 {
-            margin: 0;
-            a {
-                color: black;
-            }
-        }
-        p {
-            margin: 0;
-            line-height: 1.5;
-            margin-top: 0.5rem;
-            white-space: normal;
-        }
-    }
-    & + & {
-        margin-top: 3rem;
-    }
-`;
+import { CCard, CCardImage, CCardTitle, CCardText, CCardBody, CCardHeader } from '@coreui/react';
 
 const DramaItem = ({ result }) => {
 
@@ -42,30 +9,22 @@ const DramaItem = ({ result }) => {
     const img_url = `https://www.themoviedb.org/t/p/w220_and_h330_face${ poster_path }`;
   
     return (
-        <div className='mb-3'>
-            <Link to="/dramaMain/dramaDetails" state={{ id:id }}>
-                <img src={ img_url } style={{borderRadius:20, padding:3}} alt="drama thumbnail" /><br />
-            </Link>
-                <h4>{ name }<br /></h4>
-                출시일 : { first_air_date }<br />
-                회원 점수 : { vote_average }
+        <>
         
-           
-            {/* <div>
-                 <a href={ detail_url }>
-                    <img src={ img_url } alt="drama thumbnail" />
-                </a>
-            </div>
-            <div>
-                <h2>
-                    <a href={ id }>{ name }</a> <br />
-                    <a href={ id }>{ origin_country }</a> <br />
-                    <a href={ id }>{ vote_count }</a>
-
-                </h2>
-                <p>{ overview }</p>
-            </div> */}
-        </div>
+        <CCard className='mb-3 border-dark' textColor='dark' style={{margin:7}}>
+            <Link to="/dramaMain/dramaDetails" state={{ id:id }}>
+                <CCardImage style={{padding:0}} src={ img_url } alt="drama thumbnail" />
+            </Link>
+            <CCardHeader style={{height:55}}>
+                <CCardTitle style={{fontSize:17, textAlign:'center',position:"relative", transform:"translateY(-50%)", top:'50%'}}>{ name }</CCardTitle>
+            </CCardHeader>
+            <CCardBody >
+                <h12>출시일 : { first_air_date }</h12><br />
+                <h12>회원 점수 : { vote_average }</h12>
+            </CCardBody>
+        </CCard>
+        
+        </>
     );
 
 };
