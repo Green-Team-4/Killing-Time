@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 import DramaDetailList from "./DramaDetailList";
+import DramaMainCast from "./DramaMainCast";
 
 const DramaDetails = (props) => {
     const location = useLocation();
@@ -8,6 +9,7 @@ const DramaDetails = (props) => {
     return (
         <div>
             <DramaDetailList id={id}/>
+            <DramaMainCast id={id} />
         </div>
     );
 
