@@ -41,7 +41,7 @@ const AppHeader = () => {
             </CNavLink>
           </CNavItem>
           <CNavItem>
-            <CNavLink to='/search'>영화 & 드라마 찾아보기 <CIcon style={{width:19, verticalAlign: 'middle'}} icon={cilSearch} customClassName="nav-icon" /></CNavLink>
+            <CNavLink to='/search' component={NavLink}>영화 & 드라마 찾아보기 <CIcon style={{width:19, verticalAlign: 'middle'}} icon={cilSearch} customClassName="nav-icon" /></CNavLink>
           </CNavItem>
         </CHeaderNav>
         {/* <CHeaderNav>
