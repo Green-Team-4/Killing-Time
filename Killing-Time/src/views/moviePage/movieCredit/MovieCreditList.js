@@ -34,25 +34,30 @@ const MovieCreditList = ({ id }) => {
   return (
     <>
       {/* <MovieMainCastBlock> */}
-      <div style={{display: "inline-block"}}>
-          <h4>출연진</h4>
-              {cast.map((result) => {
-                
-                  return (
-                    <MovieCreditListCast key={result.credit_id} result={result} />
-                  );
-                
-              })}
-              </div>
-              <div style={{display: "inline-block",verticalAlign: "top", marginLeft: 100}}>
-              <h4>제작진</h4>
-              {crew.map((result) => {
-                
-                  return (
-                    <MovieCreditListCrew key={result.credit_id} result={result} />
-                  );
-                
-              })}
+      <div style={{ textAlign: "center" }}>
+        <div style={{ display: "inline-block", textAlign: "left" }}>
+          <h4 style={{fontWeight: "bold", marginLeft: 20}}>출연진</h4>
+          {cast.map((result) => {
+            return (
+              <MovieCreditListCast key={result.credit_id} result={result} />
+            );
+          })}
+        </div>
+        <div
+          style={{
+            display: "inline-block",
+            textAlign: "left",
+            verticalAlign: "top",
+            marginLeft: 100,
+          }}
+        >
+          <h4 style={{fontWeight: "bold", marginLeft: 20}}>제작진</h4>
+          {crew.map((result) => {
+            return (
+              <MovieCreditListCrew key={result.credit_id} result={result} />
+            );
+          })}
+        </div>
       </div>
       {/* </MovieMainCastBlock> */}
     </>

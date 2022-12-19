@@ -1,3 +1,4 @@
+import { CCard, CCardBody, CCol } from "@coreui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Pagination from "../person/PersonPage";
@@ -30,6 +31,9 @@ const MovieList = (props) => {
 
   return (
     <>
+      <CCol xs={10} style={{margin: "auto"}}>
+      <CCard className="mb-4">
+        <CCardBody style={{margin: "auto", textAlign: "center"}}>
       {results.map((result) => {
         return <MovieListItem key={result.id} result={result} />
       })}
@@ -38,6 +42,9 @@ const MovieList = (props) => {
                 page={page}
                 setPage={setPage}
             />
+      </CCardBody>
+      </CCard>
+      </CCol>
     </>
   );
 };

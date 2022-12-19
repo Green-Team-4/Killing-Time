@@ -16,7 +16,7 @@ const MovieListItem = ({ result }) => {
         
         <div style={{ width: 220 }}>
           <Link to="/moviePage/movieDetail" state={{ id: id }}>
-            <img src={img_url} alt="movie thumbnail" />
+            <img src={img_url} alt="movie thumbnail" style={{ borderRadius: 10 }} />
           </Link>
         </div>
         <div style={{fontSize: 14, textDecoration: "none", color: "black",width:220, height:25, overflow: "hidden", textOverflow: "ellipsis", textAlign: "center"}}>

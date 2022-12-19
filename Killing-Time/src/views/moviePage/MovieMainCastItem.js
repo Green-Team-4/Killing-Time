@@ -19,13 +19,13 @@ const MovieMainCastItem = ({ result }) => {
         <div>
           <Link to="/personList/personDetail" state={{ id: id }}>
             {profile_path !== null ? (
-              <img src={img_url} alt={name} title={id} style={{ width: 140 }} />
+              <img src={img_url} alt={name} title={id} style={{ width: 140, borderRadius: 10 }} />
             ) : (
               <img
                 src="https://via.placeholder.com/300x450"
                 alt={name}
                 title={id}
-                style={{ width: 140 }}
+                style={{ width: 140, borderRadius: 10 }}
               />
             )}
           </Link>
