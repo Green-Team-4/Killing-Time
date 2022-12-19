@@ -1,4 +1,6 @@
 import { Alert } from "@coreui/coreui";
+import { cilCaretBottom } from "@coreui/icons";
+import CIcon from "@coreui/icons-react";
 import { CCard, CCardBody, CCardHeader, CCol, CTable, CTableBody, CTableDataCell, CTableHead, CTableHeaderCell, CTableRow } from "@coreui/react";
 import axios from "axios";
 import moment from "moment/moment";
@@ -31,15 +33,15 @@ const MovieNews = (props) => {
         <CCol xs={10} style={{margin: "auto"}}>
         <CCard className="mb-4">
           <CCardHeader>
-            <strong>영화 뉴스</strong>
+            <strong>영화 뉴스</strong> &nbsp;&nbsp;<small><Link to="/movieNewsList"  style={{textDecoration:'none', color:'gray'}}>뉴스 더보기 <CIcon style={{width:15, verticalAlign: 'middle'}} icon={cilCaretBottom} customClassName="nav-icon" /></Link></small>
           </CCardHeader>
           <CCardBody>
-              <CTable hover>
+              <CTable hover >
                 <CTableHead>
                   <CTableRow>
-                    <CTableHeaderCell scope="col">뉴스 타이틀</CTableHeaderCell>
-                    <CTableHeaderCell scope="col"></CTableHeaderCell>
-                    <CTableHeaderCell scope="col">게시일</CTableHeaderCell>
+                    <CTableHeaderCell scope="col" style={{width:550}}>뉴스 타이틀</CTableHeaderCell>
+                    <CTableHeaderCell scope="col" style={{width:390}}></CTableHeaderCell>
+                    <CTableHeaderCell scope="col" style={{textAlign:'center'}}>게시일</CTableHeaderCell>
                   </CTableRow>
                 </CTableHead>
                 <CTableBody>
@@ -51,8 +53,8 @@ const MovieNews = (props) => {
                     <CTableRow key={idx}>
                     
                       <CTableHeaderCell><a href={movie.link} style={{color:"black"}}>{movie.title.replaceAll('&apos;', "'").replaceAll('&quot;', '"').replaceAll('<b>', '').replaceAll('</b>', '').replaceAll('&lt;', '<').replaceAll('&gt;', '>')}</a></CTableHeaderCell>
-                      <CTableDataCell style={{width: 400, fontSize:13}}>{movie.description.replaceAll('&apos;', "'").replaceAll('&quot;', '"').replaceAll('<b>', '').replaceAll('</b>', '').replaceAll('&lt;', '<').replaceAll('&gt;', '>')}</CTableDataCell>
-                      <CTableDataCell>{moment(movie.pubDate).format('YYYY-MM-DD')}</CTableDataCell>
+                      <CTableDataCell style={{width: 390, fontSize:13}}>{movie.description.replaceAll('&apos;', "'").replaceAll('&quot;', '"').replaceAll('<b>', '').replaceAll('</b>', '').replaceAll('&lt;', '<').replaceAll('&gt;', '>')}</CTableDataCell>
+                      <CTableDataCell style={{textAlign:'center', fontWeight:'bold'}}>{moment(movie.pubDate).format('YYYY-MM-DD')}</CTableDataCell>
                     </CTableRow>
                     
                     )

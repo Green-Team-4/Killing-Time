@@ -13,13 +13,10 @@ const MovieInfoItem = ({ result, provider, otherResult }) => {
     production_countries,
     genres,
   } = result;
+
   let {overview, tagline} = result;
   let overview_f = overview;
   let tagline_f = tagline;
-
-  var buy_url = "";
-  var rent_url = "";
-  var stream_url = "";
   if (tagline === "") {
     let {tagline} = otherResult;
     tagline_f = tagline;
@@ -28,28 +25,54 @@ const MovieInfoItem = ({ result, provider, otherResult }) => {
     let {overview} = otherResult;
     overview_f = overview;
   }
-  if (provider !== undefined) {
-    const { buy, rent, flatrate } = provider;
 
-    if (buy !== undefined) {
-      buy_url = buy.map((buy) => {
-        var { logo_path } = buy;
-        return `https://www.themoviedb.org/t/p/original/${logo_path}`;
-      });
-    }
-    if (rent !== undefined) {
-      rent_url = rent.map((rent) => {
-        var { logo_path } = rent;
-        return `https://www.themoviedb.org/t/p/original/${logo_path}`;
-      });
-    }
-    if (flatrate !== undefined) {
-      stream_url = flatrate.map((stream) => {
-        var { logo_path } = stream;
-        return `https://www.themoviedb.org/t/p/original/${logo_path}`;
-      });
+  let buy_url = "";
+  let rent_url = "";
+  let stream_url = "";
+  if (provider !== undefined) {
+    let { buy, rent, flatrate } = provider;
+    if (buy !== undefined)
+      buy_url = buy;
+    if (rent !== undefined)
+      rent_url = rent;
+    if (flatrate !== undefined)
+      stream_url = flatrate;
+  }
+
+  function searchMovie (buy) {
+    const provider_id = buy.provider_id;
+    const provider_name = buy.provider_name;
+    switch(provider_id){
+      case 3:
+        return `https://play.google.com/store/search?q=${title}&c=movies`
+      case 8:
+      case 1796:
+        return "https://www.netflix.com/"
+      case 96:
+        return `https://serieson.naver.com/v2/search?query=${title}`
+      case 119:
+        return "https://www.primevideo.com/"
+      case 356:
+        return `https://www.wavve.com/search?searchWord=${title}`
+      case 337:
+        return "https://www.disneyplus.com/ko-kr"
+      default:
+        return `https://www.google.com/search?q=${provider_name}`
     }
   }
+  function showLogo (buy) {
+    return (
+      <img style={ { border: 1,
+                     borderStyle: "solid",
+                     marginRight: 30,
+                     borderRadius: 10, } }
+           width={50}
+           src={ `https://www.themoviedb.org/t/p/original/${buy.logo_path}` }
+           alt="provier thumbnail"
+           title={buy.provider_id} />
+    )
+  }
+  
   const img_url = `https://www.themoviedb.org/t/p/w220_and_h330_face${poster_path}`;
   const year = release_date.split("-");
   const rate = Math.floor(vote_average * 10) / 10;
@@ -85,7 +108,7 @@ const MovieInfoItem = ({ result, provider, otherResult }) => {
         <CCard className="mb-4">
           <CCardBody>
             <div style={{ display: "inline-block", marginTop: 20 }}>
-              <img src={img_url} alt="movie thumbnail" title={id} />
+              <img src={img_url} alt="movie thumbnail" title={id} style={{ borderRadius: 10 }} />
             </div>
             <div
               style={{
@@ -157,78 +180,48 @@ const MovieInfoItem = ({ result, provider, otherResult }) => {
               </div>
               <br />
               <div>
-                {buy_url !== "" ? (
-                  <div style={{ display: "inline-block", marginRight: 20 }}>
-                    <p style={{ fontWeight: "bold" }}>Buy</p>
-                    {buy_url !== ""
-                      ? buy_url.map((buy) => (
+                {
+                  buy_url !== "" ? (
+                    <div style={{ display: "inline-block", marginRight: 20 }}>
+                      <p style={{ fontWeight: "bold" }}>Buy</p>
+                      {
+                        buy_url !== "" ? buy_url.map((buy) => (
                           <div style={{ display: "inline-block" }}>
-                            <img
-                              style={{
-                                border: 1,
-                                borderStyle: "solid",
-                                marginRight: 30,
-                                borderRadius: 10,
-                              }}
-                              width={50}
-                              src={buy}
-                              alt="provier thumbnail"
-                            />
+                            <a href={searchMovie(buy)}>{showLogo(buy)}</a>
                           </div>
-                        ))
-                      : "  "}
-                  </div>
-                ) : (
-                  ""
-                )}
-                {rent_url !== "" ? (
-                  <div style={{ display: "inline-block", marginRight: 20 }}>
-                    <p style={{ fontWeight: "bold" }}>Rent</p>
-                    {rent_url !== ""
-                      ? rent_url.map((rent) => (
+                        )) : "" 
+                      }
+                    </div>
+                  ) : ""
+                }
+                {
+                  rent_url !== "" ? (
+                    <div style={{ display: "inline-block", marginRight: 20 }}>
+                      <p style={{ fontWeight: "bold" }}>Rent</p>
+                      {
+                        rent_url !== "" ? rent_url.map((rent) => (
                           <div style={{ display: "inline-block" }}>
-                            <img
-                              style={{
-                                border: 1,
-                                borderStyle: "solid",
-                                marginRight: 30,
-                                borderRadius: 10,
-                              }}
-                              width={50}
-                              src={rent}
-                              alt="provier thumbnail"
-                            />
+                            <a href={searchMovie(rent)}>{showLogo(rent)}</a>
                           </div>
-                        ))
-                      : "  "}
-                  </div>
-                ) : (
-                  ""
-                )}
-                {stream_url !== "" ? (
-                  <div style={{ display: "inline-block", marginRight: 20 }}>
-                    <p style={{ fontWeight: "bold" }}>Stream</p>
-                    {stream_url !== ""
-                      ? stream_url.map((stream) => (
+                        )) : "" 
+                      }
+                    </div>
+                  ) : ""
+                }
+                {
+                  stream_url !== "" ? (
+                    <div style={{ display: "inline-block", marginRight: 20 }}>
+                      <p style={{ fontWeight: "bold" }}>Stream</p>
+                      {
+                        stream_url !== "" ? stream_url.map((stream) => (
                           <div style={{ display: "inline-block" }}>
-                            <img
-                              style={{
-                                border: 1,
-                                borderStyle: "solid",
-                                marginRight: 30,
-                                borderRadius: 10,
-                              }}
-                              width={50}
-                              src={stream}
-                              alt="provider thumbnail"
-                            />
+                            <a href={searchMovie(stream)}>{showLogo(stream)}</a>
                           </div>
-                        ))
-                      : "  "}
-                  </div>
-                ) : (
-                  ""
-                )}
+                        )) : "" 
+                      }
+                    </div>
+                  ) : ""
+                }
               </div>
             </div>
             <div>
