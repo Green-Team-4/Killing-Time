@@ -39,7 +39,7 @@ const BoxOffice = (props) => {
       <CCol xs={10} style={{margin: "auto"}}>
         <CCard className="mb-4">
           <CCardHeader>
-            <strong>일일 박스오피스</strong>&nbsp;&nbsp;<small><Link to="/search"  style={{textDecoration:'none', color:'gray'}}>영화 더 찾아보기  <CIcon style={{width:17, verticalAlign: 'middle'}} icon={cilSearch} customClassName="nav-icon" /></Link></small>
+            <strong>일일 박스오피스</strong>&nbsp;&nbsp;<small><Link to="/search"  style={{textDecoration:'none', color:'gray'}}>영화 더 찾아보기 <CIcon style={{width:17, verticalAlign: 'middle'}} icon={cilSearch} customClassName="nav-icon" /></Link></small>
           </CCardHeader>
           <CCardBody>           
               <CTable striped>

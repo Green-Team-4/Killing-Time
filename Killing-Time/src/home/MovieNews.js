@@ -1,4 +1,6 @@
 import { Alert } from "@coreui/coreui";
+import { cilCaretBottom } from "@coreui/icons";
+import CIcon from "@coreui/icons-react";
 import { CCard, CCardBody, CCardHeader, CCol, CTable, CTableBody, CTableDataCell, CTableHead, CTableHeaderCell, CTableRow } from "@coreui/react";
 import axios from "axios";
 import moment from "moment/moment";
@@ -31,7 +33,7 @@ const MovieNews = (props) => {
         <CCol xs={10} style={{margin: "auto"}}>
         <CCard className="mb-4">
           <CCardHeader>
-            <strong>영화 뉴스</strong> &nbsp;&nbsp;<small><Link to="/movieNewsList"  style={{textDecoration:'none', color:'gray'}}>뉴스 더보기</Link></small>
+            <strong>영화 뉴스</strong> &nbsp;&nbsp;<small><Link to="/movieNewsList"  style={{textDecoration:'none', color:'gray'}}>뉴스 더보기 <CIcon style={{width:15, verticalAlign: 'middle'}} icon={cilCaretBottom} customClassName="nav-icon" /></Link></small>
           </CCardHeader>
           <CCardBody>
               <CTable hover >

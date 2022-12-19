@@ -1,3 +1,5 @@
+import { cilChevronLeft, cilChevronRight } from "@coreui/icons";
+import CIcon from "@coreui/icons-react";
 import { useState } from "react";
 import styled from "styled-components";
 
@@ -17,7 +19,7 @@ function SearchPagination({ page, setPage }) {
         <>
         <Nav>
             <Button onClick={() => setPage(page - 1)} disabled={page === 1}>
-            &lt;
+            <CIcon style={{width:17, verticalAlign: 'middle'}} icon={cilChevronLeft} customClassName="nav-icon" />
             </Button>
             {
                 start > 2
@@ -53,7 +55,7 @@ function SearchPagination({ page, setPage }) {
                 ))
             }
             <Button onClick={() => setPage(page + 1)}>
-            &gt;
+            <CIcon style={{width:17, verticalAlign: 'middle'}} icon={cilChevronRight} customClassName="nav-icon" />
             </Button>
         </Nav>
         <div style={{textAlign:"center", margin:"0", marginBottom:"20px"}}>
