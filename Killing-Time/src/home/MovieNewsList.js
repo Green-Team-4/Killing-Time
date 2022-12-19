@@ -42,7 +42,7 @@ const MovieNewsList = (props) => {
                   <CTableRow>
                     <CTableHeaderCell scope="col" style={{width:550}}>뉴스 타이틀</CTableHeaderCell>
                     <CTableHeaderCell scope="col" style={{width:390}}></CTableHeaderCell>
-                    <CTableHeaderCell scope="col">게시일</CTableHeaderCell>
+                    <CTableHeaderCell scope="col" style={{textAlign:'center'}}>게시일</CTableHeaderCell>
                   </CTableRow>
                 </CTableHead>
                 <CTableBody>
@@ -55,7 +55,7 @@ const MovieNewsList = (props) => {
                     
                       <CTableHeaderCell><a href={movie.link} style={{color:"black"}}>{movie.title.replaceAll('&apos;', "'").replaceAll('&quot;', '"').replaceAll('<b>', '').replaceAll('</b>', '').replaceAll('&lt;', '<').replaceAll('&gt;', '>')}</a></CTableHeaderCell>
                       <CTableDataCell style={{width: 390, fontSize:13}}>{movie.description.replaceAll('&apos;', "'").replaceAll('&quot;', '"').replaceAll('<b>', '').replaceAll('</b>', '').replaceAll('&lt;', '<').replaceAll('&gt;', '>')}</CTableDataCell>
-                      <CTableDataCell>{moment(movie.pubDate).format('YYYY-MM-DD')}</CTableDataCell>
+                      <CTableDataCell style={{textAlign:'center', fontWeight:'bold'}}>{moment(movie.pubDate).format('YYYY-MM-DD')}</CTableDataCell>
                     </CTableRow>
                     
                     )

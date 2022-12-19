@@ -45,7 +45,7 @@ const BoxOffice = (props) => {
               <CTable striped>
                 <CTableHead>
                   <CTableRow>
-                    <CTableHeaderCell scope="col" style={{width:50,textAlign:'center'}}>순위</CTableHeaderCell>
+                    <CTableHeaderCell scope="col" style={{width:50,textAlign:'center', fontWeight:'bold'}}>순위</CTableHeaderCell>
                     <CTableHeaderCell scope="col" style={{textAlign:'center'}}>포스터</CTableHeaderCell>
                     <CTableHeaderCell scope="col" style={{textAlign:'center'}}>제목</CTableHeaderCell>
                     <CTableHeaderCell scope="col" style={{textAlign:'center'}}>개봉일 </CTableHeaderCell>
@@ -59,14 +59,14 @@ const BoxOffice = (props) => {
                         boxOffice.dailyBoxOfficeList.map((dailyBoxOfficeLists, idx) => {
                           return (
                             <CTableRow key={idx}>
-                              <CTableHeaderCell style={{textAlign:'center'}}>{dailyBoxOfficeLists.rank}</CTableHeaderCell>                              
+                              <CTableHeaderCell style={{textAlign:'center', fontWeight:'bold'}}>{dailyBoxOfficeLists.rank}</CTableHeaderCell>                              
                               <CTableDataCell style={{width:141, height:91, textAlign:'center'}}>
                                 <MovieImage movieName={dailyBoxOfficeLists.movieNm} openDate={dailyBoxOfficeLists.openDt}/>
                                 <MoviePosterItem />
                               </CTableDataCell>
-                              <CTableDataCell style={{textAlign:'center'}}>{dailyBoxOfficeLists.movieNm}</CTableDataCell>
-                              <CTableDataCell style={{textAlign:'center'}}>{dailyBoxOfficeLists.openDt}</CTableDataCell>
-                              <CTableDataCell style={{textAlign:'center'}}>
+                              <CTableDataCell style={{textAlign:'center', fontWeight:'bold'}}>{dailyBoxOfficeLists.movieNm}</CTableDataCell>
+                              <CTableDataCell style={{textAlign:'center', fontWeight:'bold'}}>{dailyBoxOfficeLists.openDt}</CTableDataCell>
+                              <CTableDataCell style={{textAlign:'center' , fontWeight:'bold'}}>
                                 <NumericFormat
                                   value={dailyBoxOfficeLists.audiCnt}
                                   displayType={'text'}

@@ -63,9 +63,11 @@ function SearchPagination({ page, setPage }) {
                 id="pageInput" 
                 style={{
                     width:"50px", 
-                    height:"20px"
+                    height:"20px",
+                    borderRadius:7, 
+                    backgroundColor:'#E6E6FA'
                 }}
-                type="number"
+                type="text"
                 min="1"
                 onChange={(event) => setPageInputNum(event.target.value)}
             ></input>
