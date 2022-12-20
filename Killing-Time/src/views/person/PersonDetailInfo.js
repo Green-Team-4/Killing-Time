@@ -85,7 +85,7 @@ const DiscriptButton = styled.button`
 `;
 
 const PersonDetailInfo = ({id}) => {
-    //console.log('id: ', id);
+    console.log('id: ', id);
 
     const [name, setName] = useState(null);
     const [profile_path, setProfile_path] = useState(null);
@@ -214,7 +214,25 @@ const PersonDetailInfo = ({id}) => {
                             {
                                 knownForDepartment !== "null"
                                 ?
-                                <p>{kfd}</p>
+                                (
+                                    knownForDepartment === "Acting"
+                                    ?
+                                    <p>연기</p>
+                                    :
+                                    (
+                                        knownForDepartment === "Directing"
+                                        ?
+                                        <p>연출</p>
+                                        :
+                                        (
+                                            knownForDepartment === "Writing"
+                                            ?
+                                            <p>각본</p>
+                                            :
+                                            <p>{kfd}</p>
+                                        )
+                                    )
+                                )
                                 :
                                 <p>-</p>
                             }
@@ -255,7 +273,7 @@ const PersonDetailInfo = ({id}) => {
                             <>
                             {biography}
                             {
-                            Biography.length > 613
+                            Biography.length > 666
                             ?
                             <DiscriptButton 
                             onClick={(event) => 
