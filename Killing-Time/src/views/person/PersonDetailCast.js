@@ -59,7 +59,6 @@ const PersonDetailCast = ({id}) => {
             setMovieCastResults(responseMovie.data.cast);
             setTvCastResults(responseTv.data.cast);
             setCastPage("movie");
-            // debugger;
         }
         loadCastList();
     }, [id] );
