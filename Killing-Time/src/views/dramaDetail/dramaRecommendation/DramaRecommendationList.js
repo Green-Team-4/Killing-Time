@@ -1,10 +1,10 @@
-
+import { CNav, CNavItem, CNavLink, CTabContent, CTabPane } from "@coreui/react";
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { useEffect, useState } from "react";
 import { CButton, CCard, CCardBody, CCol, CTooltip, CCardHeader  } from "@coreui/react";
-import DramaMainCastItem from "./DramaMainCastItem";
+import { Link } from "react-router-dom";
+
 
 const DramaMainCastBlock = styled.div`
   overflow: auto;
@@ -23,29 +23,32 @@ const DramaMainCastBlock = styled.div`
   }
 `;
 
-const DramaMainCast = ({ id }) => {
-  const [cast, setCast] = useState(null);
+
+const DramaRecommendationList = ({ id }) => {
+  const [recommendation, setRecommendation] = useState(null);
+  
 
   // useEffect : mount(초기화), update(상태변화) 이벤트 처리기 등록
   useEffect(() => {
-    const loadMainCast = async (e) => {
-      const language = "ko-KR";
+    const loadMainRecommendation= async (e) => {
+      const language = "en-US";
       const apiKey = "da88cf78c356139f9420b764c0d77208";
       const baseUrl = "https://api.themoviedb.org/3/tv";
-      const url = `${baseUrl}/${id}/credits?api_key=${apiKey}&language=${language}`;
+      const url = `${baseUrl}/${id}/recommendations?api_key=${apiKey}&language=${language}`;
       const response = await axios.get(url);
-      setCast(response.data.cast);
+      setRecommendation(response.data.recommendation);
+      
     };
-    loadMainCast();
+    loadMainRecommendation();
   }, [id]);
 
-  if (!cast) {
+  if (!recommendation) {
     return;
   }
-
+ 
   return (
-    
-    <CCol xs={10} style={{margin: "auto"}}>
+    <>
+       <CCol xs={10} style={{margin: "auto"}}>
       <CCard className='mb-3 border-gray' textColor='dark' style={{margin:7}}>
         <CCardHeader>
           <div style={{display: 'inline-block', width:'140px', marginLeft: 20,}}>
@@ -65,9 +68,9 @@ const DramaMainCast = ({ id }) => {
         </CCardHeader>
           <CCardBody>
           <DramaMainCastBlock style={{marginLeft: 20, marginRight: 20}}>
-            {cast.map((result) => {
+            {recommendation.map((result) => {
               if (result.order < 10) {
-                return <DramaMainCastItem key={result.id} result={result} />;
+                return <DramaRecommendationItem key={result.id} result={result} />;
               } else {
                 return "";
               }
@@ -76,8 +79,9 @@ const DramaMainCast = ({ id }) => {
         </CCardBody>
       </CCard>
     </CCol>
-    
+      
+    </>
   );
 };
 
-export default DramaMainCast;
+export default DramaRecommendationList;

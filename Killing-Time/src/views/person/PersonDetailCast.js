@@ -31,30 +31,41 @@ const PersonDetailCast = ({id}) => {
     const [castPage, setCastPage] = useState(null);
 
     const [loadCount, setLoadCount] = useState(10);
-    const [visible, setVisible] = useState(1);
-    let [listCount, setListCount] = useState(0);
+    const [movieListCount, setMovieListCount] = useState(0);
+    const [tvListCount, setTvListCount] = useState(0)
     
     // useEffect : mount(초기화), update(상태변화) 이벤트 처리기 등록
     useEffect(() => {
         const loadCastList = async (e) => {
             const language = "ko-KR";
-            const country = "KR";
             const apiKey = "52b3ba71c5a67f1429c8e2d3877f3eb4";
             const MovieUrl = 
-            `https://api.themoviedb.org/3/person/${ id }/movie_credits?api_key=${ apiKey }&language=${language}&region=${country}`;
+            `https://api.themoviedb.org/3/person/${ id }/movie_credits?api_key=${ apiKey }&language=${language}`;
             const responseMovie = await axios.get(MovieUrl)
             const TvUrl =
-            `https://api.themoviedb.org/3/person/${ id }/tv_credits?api_key=${ apiKey }&language=${language}&region=${country}`;
+            `https://api.themoviedb.org/3/person/${ id }/tv_credits?api_key=${ apiKey }&language=${language}`;
             const responseTv = await axios.get(TvUrl)
+            const MovieCreditUrl = 
+            `https://api.themoviedb.org/3/person/${ id }/movie_credits?api_key=${ apiKey }`;
+            const TvCreditUrl =
+            `https://api.themoviedb.org/3/person/${ id }/tv_credits?api_key=${ apiKey }`;
+            const responseMC = await axios.get(MovieCreditUrl);
+            const responseTC = await axios.get(TvCreditUrl);
+            setMovieListCount(responseMC.data.cast.length);
+            setTvListCount(responseTC.data.cast.length);
+
             // console.log('responseMovie.data:', responseMovie.data);
             // console.log('responseTv.data:', responseMovie.data);
             setMovieCastResults(responseMovie.data.cast);
             setTvCastResults(responseTv.data.cast);
             setCastPage("movie");
-            // debugger;
         }
         loadCastList();
     }, [id] );
+
+    // console.log('movieListCount: ', movieListCount);
+    // console.log('tvListCount: ', tvListCount);
+    // console.log('loadCount: ', loadCount);
 
     if (!movieCastResults) {
         return;
@@ -74,13 +85,13 @@ const PersonDetailCast = ({id}) => {
                         fontSize:"24px"
                     }}>출연작</span>
                     <Button
-                        onClick={() => {setCastPage("movie"); setLoadCount(10); setVisible(1);}} disabled={castPage === "movie"}
+                        onClick={() => {setCastPage("movie"); setLoadCount(10);}} disabled={castPage === "movie"}
                     >영화</Button>
                     <span style={{
                         margin:"10px"
                     }}>|</span>
                     <Button
-                        onClick={() => {setCastPage("tv"); setLoadCount(10); setVisible(1);}} disabled={castPage === "tv"}
+                        onClick={() => {setCastPage("tv"); setLoadCount(10);}} disabled={castPage === "tv"}
                     >TV시리즈</Button>
                     <hr/><br/>
                     {
@@ -108,17 +119,29 @@ const PersonDetailCast = ({id}) => {
 
                     }
                     {
-                        visible === 1
+                        castPage === "movie"
                         ?
-                        <Button id="allview" onClick={() => 
-                            {
-                                setLoadCount(65535);
-                                setVisible(0);
-                            }
-                        }>전부 보기
-                        </Button>
+                        (
+                            movieListCount > loadCount
+                            ?
+                            <Button id="allview" onClick={() => 
+                                    setLoadCount(loadCount+10)
+                                }>더 보기
+                            </Button>
+                            :
+                            <></>
+                        )
                         :
-                        <></>
+                        (
+                            tvListCount > loadCount
+                            ?
+                            <Button id="allview" onClick={() => 
+                                setLoadCount(loadCount+10)
+                            }>더 보기
+                            </Button>
+                            :
+                            <></>
+                        )
                     }
                     </div>
                 </CCardBody>
