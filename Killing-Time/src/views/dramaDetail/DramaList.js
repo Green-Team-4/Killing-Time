@@ -3,7 +3,7 @@ import DramaItem from "./DramaItem";
 import axios from "axios";
 import Pagination from "./DramaPage";
 
-import { CCard, CCardImage, CCardTitle, CCardText, CCardBody, CCardHeader } from '@coreui/react';
+import { CCol } from '@coreui/react';
 
 
 
@@ -35,13 +35,13 @@ const DramaList = (props) => {
 
     return (
         <>
-    
+        <CCol style={{ backgroundColor: "white", width: "1120px", margin:"auto"}}  >
             <div style={{
                 margin: "10px",
                 padding: "20px",
-                width: "1400px",
+                width: "1100px",
                 display: "grid",
-                gridTemplateRows: "3fr ",
+                gridTemplateRows: "1fr ",
                 gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr",
                 backgroundColor: "white",
             }}>
@@ -61,40 +61,12 @@ const DramaList = (props) => {
                 total={total_pages} 
                 />
             </div>
-           
-            
+            <br />
+            </CCol>    
         </>
     );
 
-    // return (
-    //     <>
-    //         <div style={{
-    //             margin: "10px",
-    //             padding: "20px",
-    //             width: "1400px",
-    //             display: "grid",
-    //             gridTemplateRows: "1fr ",
-    //             gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr",
-    //             backgroundColor: "white",
-    //         }}>
-    //         {   
-    //             results.map( (result) => {
-    //                 return (<DramaItem key={ result.id } result={ result } />);
-    //             })
-    //         }
-            
-               
-                
-    //         </div>
-          
-    //         <div > <Pagination 
-    //             setPage={setPage}
-    //             page={page}
-    //             total={total_pages} 
-    //             /></div>
-            
-    //     </>
-    // );
+
 
 };
 

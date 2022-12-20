@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import MovieImage from "./MovieImage";
 import MoviePosterItem from "./MoviePosterItem";
 
-const { CCol, CCard, CCardHeader, CCardBody, CTable, CTableRow, CTableHead, CTableHeaderCell, CTableBody, CTableDataCell } = require("@coreui/react")
+const { CCol, CCard, CCardHeader, CCardBody, CTable, CTableRow, CTableHead, CTableHeaderCell, CTableBody, CTableDataCell, CTooltip } = require("@coreui/react")
 
 const BoxOffice = (props) => {
 
@@ -38,7 +38,7 @@ const BoxOffice = (props) => {
       <CCol xs={10} style={{margin: "auto"}}>
         <CCard className="mb-4">
           <CCardHeader>
-            <strong>일일 박스오피스</strong>&nbsp;&nbsp;<small><Link to="/search"  style={{textDecoration:'none', color:'gray'}}>영화 더 찾아보기 <CIcon style={{width:17, verticalAlign: 'middle'}} icon={cilSearch} customClassName="nav-icon" /></Link></small>
+            <strong>일일 박스오피스</strong>&nbsp;&nbsp;<small><CTooltip content="더 많은 영화 찾아보기" placement="top"><Link to="/search"  style={{textDecoration:'none', color:'gray'}}>영화 더 찾아보기 <CIcon style={{width:17, verticalAlign: 'middle'}} icon={cilSearch} customClassName="nav-icon" /></Link></CTooltip></small>
           </CCardHeader>
           <CCardBody>           
               <CTable striped>
@@ -48,10 +48,10 @@ const BoxOffice = (props) => {
                     <CTableHeaderCell scope="col" style={{textAlign:'center'}}>포스터</CTableHeaderCell>
                     <CTableHeaderCell scope="col" style={{textAlign:'center'}}>제목</CTableHeaderCell>
                     <CTableHeaderCell scope="col" style={{textAlign:'center'}}>개봉일 </CTableHeaderCell>
-                    <CTableHeaderCell scope="col" style={{textAlign:'center'}}>관객수</CTableHeaderCell>                    
+                    <CTableHeaderCell scope="col" style={{textAlign:'center'}}>일일 관객수</CTableHeaderCell>                    
                   </CTableRow>
                 </CTableHead>
-                <CTableBody>                  
+                <CTableBody style={{verticalAlign: 'middle'}}>                  
                     {
                       // {dailyBoxOfficeLists.audiCnt}명
                        boxOffice ?  

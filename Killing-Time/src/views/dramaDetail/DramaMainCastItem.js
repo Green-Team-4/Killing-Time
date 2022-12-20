@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { CCard, CCardImage, CCardTitle, CCardText, CCardBody, CCardHeader } from '@coreui/react';
+import { CCard, CCardImage, CCardBody,  } from '@coreui/react';
 
 
 const DramaItemBlock = styled.div`
@@ -17,7 +17,7 @@ const DramaMainCastItem = ({ result }) => {
 
   return (
     <DramaItemBlock>
-      <CCard className='mb-3 border-dark' textColor='dark'>
+      <CCard className='mb-3 border-gray' textColor='dark'>
         
           <Link to="/personList/personDetail" state={{ id: id }}>
             {profile_path !== null ? (
@@ -45,43 +45,7 @@ const DramaMainCastItem = ({ result }) => {
           <span style={{ fontSize: 14 }}>{character}</span>
         </CCardBody>
       </CCard>
-    </DramaItemBlock>
-
-    /* <DramaItemBlock>
-    <div>
-      <div>
-        <Link to="/personList/personDetail" state={{ id: id }}>
-          {profile_path !== null ? (
-            <img src={img_url} alt={name} title={id} style={{ width: 140 }} />
-          ) : (
-            <img
-              src="https://via.placeholder.com/300x450"
-              alt={name}
-              title={id}
-              style={{ width: 140 }}
-            />
-          )}
-        </Link>
-        <br />
-        <br />
-      </div>
-      <div
-        style={{ width: 140, overflow: "hidden", textOverflow: "ellipsis" }}
-      >
-        <Link
-          to="/personList/personDetail"
-          state={{ id: id }}
-          style={{ textDecoration: "none", color: "black" }}
-        >
-          <strong>{name}</strong>
-        </Link>
-        <br />
-        <span style={{ fontSize: 14 }}>{character}</span>
-      </div>
-    </div>
-    </DramaItemBlock> */
-
-
+    </DramaItemBlock> 
   );
 };
 

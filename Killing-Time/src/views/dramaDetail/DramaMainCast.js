@@ -10,16 +10,16 @@ const DramaMainCastBlock = styled.div`
   overflow: auto;
   white-space: nowrap;
   ::-webkit-scrollbar {
-    height: 10px;
+    height: 15px;
   }
   ::-webkit-scrollbar-thumb {
-    background: #217af4;
-    border-radius: 10px;
+    background: #FF1493;
+    border-radius: 0px;
   }
 
   ::-webkit-scrollbar-track {
-    border-radius: 10px;
-    background: rgba(33, 122, 244, .1);
+    border-radius: 0px;
+    background: #D8BFD8;
   }
 `;
 
@@ -46,7 +46,7 @@ const DramaMainCast = ({ id }) => {
   return (
     
     <CCol xs={10} style={{margin: "auto"}}>
-      <CCard className='mb-3 border-dark' textColor='dark' style={{margin:7}}>
+      <CCard className='mb-3 border-gray' textColor='dark' style={{margin:7}}>
         <CCardHeader>
           <div style={{display: 'inline-block', width:'140px', marginLeft: 20,}}>
             <h4>주요 출연진</h4>
