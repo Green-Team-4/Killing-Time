@@ -5,7 +5,7 @@ import axios from "axios";
 const DramaDetailList = ({id}) => {
 
     const [result, setResult] = useState(null);
-    const [provider, setProvider] = useState(null);
+    const [provider] = useState(null);
     useEffect(() => {
         const loadDramaDetail = async (e) => {
             const language = 'ko-KR';
