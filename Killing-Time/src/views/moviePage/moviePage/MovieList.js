@@ -1,13 +1,12 @@
 import { CCard, CCardBody, CCol } from "@coreui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Pagination from "../person/PersonPage";
+import Pagination from "../../person/PersonPage";
 import MovieListItem from "./MovieListItem";
 
 const MovieList = (props) => {
   const [results, setResults] = useState(null);
   const [page, setPage] = useState(1);
-  const [total_pages, setTotal_pages] = useState(null);
 
   // useEffect : mount(초기화), update(상태변화) 이벤트 처리기 등록
   useEffect(() => {
@@ -20,7 +19,7 @@ const MovieList = (props) => {
       const response = await axios.get(url);
       setResults(response.data.results);
       setPage(response.data.page);
-      setTotal_pages(response.data.total_pages);
+      
     };
     loadMoiveList();
   }, [page]);
@@ -38,7 +37,7 @@ const MovieList = (props) => {
         return <MovieListItem key={result.id} result={result} />
       })}
       <Pagination 
-                total={total_pages} 
+                total={500} 
                 page={page}
                 setPage={setPage}
             />

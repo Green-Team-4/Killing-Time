@@ -54,8 +54,8 @@ const Main = React.lazy(() => import('./home/Main'))
 const MovieNewsList = React.lazy(() => import('./home/MovieNewsList'))
 
 // Movie Page
-const MoviePage = React.lazy(() => import('./views/moviePage/MoviePage'))
-const MovieDetail = React.lazy(() => import('./views/moviePage/MovieDetail'))
+const MoviePage = React.lazy(() => import('./views/moviePage/moviePage/MoviePage'))
+const MovieDetail = React.lazy(() => import('./views/moviePage/movieDetail/MovieDetail'))
 const MovieCredit = React.lazy(() => import('./views/moviePage/movieCredit/MovieCredit'))
 
 // Drama Detail
