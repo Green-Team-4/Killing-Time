@@ -2,6 +2,7 @@ import { CCard, CCardBody, CCol, CRow } from "@coreui/react";
 import styled from 'styled-components';
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
+import moment from "moment";
 
 const PROFILE_BOX = styled.div`
     div.profile_photo {
@@ -90,6 +91,7 @@ const PersonDetailInfo = ({id}) => {
     const [name, setName] = useState(null);
     const [profile_path, setProfile_path] = useState(null);
     const [birthday, setBirthday] = useState(null);
+    const [deathday, setDeathday] = useState(null);
     const [pob, setPob] = useState(null);
     const [gender, setGender] = useState(0);
     const [kfd, setKfd] = useState(null);
@@ -102,6 +104,8 @@ const PersonDetailInfo = ({id}) => {
     const [twitterId, setTwitterId] = useState(null);
 
     const [creditNum, setCreditNum] = useState(0);
+
+    const today = new moment().format('YYYY-MM-DD');
 
     useEffect( () => {
         const loadPersonList = async (e) => {
@@ -126,6 +130,7 @@ const PersonDetailInfo = ({id}) => {
             setProfile_path(response.data.profile_path);
             setGender(response.data.gender);
             setBirthday(response.data.birthday);
+            setDeathday(response.data.deathday);
             setPob(response.data.place_of_birth);
             setKfd(response.data.known_for_department);
             setBiography(response.data.biography);
@@ -158,7 +163,19 @@ const PersonDetailInfo = ({id}) => {
     const instagramUrl = `https://www.instagram.com/${instagramId}/`;
     const twitterUrl = `https://twitter.com/${twitterId}`;
 
+    // console.log('birthday(year) :', parseInt(`${birthday}`.slice(0, 4)));
+    // console.log('deathday(year) :', parseInt(`${deathday}`.slice(0, 4)));
+    // console.log('today(year) :', parseInt(today.slice(0, 4)));
+    let birthdayText = `${birthday}`.slice(0,4)+"년 "+parseInt(`${birthday}`.slice(5,7))+"월 "+parseInt(`${birthday}`.slice(8,10))+"일";
+    let deathdayText = `${deathday}`.slice(0,4)+"년 "+parseInt(`${deathday}`.slice(5,7))+"월 "+parseInt(`${deathday}`.slice(8,10))+"일";
 
+    let age = 
+    `${deathday}` !== "null"
+    ?
+    parseInt(`${deathday}`.slice(0, 4)) - parseInt(`${birthday}`.slice(0, 4))
+    :
+    parseInt(today.slice(0, 4)) - parseInt(`${birthday}`.slice(0, 4))
+    
     return (
         <PROFILE_BOX>
         <CRow>
@@ -192,14 +209,30 @@ const PersonDetailInfo = ({id}) => {
                                     <p>-</p>
                                 )
                             }
-                            <span>생년월일</span>
-                            <br/>
                             {
-                                birthday != null
+                                `${birthday}` !== "null"
                                 ?
-                                <p>{birthday}</p>
+                                (
+                                    `${deathday}` === "null"
+                                    ?
+                                    <>
+                                    <span>생일</span>
+                                    <br/>
+                                    <p>{birthdayText} ({age}세)</p>
+                                    </>
+                                    :
+                                    <>
+                                    <span>생일 / 사망일</span>
+                                    <br/>
+                                    <p>{birthdayText} ~ {deathdayText} (향년 {age}세)</p>
+                                    </>
+                                )
                                 :
+                                <>
+                                <span>생일</span>
+                                <br/>
                                 <p>-</p>
+                                </>
                             }
                             <span>출생지</span>
                             {
