@@ -86,15 +86,15 @@ const DiscriptButton = styled.button`
 `;
 
 const PersonDetailInfo = ({id}) => {
-    console.log('id: ', id);
+    // console.log('id: ', id);
 
     const [name, setName] = useState(null);
     const [profile_path, setProfile_path] = useState(null);
     const [birthday, setBirthday] = useState(null);
     const [deathday, setDeathday] = useState(null);
-    const [pob, setPob] = useState(null);
+    const [place_of_birth, setPlace_of_birth] = useState(null);
     const [gender, setGender] = useState(0);
-    const [kfd, setKfd] = useState(null);
+    const [known_for_department, setKnown_for_department] = useState(null);
     const [biography, setBiography] = useState(null);
 
     const biographyRef = useRef(null);
@@ -110,7 +110,6 @@ const PersonDetailInfo = ({id}) => {
     useEffect( () => {
         const loadPersonList = async (e) => {
             const apiKey = "52b3ba71c5a67f1429c8e2d3877f3eb4";
-            
             const url = 
             `https://api.themoviedb.org/3/person/${ id }?api_key=${ apiKey }`;
             const externalUrl = 
@@ -131,8 +130,8 @@ const PersonDetailInfo = ({id}) => {
             setGender(response.data.gender);
             setBirthday(response.data.birthday);
             setDeathday(response.data.deathday);
-            setPob(response.data.place_of_birth);
-            setKfd(response.data.known_for_department);
+            setPlace_of_birth(response.data.place_of_birth);
+            setKnown_for_department(response.data.known_for_department);
             setBiography(response.data.biography);
 
             // console.log(responseEx.data);
@@ -140,11 +139,6 @@ const PersonDetailInfo = ({id}) => {
             setInstagramId(responseEx.data.instagram_id);
             setTwitterId(responseEx.data.twitter_id);
 
-            // console.log(responseMC.data);
-            // console.log(responseTC.data)
-            // console.log('Movie, Tv cast : ', 
-            //     responseMC.data.cast.length +
-            //     responseTC.data.cast.length);
             setCreditNum(
                 responseMC.data.cast.length +
                 responseTC.data.cast.length);
@@ -152,20 +146,10 @@ const PersonDetailInfo = ({id}) => {
         loadPersonList();
     }, [id] );
     const img_url =`https://www.themoviedb.org/t/p/w300_and_h450_bestv2${ profile_path }`;
-    const genderValue = `${gender}`;
-    const placeOfBirth = `${pob}`
-    const knownForDepartment = `${kfd}`;
-    const Biography = `${biography}`;
-    const facebook = `${facebookId}`
-    const instagram = `${instagramId}`
-    const twitter = `${twitterId}`
     const facebookUrl = `https://www.facebook.com/${facebookId}`;
     const instagramUrl = `https://www.instagram.com/${instagramId}/`;
     const twitterUrl = `https://twitter.com/${twitterId}`;
 
-    // console.log('birthday(year) :', parseInt(`${birthday}`.slice(0, 4)));
-    // console.log('deathday(year) :', parseInt(`${deathday}`.slice(0, 4)));
-    // console.log('today(year) :', parseInt(today.slice(0, 4)));
     let birthdayText = `${birthday}`.slice(0,4)+"년 "+parseInt(`${birthday}`.slice(5,7))+"월 "+parseInt(`${birthday}`.slice(8,10))+"일";
     let deathdayText = `${deathday}`.slice(0,4)+"년 "+parseInt(`${deathday}`.slice(5,7))+"월 "+parseInt(`${deathday}`.slice(8,10))+"일";
 
@@ -198,11 +182,11 @@ const PersonDetailInfo = ({id}) => {
                             <span>성별</span>
                             <br/>
                             {
-                                genderValue === "2"
+                                `${gender}` === "2"
                                 ?
                                 <p>남성</p>
                                 : (
-                                    genderValue === "1"
+                                    `${gender}` === "1"
                                     ?
                                     <p>여성</p>
                                     : 
@@ -236,33 +220,33 @@ const PersonDetailInfo = ({id}) => {
                             }
                             <span>출생지</span>
                             {
-                                placeOfBirth !== "null"
+                                `${place_of_birth}` !== "null"
                                 ?
-                                <p>{pob}</p>
+                                <p>{place_of_birth}</p>
                                 :
                                 <p>-</p>
                             }
                             <span>유명 분야</span>
                             <br/>
                             {
-                                knownForDepartment !== "null"
+                                `${known_for_department}` !== "null"
                                 ?
                                 (
-                                    knownForDepartment === "Acting"
+                                    `${known_for_department}` === "Acting"
                                     ?
                                     <p>연기</p>
                                     :
                                     (
-                                        knownForDepartment === "Directing"
+                                        `${known_for_department}` === "Directing"
                                         ?
                                         <p>연출</p>
                                         :
                                         (
-                                            knownForDepartment === "Writing"
+                                            `${known_for_department}` === "Writing"
                                             ?
                                             <p>각본</p>
                                             :
-                                            <p>{kfd}</p>
+                                            <p>{known_for_department}</p>
                                         )
                                     )
                                 )
@@ -273,21 +257,21 @@ const PersonDetailInfo = ({id}) => {
                             <p>{creditNum}</p>
                             <div className="ExternalLink">
                             {
-                                facebook !== "null"
+                                `${facebookId}` !== "null"
                                 ?
                                 <a href={facebookUrl}>Facebook</a>
                                 :
                                 <></>
                             }
                             {
-                                instagram !== "null"
+                                `${instagramId}` !== "null"
                                 ?
                                 <a href={instagramUrl}>Instagram</a>
                                 :
                                 <></>
                             }
                             {
-                                twitter !== "null"
+                                `${twitterId}` !== "null"
                                 ?
                                 <a href={twitterUrl}>Twitter</a>
                                 :
@@ -301,12 +285,12 @@ const PersonDetailInfo = ({id}) => {
                         <h4>약력</h4>
                         <div id="biographyBox" ref={biographyRef}>
                         {
-                            Biography !== ""
+                            `${biography}` !== ""
                             ?
                             <>
                             {biography}
                             {
-                            Biography.length > 666
+                           `${biography}`.length > 666
                             ?
                             <DiscriptButton 
                             onClick={(event) => 
