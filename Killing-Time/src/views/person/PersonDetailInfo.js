@@ -1,7 +1,7 @@
 import { CCard, CCardBody, CCol, CRow } from "@coreui/react";
 import styled from 'styled-components';
 import axios from "axios";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import moment from "moment";
 
 const PROFILE_BOX = styled.div`
@@ -38,12 +38,7 @@ const PROFILE_BOX = styled.div`
         margin-right: 20px;
         display: -webkit-box;
         -webkit-box-orient: vertical;
-        -webkit-line-clamp: 5;
-        overflow: hidden;
-
-        &.show {
-            -webkit-line-clamp: unset;
-        }                                                                                         div#biographyBox:active ~ d
+        overflow: hidden;                                                                                    div#biographyBox:active ~ d
     }
     div.ExternalLink {
         display: inline-block;
@@ -60,7 +55,7 @@ const PROFILE_BOX = styled.div`
 `;
 
 const DiscriptButton = styled.button`
-    position: absolute;
+    display: inline-block;
     bottom: 0;
     right: 0;
     border: none;
@@ -72,7 +67,7 @@ const DiscriptButton = styled.button`
         rgba(255, 255, 255, 1) 18%
     );
     color: Black;
-    font-size: 1rem;
+    font-size: 12px;
 
     &:hover {
         color: Gray;
@@ -96,8 +91,6 @@ const PersonDetailInfo = ({id}) => {
     const [gender, setGender] = useState(0);
     const [known_for_department, setKnown_for_department] = useState(null);
     const [biography, setBiography] = useState(null);
-
-    const biographyRef = useRef(null);
     
     const [facebookId, setFacebookId] = useState(null);
     const [instagramId, setInstagramId] = useState(null);
@@ -106,6 +99,9 @@ const PersonDetailInfo = ({id}) => {
     const [creditNum, setCreditNum] = useState(0);
 
     const today = new moment().format('YYYY-MM-DD');
+
+    const [slicer, setSlicer] = useState(642);
+    const [dotdotdot, setDotdotdot] = useState("...");
 
     useEffect( () => {
         const loadPersonList = async (e) => {
@@ -150,6 +146,11 @@ const PersonDetailInfo = ({id}) => {
     const instagramUrl = `https://www.instagram.com/${instagramId}/`;
     const twitterUrl = `https://twitter.com/${twitterId}`;
 
+
+    console.log("약력 길이 :", `${biography}`.length)
+
+
+
     let birthdayText = `${birthday}`.slice(0,4)+"년 "+parseInt(`${birthday}`.slice(5,7))+"월 "+parseInt(`${birthday}`.slice(8,10))+"일";
     let deathdayText = `${deathday}`.slice(0,4)+"년 "+parseInt(`${deathday}`.slice(5,7))+"월 "+parseInt(`${deathday}`.slice(8,10))+"일";
 
@@ -159,7 +160,9 @@ const PersonDetailInfo = ({id}) => {
     parseInt(`${deathday}`.slice(0, 4)) - parseInt(`${birthday}`.slice(0, 4))
     :
     parseInt(today.slice(0, 4)) - parseInt(`${birthday}`.slice(0, 4))
+
     
+
     return (
         <PROFILE_BOX>
         <CRow>
@@ -283,28 +286,29 @@ const PersonDetailInfo = ({id}) => {
                     </div>
                     <div className="profile_description">
                         <h4>약력</h4>
-                        <div id="biographyBox" ref={biographyRef}>
+                        <div id="biographyBox">
                         {
                             `${biography}` !== ""
                             ?
-                            <>
-                            {biography}
-                            {
-                           `${biography}`.length > 666
-                            ?
-                            <DiscriptButton 
-                            onClick={(event) => 
-                                {
-                                    biographyRef.current.classList.add("show")
-                                    event.currentTarget.classList.add("hide")
+                            (
+                                `${biography}`.length > 642
+                                ?
+                                <>
+                                {`${biography}`.slice(0, slicer)+dotdotdot} 
+                                <DiscriptButton 
+                                onClick={(event) => 
+                                    {
+                                        setSlicer(65535);
+                                        setDotdotdot("");
+                                        event.currentTarget.classList.add("hide");
+                                    }
                                 }
-                            }
-                            >...더보기
-                            </DiscriptButton>
-                            :
-                            <></>
-                            }
-                            </>
+                                >더보기
+                                </DiscriptButton>
+                                </>
+                                :
+                                `${biography}`
+                            )
                             :
                             <p>-</p>
                         }

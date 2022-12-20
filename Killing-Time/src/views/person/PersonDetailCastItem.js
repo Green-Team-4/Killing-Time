@@ -32,7 +32,7 @@ const PersonDetailCastItemBlock = styled.div`
     }
 `;
 
-const PersonDetailCastItem = ({ castResult, MovieOrTv}) => {
+const PersonDetailCastItem = ({ castResult, MovieOrTv }) => {
 
     const { id, poster_path, title, name } = castResult;
     const img_url =`https://www.themoviedb.org/t/p/w300_and_h450_bestv2${ poster_path }`;

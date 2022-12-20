@@ -2,7 +2,6 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import PersonItemMiniList from './PersonItemMiniList';
 
 // .css
 // .scss ( or .sass )
@@ -49,24 +48,26 @@ const PersonItem = ({ result }) => {
     const { id, profile_path, name, } = result;
     const img_url =`https://www.themoviedb.org/t/p/w235_and_h235_face${ profile_path }`;
     const nameLength = name.length;
-    const [miniResults, setMiniResults] = useState(null);
+    const [casts, setCasts] = useState(null);
+    // const [miniListEnd ,setMiniListEnd] = useState(0);
 
     // useEffect : mount(초기화), update(상태변화) 이벤트 처리기 등록
     useEffect( () => {
         const loadMiniList = async (e) => {
             const language = "ko-KR";
-            const country = "KR";
             const apiKey = "52b3ba71c5a67f1429c8e2d3877f3eb4";
             const url = 
-            `https://api.themoviedb.org/3/person/${id}/movie_credits?api_key=${ apiKey }&language=${language}&region=${country}`;
+            `https://api.themoviedb.org/3/person/${id}/movie_credits?api_key=${ apiKey }&language=${language}`;
             const response = await axios.get(url)
             // console.log('response.data :', response.data);
-            setMiniResults(response.data.cast);
+            setCasts(response.data.cast);
+            // setMiniListEnd(response.data.cast.length);
         }
         loadMiniList();
     }, [id] );
+    // console.log('miniListEnd: ', miniListEnd);
 
-    if(!miniResults) {
+    if(!casts) {
         return null;
     }
     return (
@@ -94,15 +95,22 @@ const PersonItem = ({ result }) => {
                     </Link>
                 </h5>
                 <div className="MiniMovieCredit">
+                    <span style={{fontSize:12}}>
                     {
                         // miniResults
                         // ?
-                        miniResults.map( (miniResults, idx) => {
-                            return (<PersonItemMiniList key={ idx } castResult={ miniResults } />); 
+                        casts.map( (cast, idx) => {
+                            if ( idx + 1 === casts.length ) {
+                                return cast.title
+                            } else {
+                                return `${cast.title}, `; 
+                            }
+                            
                         })
                         // :
                         // <div></div>
                     }
+                    </span>
                 </div>
             </div>
         </PersonItemBlock>
