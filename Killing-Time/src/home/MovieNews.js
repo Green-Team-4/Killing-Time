@@ -1,7 +1,7 @@
 import { Alert } from "@coreui/coreui";
 import { cilCaretBottom } from "@coreui/icons";
 import CIcon from "@coreui/icons-react";
-import { CCard, CCardBody, CCardHeader, CCol, CTable, CTableBody, CTableDataCell, CTableHead, CTableHeaderCell, CTableRow } from "@coreui/react";
+import { CCard, CCardBody, CCardHeader, CCol, CTable, CTableBody, CTableDataCell, CTableHead, CTableHeaderCell, CTableRow, CTooltip } from "@coreui/react";
 import axios from "axios";
 import moment from "moment/moment";
 import { useEffect, useState } from "react";
@@ -15,7 +15,7 @@ const MovieNews = (props) => {
     useEffect(() => {
         const start = 1;
         const display = 10;
-        const url = `http://localhost:8080/web-scraping/movie-news?start=${start}&display=${display}`;
+        const url = `http://192.168.200.201:8080/web-scraping/movie-news?start=${start}&display=${display}`;
         axios.get(url)
              .then( (response) => {
                 if (response.data.result === "success") {
@@ -33,7 +33,7 @@ const MovieNews = (props) => {
         <CCol xs={10} style={{margin: "auto"}}>
         <CCard className="mb-4">
           <CCardHeader>
-            <strong>영화 뉴스</strong> &nbsp;&nbsp;<small><Link to="/movieNewsList"  style={{textDecoration:'none', color:'gray'}}>뉴스 더보기 <CIcon style={{width:15, verticalAlign: 'middle'}} icon={cilCaretBottom} customClassName="nav-icon" /></Link></small>
+            <strong>영화 뉴스</strong> &nbsp;&nbsp;<small><CTooltip content="더 많은 영화 뉴스 보기" placement="top"><Link to="/movieNewsList"  style={{textDecoration:'none', color:'gray'}}>뉴스 더보기 <CIcon style={{width:15, verticalAlign: 'middle'}} icon={cilCaretBottom} customClassName="nav-icon" /></Link></CTooltip></small>
           </CCardHeader>
           <CCardBody>
               <CTable hover >

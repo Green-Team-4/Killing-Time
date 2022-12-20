@@ -1,37 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CCard, CCardImage, CCardTitle, CCardText, CCardBody, CCardHeader } from '@coreui/react';
 
- const IMG_API = "https://image.tmdb.org/t/p/w1280";
+ const IMG_API = "https://www.themoviedb.org/t/p/w300";
+
 
 //가져올 목록
-const Movie = ({id, title, poster_path, release_date, vote_average }) => (
+const People = ({id, name, profile_path, popularity, gender }) => (
     <CCard className='mb-3 border-dark' textColor='dark' style={{borderRadius:10, borderWidth:1, margin:7, width:202}}>
-                <Link to="/moviePage/movieDetail" state={{ id: id }}>  
+                <Link to="/personList/personDetail" state={{ id: id }}>  
                         <CCardImage style={{width:200, height: 270, textAlign:'center', borderRadius:10}}
                         src={
-                            poster_path 
-                            ? IMG_API + poster_path
+                            profile_path 
+                            ? IMG_API + profile_path
                             // 영화 포스터 깨질경우 아래 이미지로 대처
                             : "https://images.unsplash.com/photo-1485846234645-a62644f84728?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=740&q=80"
                             }
-                            alt={title} />
+                            alt={name} />
                 </Link>        
                 <CCardHeader style={{backgroundColor:'#F0F8FF', fontSize:15, color:'black'}} className="movie-info">
                 &nbsp;
-                    <Link style={{fontSize:17, textDecoration:'none', color:'black'}} to="/moviePage/movieDetail" state={{ id: id }}>
-                        <span style={{fontWeight:'bold'}}>{title}</span>
+                    <Link style={{fontSize:17, textDecoration:'none', color:'black'}} to="/personList/personDetail" state={{ id: id }}>
+                        <span style={{fontWeight:'bold'}}>{name}</span>
                     </Link>
                     </CCardHeader>
                     <CCardBody style={{display:'inline-block', backgroundColor:'#F5FFFA'}}>
                         <span style={{fontWeight:'bold', fontSize:15}}> 
-                        개봉일 :  {release_date}
+                        회원 선호도 :  {popularity}
                         <br />
-                        회원 점수 :  {vote_average}
+                        {
+                                `${gender}` === "2"
+                                ?
+                                <p>성별 : 남성</p>
+                                : (
+                                    `${gender}` === "1"
+                                    ?
+                                    <p>성별 : 여성</p>
+                                    : 
+                                    <p>-</p>
+                                )
+                            }
                         </span>
                     </CCardBody>
                     <br />
     </CCard>
 );
 
-export default Movie;
+export default People;

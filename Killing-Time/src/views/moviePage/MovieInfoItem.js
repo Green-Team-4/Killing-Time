@@ -5,6 +5,7 @@ const MovieInfoItem = ({ result, provider, otherResult }) => {
   const {
     id,
     poster_path,
+    backdrop_path,
     title,
     release_date,
     runtime,
@@ -101,13 +102,27 @@ const MovieInfoItem = ({ result, provider, otherResult }) => {
       }
     }
   `;
-
+  const BackImg = styled.div`
+    .ok {
+      background: url(https://www.themoviedb.org/t/p/w533_and_h300_bestv2/${backdrop_path});
+      background-size: cover;
+    }
+    .ok::before{
+      opacity: 0.3;
+    }
+    .troll {
+      opacity: 1;
+    }
+  `;
+  
   return (
     <CRow>
       <CCol xs={10} style={{ margin: "auto" }}>
-        <CCard className="mb-4">
-          <CCardBody>
-            <div style={{ display: "inline-block", marginTop: 20 }}>
+        <BackImg>
+          
+        <CCard className="mb-4 ok" style={{backgroundRepeat: "no-repeat",}}>
+          <CCardBody className="troll">
+            <div style={{display: "inline-block", marginTop: 20}}>
               <img src={img_url} alt="movie thumbnail" title={id} style={{ borderRadius: 10 }} />
             </div>
             <div
@@ -244,6 +259,7 @@ const MovieInfoItem = ({ result, provider, otherResult }) => {
             </div>
           </CCardBody>
         </CCard>
+        </BackImg>
       </CCol>
     </CRow>
   );
