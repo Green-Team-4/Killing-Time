@@ -57,7 +57,7 @@ const DramaMainCast = ({ id }) => {
               content="더 많은 출연진을 원하시면 클릭하세요."
               placement="top"
             >
-              <CButton size="sm" color="primary">More</CButton>
+              <CButton size="sm" color="secondary">More</CButton>
             </CTooltip>
             </Link>
           </div>
