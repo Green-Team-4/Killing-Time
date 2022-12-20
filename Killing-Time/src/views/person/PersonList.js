@@ -21,7 +21,6 @@ const PersonList = (props) => {
 
     // useEffect : mount(초기화), update(상태변화) 이벤트 처리기 등록
     useEffect( () => {
-        debugger;
         if (searchKeyword === null | searchKeyword === "") {
             const loadPersonList = async (e) => {
                 const url = 
