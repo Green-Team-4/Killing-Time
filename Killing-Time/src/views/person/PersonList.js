@@ -26,9 +26,8 @@ const PersonList = (props) => {
                 const url = 
                 `https://api.themoviedb.org/3/person/popular?api_key=${ apiKey }&page=${page}&language=${language}`;
                 const response = await axios.get(url);
-                //console.log(response.data);
                 setResults(response.data.results);
-                setPage(1);
+                console.log(response.data.results)
                 setPage(response.data.page);
                 setTotal_pages(response.data.total_pages);
                 setPageType("popular");

@@ -1,7 +1,8 @@
 import { CCard, CCardBody, CCol, CRow } from "@coreui/react";
 import styled from 'styled-components';
 import axios from "axios";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import moment from "moment";
 
 const PROFILE_BOX = styled.div`
     div.profile_photo {
@@ -37,12 +38,7 @@ const PROFILE_BOX = styled.div`
         margin-right: 20px;
         display: -webkit-box;
         -webkit-box-orient: vertical;
-        -webkit-line-clamp: 5;
-        overflow: hidden;
-
-        &.show {
-            -webkit-line-clamp: unset;
-        }                                                                                         div#biographyBox:active ~ d
+        overflow: hidden;                                                                                    div#biographyBox:active ~ d
     }
     div.ExternalLink {
         display: inline-block;
@@ -59,7 +55,7 @@ const PROFILE_BOX = styled.div`
 `;
 
 const DiscriptButton = styled.button`
-    position: absolute;
+    display: inline-block;
     bottom: 0;
     right: 0;
     border: none;
@@ -71,7 +67,7 @@ const DiscriptButton = styled.button`
         rgba(255, 255, 255, 1) 18%
     );
     color: Black;
-    font-size: 1rem;
+    font-size: 12px;
 
     &:hover {
         color: Gray;
@@ -85,17 +81,16 @@ const DiscriptButton = styled.button`
 `;
 
 const PersonDetailInfo = ({id}) => {
-    //console.log('id: ', id);
+    // console.log('id: ', id);
 
     const [name, setName] = useState(null);
     const [profile_path, setProfile_path] = useState(null);
     const [birthday, setBirthday] = useState(null);
-    const [pob, setPob] = useState(null);
+    const [deathday, setDeathday] = useState(null);
+    const [place_of_birth, setPlace_of_birth] = useState(null);
     const [gender, setGender] = useState(0);
-    const [kfd, setKfd] = useState(null);
+    const [known_for_department, setKnown_for_department] = useState(null);
     const [biography, setBiography] = useState(null);
-
-    const biographyRef = useRef(null);
     
     const [facebookId, setFacebookId] = useState(null);
     const [instagramId, setInstagramId] = useState(null);
@@ -103,10 +98,14 @@ const PersonDetailInfo = ({id}) => {
 
     const [creditNum, setCreditNum] = useState(0);
 
+    const today = new moment().format('YYYY-MM-DD');
+
+    const [slicer, setSlicer] = useState(642);
+    const [dotdotdot, setDotdotdot] = useState("...");
+
     useEffect( () => {
         const loadPersonList = async (e) => {
             const apiKey = "52b3ba71c5a67f1429c8e2d3877f3eb4";
-            
             const url = 
             `https://api.themoviedb.org/3/person/${ id }?api_key=${ apiKey }`;
             const externalUrl = 
@@ -126,8 +125,9 @@ const PersonDetailInfo = ({id}) => {
             setProfile_path(response.data.profile_path);
             setGender(response.data.gender);
             setBirthday(response.data.birthday);
-            setPob(response.data.place_of_birth);
-            setKfd(response.data.known_for_department);
+            setDeathday(response.data.deathday);
+            setPlace_of_birth(response.data.place_of_birth);
+            setKnown_for_department(response.data.known_for_department);
             setBiography(response.data.biography);
 
             // console.log(responseEx.data);
@@ -135,11 +135,6 @@ const PersonDetailInfo = ({id}) => {
             setInstagramId(responseEx.data.instagram_id);
             setTwitterId(responseEx.data.twitter_id);
 
-            // console.log(responseMC.data);
-            // console.log(responseTC.data)
-            // console.log('Movie, Tv cast : ', 
-            //     responseMC.data.cast.length +
-            //     responseTC.data.cast.length);
             setCreditNum(
                 responseMC.data.cast.length +
                 responseTC.data.cast.length);
@@ -147,17 +142,26 @@ const PersonDetailInfo = ({id}) => {
         loadPersonList();
     }, [id] );
     const img_url =`https://www.themoviedb.org/t/p/w300_and_h450_bestv2${ profile_path }`;
-    const genderValue = `${gender}`;
-    const placeOfBirth = `${pob}`
-    const knownForDepartment = `${kfd}`;
-    const Biography = `${biography}`;
-    const facebook = `${facebookId}`
-    const instagram = `${instagramId}`
-    const twitter = `${twitterId}`
     const facebookUrl = `https://www.facebook.com/${facebookId}`;
     const instagramUrl = `https://www.instagram.com/${instagramId}/`;
     const twitterUrl = `https://twitter.com/${twitterId}`;
 
+
+    console.log("약력 길이 :", `${biography}`.length)
+
+
+
+    let birthdayText = `${birthday}`.slice(0,4)+"년 "+parseInt(`${birthday}`.slice(5,7))+"월 "+parseInt(`${birthday}`.slice(8,10))+"일";
+    let deathdayText = `${deathday}`.slice(0,4)+"년 "+parseInt(`${deathday}`.slice(5,7))+"월 "+parseInt(`${deathday}`.slice(8,10))+"일";
+
+    let age = 
+    `${deathday}` !== "null"
+    ?
+    parseInt(`${deathday}`.slice(0, 4)) - parseInt(`${birthday}`.slice(0, 4))
+    :
+    parseInt(today.slice(0, 4)) - parseInt(`${birthday}`.slice(0, 4))
+
+    
 
     return (
         <PROFILE_BOX>
@@ -181,40 +185,74 @@ const PersonDetailInfo = ({id}) => {
                             <span>성별</span>
                             <br/>
                             {
-                                genderValue === "2"
+                                `${gender}` === "2"
                                 ?
                                 <p>남성</p>
                                 : (
-                                    genderValue === "1"
+                                    `${gender}` === "1"
                                     ?
                                     <p>여성</p>
                                     : 
                                     <p>-</p>
                                 )
                             }
-                            <span>생년월일</span>
-                            <br/>
                             {
-                                birthday != null
+                                `${birthday}` !== "null"
                                 ?
-                                <p>{birthday}</p>
+                                (
+                                    `${deathday}` === "null"
+                                    ?
+                                    <>
+                                    <span>생일</span>
+                                    <br/>
+                                    <p>{birthdayText} ({age}세)</p>
+                                    </>
+                                    :
+                                    <>
+                                    <span>생일 / 사망일</span>
+                                    <br/>
+                                    <p>{birthdayText} ~ {deathdayText} (향년 {age}세)</p>
+                                    </>
+                                )
                                 :
+                                <>
+                                <span>생일</span>
+                                <br/>
                                 <p>-</p>
+                                </>
                             }
                             <span>출생지</span>
                             {
-                                placeOfBirth !== "null"
+                                `${place_of_birth}` !== "null"
                                 ?
-                                <p>{pob}</p>
+                                <p>{place_of_birth}</p>
                                 :
                                 <p>-</p>
                             }
                             <span>유명 분야</span>
                             <br/>
                             {
-                                knownForDepartment !== "null"
+                                `${known_for_department}` !== "null"
                                 ?
-                                <p>{kfd}</p>
+                                (
+                                    `${known_for_department}` === "Acting"
+                                    ?
+                                    <p>연기</p>
+                                    :
+                                    (
+                                        `${known_for_department}` === "Directing"
+                                        ?
+                                        <p>연출</p>
+                                        :
+                                        (
+                                            `${known_for_department}` === "Writing"
+                                            ?
+                                            <p>각본</p>
+                                            :
+                                            <p>{known_for_department}</p>
+                                        )
+                                    )
+                                )
                                 :
                                 <p>-</p>
                             }
@@ -222,21 +260,21 @@ const PersonDetailInfo = ({id}) => {
                             <p>{creditNum}</p>
                             <div className="ExternalLink">
                             {
-                                facebook !== "null"
+                                `${facebookId}` !== "null"
                                 ?
                                 <a href={facebookUrl}>Facebook</a>
                                 :
                                 <></>
                             }
                             {
-                                instagram !== "null"
+                                `${instagramId}` !== "null"
                                 ?
                                 <a href={instagramUrl}>Instagram</a>
                                 :
                                 <></>
                             }
                             {
-                                twitter !== "null"
+                                `${twitterId}` !== "null"
                                 ?
                                 <a href={twitterUrl}>Twitter</a>
                                 :
@@ -248,28 +286,29 @@ const PersonDetailInfo = ({id}) => {
                     </div>
                     <div className="profile_description">
                         <h4>약력</h4>
-                        <div id="biographyBox" ref={biographyRef}>
+                        <div id="biographyBox">
                         {
-                            Biography !== ""
+                            `${biography}` !== ""
                             ?
-                            <>
-                            {biography}
-                            {
-                            Biography.length > 613
-                            ?
-                            <DiscriptButton 
-                            onClick={(event) => 
-                                {
-                                    biographyRef.current.classList.add("show")
-                                    event.currentTarget.classList.add("hide")
+                            (
+                                `${biography}`.length > 642
+                                ?
+                                <>
+                                {`${biography}`.slice(0, slicer)+dotdotdot} 
+                                <DiscriptButton 
+                                onClick={(event) => 
+                                    {
+                                        setSlicer(65535);
+                                        setDotdotdot("");
+                                        event.currentTarget.classList.add("hide");
+                                    }
                                 }
-                            }
-                            >...더보기
-                            </DiscriptButton>
-                            :
-                            <></>
-                            }
-                            </>
+                                >더보기
+                                </DiscriptButton>
+                                </>
+                                :
+                                `${biography}`
+                            )
                             :
                             <p>-</p>
                         }

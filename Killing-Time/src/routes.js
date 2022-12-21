@@ -55,13 +55,14 @@ const Main = React.lazy(() => import('./home/Main'))
 const MovieNewsList = React.lazy(() => import('./home/MovieNewsList'))
 
 // Movie Page
-const MoviePage = React.lazy(() => import('./views/moviePage/MoviePage'))
-const MovieDetail = React.lazy(() => import('./views/moviePage/MovieDetail'))
+const MoviePage = React.lazy(() => import('./views/moviePage/moviePage/MoviePage'))
+const MovieDetail = React.lazy(() => import('./views/moviePage/movieDetail/MovieDetail'))
 const MovieCredit = React.lazy(() => import('./views/moviePage/movieCredit/MovieCredit'))
 
 // Drama Detail
 const DramaMain = React.lazy(() => import('./views/dramaDetail/DramaMain'))
 const DramaDetails = React.lazy(() => import('./views/dramaDetail/DramaDetails'))
+const DramaCredit = React.lazy(() => import('./views/dramaDetail/dramaCredit/DramaCredit'))
 
 // Person Page
 const PersonList = React.lazy(() => import('./views/person/PersonList'))
@@ -116,6 +117,7 @@ const routes = [
   { path: '/moviePage/movieCredit', name: 'MovieCredit', element: MovieCredit },
   { path: '/dramaMain', name: 'DramaMain', element: DramaMain },
   { path: '/dramaMain/dramaDetails', name: 'DramaDetails', element: DramaDetails },
+  { path: '/dramaMain/dramaCredit', name: 'DramaCredit', element: DramaCredit },
   { path: '/personList', name: 'PersonList', element: PersonList },
   { path: '/personList/personDetail', name: 'PersonDetail', element: PersonDetail },
   { path: '/movieNewsList', name: 'MovieNewsList', element: MovieNewsList }
