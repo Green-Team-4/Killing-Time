@@ -1,6 +1,4 @@
-import BoxOffice from './BoxOffice';
-import DramaChart from './DramaChart';
-import MovieNews from './MovieNews';
+import Location from './Location';
 import TabList from './TabList';
 
 
@@ -12,7 +10,7 @@ const Main = (props) => {
       <>
         <div className="content" >
                 <TabList />
-        </div>     
+        </div>
       </>
     );
 };

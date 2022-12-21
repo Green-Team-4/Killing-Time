@@ -17,7 +17,6 @@ const MovieImage = ({ movieName, openDate }) => {
         loadMoivePoster();
     }, [movieName, openDate]);
     
-    
 
 
     return (
