@@ -43,9 +43,6 @@ function Search() {
         getContents(URL2, "drama");
         getContents(URL6, "actor");
     },[]);
-
-    
-
    
 
     const getContents = (API, type) => {
@@ -98,13 +95,21 @@ function Search() {
         
         {
             tabTitle:(
+                <span style={{paddingLeft:50}}>
                 <CTooltip 
-                    content="영화 순위를 확인하세요."
+                    content="영화 정보를 확인하세요."
                     placement="bottom">
-                    <CButton color='light' style={{ fontSize: 18}} className={activeIndex===0 ? "is-active" : ""} onClick={()=>tabClickHandler(0)}> 
-                        인기 영화 TOP 20
+                    <CButton color='dark' style={{ fontSize: 18, 
+                                                    height:50,
+                                                    borderRadius:15,
+                                                    width:150
+                                                  }} className={activeIndex===0 ? "is-active" : ""} 
+                                                    onClick={()=>tabClickHandler(0)}> 
+                        영화 정보
                     </CButton>
                 </CTooltip>
+                &nbsp;&nbsp;&nbsp;
+                </span>
             ),
             tabCont:(
                 <div><h2 style={{fontWeight:'bold'}}>{movieTitle}</h2>            
@@ -123,13 +128,21 @@ function Search() {
         },
         {
             tabTitle:(
+                <span>
                 <CTooltip 
-                    content="TV 시리즈 순위를 확인하세요."
+                    content="TV 시리즈 정보를 확인하세요."
                     placement="bottom">
-                    <CButton color='light' style={{ fontSize: 18}} className={activeIndex===1 ? "is-active" : ""} onClick={()=>tabClickHandler(1)}> 
-                        인기 TV TOP 20
+                    <CButton color='dark' style={{ fontSize: 18,
+                                                    borderRadius:15,
+                                                    height:50, 
+                                                    width:150
+                                                  }} className={activeIndex===1 ? "is-active" : ""} 
+                                                    onClick={()=>tabClickHandler(1)}> 
+                        TV 정보
                     </CButton>
                 </CTooltip>
+                &nbsp;&nbsp;&nbsp;
+                </span>
             ),
             tabCont:(
                 <div>
@@ -145,18 +158,26 @@ function Search() {
                         tvContents.length > 0 && tvContents.map((tvContents) => 
                             < Drama key={tvContents.id} {...tvContents}/>)
                     }
-                </div></div>
+                </div>
+            </div>
             )
         },
         {
             tabTitle:(
+                <span>
                 <CTooltip 
-                    content="인물 순위를 확인하세요."
+                    content="인물 정보를 확인하세요."
                     placement="bottom">
-                    <CButton color='light' style={{ fontSize: 18}} className={activeIndex===2 ? "is-active" : ""} onClick={()=>tabClickHandler(2)}> 
-                        인기 인물 TOP 20
+                    <CButton color='dark' style={{ fontSize: 18,
+                                                    borderRadius:15, 
+                                                    height:50, 
+                                                    width:150
+                                                  }} className={activeIndex===2 ? "is-active" : ""} 
+                                                    onClick={()=>tabClickHandler(2)}> 
+                        인물 정보
                     </CButton>
                 </CTooltip>
+                </span>
             ),
             tabCont:(
                 <div> 
@@ -182,11 +203,11 @@ function Search() {
             <header>
                 <br />
                 <div className='logo'>
-                    <h1 style={{fontWeight:'bold', fontStyle:'oblique'}} className='search'>
+                    <h1 style={{fontWeight:'bold'}} className='search'>
                         영화 & TV 검색
                     </h1>
                 </div>
-                <br />
+                <br /><br />
                 <form onSubmit={handleOnSubmit}>
                     <div className='msearch'>
                         <label>
@@ -209,8 +230,9 @@ function Search() {
                         </label>
                     </div>
                 </form>
+                <br />
             </header>
-            <div className="tabs" style={{width:500}}>
+            <div className="tabs" style={{width:800}}>
             {tabContArr.map((section, index)=>{
                 return section.tabTitle
             })}
@@ -219,7 +241,6 @@ function Search() {
             <div>
           	{tabContArr[activeIndex].tabCont}
           </div>
-            
             </SearchBlock>
             </CCol>
     );
