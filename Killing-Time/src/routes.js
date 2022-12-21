@@ -1,4 +1,5 @@
 import React from 'react'
+import SearchContents from './views/search/search/SearchDrama'
 
 const Dashboard = React.lazy(() => import('./home/Main'))
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
@@ -22,7 +23,7 @@ const Tooltips = React.lazy(() => import('./views/base/tooltips/Tooltips'))
 
 // Search
 const Search = React.lazy(() => import('./views/search/search/Search'))
-const SearchContents = React.lazy(() => import('./views/search/search/SearchContents'))
+// const SearchContents = React.lazy(() => import('./views/search/search/Search/SearchContents'))
 
 //Forms
 const ChecksRadios = React.lazy(() => import('./views/forms/checks-radios/ChecksRadios'))
@@ -88,7 +89,7 @@ const routes = [
   { path: '/base/tables', name: 'Tables', element: Tables },
   { path: '/base/tooltips', name: 'Tooltips', element: Tooltips },
   { path: '/search', name: 'Search', element: Search, exact: true },
-  { path: '/searchContents', name: 'SearchContents', element: SearchContents, exact: true },
+  // { path: '/search/searchContents', name: 'Search', element: SearchContents, exact: true },
   { path: '/charts', name: 'Charts', element: Charts },
   { path: '/forms', name: 'Forms', element: FormControl, exact: true },
   { path: '/forms/form-control', name: 'Form Control', element: FormControl },
