@@ -1,12 +1,15 @@
 import { cilSearch } from '@coreui/icons';
 import CIcon from '@coreui/icons-react';
-import { CCard, CCol, CNavItem, CNavLink, CRow } from '@coreui/react';
+import { CButton, CCard, CCol, CNavItem, CNavLink, CRow, CTooltip } from '@coreui/react';
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from "styled-components";
 import Drama from './Drama';
 import Movie from './Movie';
 import People from './People';
+import TabList from './TabList';
+
 
 
 const SearchBlock = styled.div`
@@ -41,12 +44,16 @@ function Search() {
         getContents(URL6, "actor");
     },[]);
 
+    
+
+   
+
     const getContents = (API, type) => {
         fetch(API)
             .then((res) => res.json())
             .then((data) => {
                 if (type === 'movie') {
-                    setContents(data.results);
+                    setContents(data.results);                    
                 } else if (type === 'drama') {
                     setTvContents(data.results);
                 } else {
@@ -81,8 +88,96 @@ function Search() {
         setSearch(e.target.value)
     }
     
+    const [activeIndex, setActiveIndex]=useState(0);
+
+    const tabClickHandler=(index)=>{
+        setActiveIndex(index);
+    };
+
+    const tabContArr=[
+        
+        {
+            tabTitle:(
+                <CTooltip 
+                    content="영화 순위를 확인하세요."
+                    placement="bottom">
+                    <CButton color='light' style={{ fontSize: 18}} className={activeIndex===0 ? "is-active" : ""} onClick={()=>tabClickHandler(0)}> 
+                        인기 영화 TOP 20
+                    </CButton>
+                </CTooltip>
+            ),
+            tabCont:(
+                <div><h2 style={{fontWeight:'bold'}}>{movieTitle}</h2>            
+                &nbsp;
+                <div style={{width: "300px",
+                            display: "grid",
+                            gridTemplateRows: "1fr ",
+                            gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr"
+                            }} className='content-container'>
+                    {
+                        contents.length > 0 && contents.map((contents) =>
+                            < Movie key={contents.id} {...contents}/>)
+                    }
+                </div></div>
+            )
+        },
+        {
+            tabTitle:(
+                <CTooltip 
+                    content="TV 시리즈 순위를 확인하세요."
+                    placement="bottom">
+                    <CButton color='light' style={{ fontSize: 18}} className={activeIndex===1 ? "is-active" : ""} onClick={()=>tabClickHandler(1)}> 
+                        인기 TV TOP 20
+                    </CButton>
+                </CTooltip>
+            ),
+            tabCont:(
+                <div>
+                <h2 style={{fontWeight:'bold'}}>{tvTitle}</h2>
+                &nbsp;
+                <div style={{width: "300px",
+                            display: "grid",
+    
+                            gridTemplateRows: "1fr ",
+                            gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr"
+                            }} className='content-container2'>
+                    {
+                        tvContents.length > 0 && tvContents.map((tvContents) => 
+                            < Drama key={tvContents.id} {...tvContents}/>)
+                    }
+                </div></div>
+            )
+        },
+        {
+            tabTitle:(
+                <CTooltip 
+                    content="인물 순위를 확인하세요."
+                    placement="bottom">
+                    <CButton color='light' style={{ fontSize: 18}} className={activeIndex===2 ? "is-active" : ""} onClick={()=>tabClickHandler(2)}> 
+                        인기 인물 TOP 20
+                    </CButton>
+                </CTooltip>
+            ),
+            tabCont:(
+                <div> 
+                <h2 style={{fontWeight:'bold'}}>{actor}</h2>
+                &nbsp;
+                <div style={{width: "300px",
+                            display: "grid",
+    
+                            gridTemplateRows: "1fr ",
+                            gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr"
+                            }} className='content-container2'>
+                    {
+                        actorInfos.length > 0 && actorInfos.map((actorInfos) => 
+                            < People key={actorInfos.id} {...actorInfos}/>)
+                    }
+                </div></div>
+            )
+        }
+    ];
     return (
-        <CCol style={{margin: 'auto', paddingLeft:20, paddingRight:35}}>
+        <CCol style={{margin: 'auto', paddingLeft:20, paddingRight:35}}>         
         <SearchBlock style={{paddingLeft:70, backgroundColor:'#F8F8FF', borderRadius:10}}>
             <header>
                 <br />
@@ -115,47 +210,16 @@ function Search() {
                     </div>
                 </form>
             </header>
+            <div className="tabs" style={{width:500}}>
+            {tabContArr.map((section, index)=>{
+                return section.tabTitle
+            })}
+          </div>                     
             &nbsp;<hr />&nbsp;
-            <h2 style={{fontWeight:'bold'}}>{movieTitle}</h2>
-            &nbsp;
-            <div style={{width: "300px",
-                        display: "grid",
-                        gridTemplateRows: "1fr ",
-                        gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr"
-                        }} className='content-container'>
-                {
-                    contents.length > 0 && contents.map((contents) =>
-                        < Movie key={contents.id} {...contents}/>)
-                }
-            </div>
-            &nbsp;<hr />&nbsp;
-            <h2 style={{fontWeight:'bold'}}>{tvTitle}</h2>
-            &nbsp;
-            <div style={{width: "300px",
-                        display: "grid",
-
-                        gridTemplateRows: "1fr ",
-                        gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr"
-                        }} className='content-container2'>
-                {
-                    tvContents.length > 0 && tvContents.map((tvContents) => 
-                        < Drama key={tvContents.id} {...tvContents}/>)
-                }
-            </div>
-            &nbsp;<hr />&nbsp;
-            <h2 style={{fontWeight:'bold'}}>{actor}</h2>
-            &nbsp;
-            <div style={{width: "300px",
-                        display: "grid",
-
-                        gridTemplateRows: "1fr ",
-                        gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr"
-                        }} className='content-container2'>
-                {
-                    actorInfos.length > 0 && actorInfos.map((actorInfos) => 
-                        < People key={actorInfos.id} {...actorInfos}/>)
-                }
-            </div>
+            <div>
+          	{tabContArr[activeIndex].tabCont}
+          </div>
+            
             </SearchBlock>
             </CCol>
     );
