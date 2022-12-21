@@ -22,7 +22,6 @@ const MovieImage = (props) => {
         loadMoivePoster();
     }, [movieName, openDate]);
     
-    
 
 
     return (
