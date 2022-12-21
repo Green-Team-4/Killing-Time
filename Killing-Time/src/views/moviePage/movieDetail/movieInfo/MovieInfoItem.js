@@ -165,7 +165,7 @@ const MovieInfoItem = ({ result, provider, otherResult }) => {
                           </td>
                           <td>
                             {
-                              rate > 66 ? <strong style={{ color: "green" }}>● {rate}%</strong> :
+                              rate > 66 ? <strong style={{ color: "lightgreen" }}>● {rate}%</strong> :
                               rate > 33 ? <strong style={{ color: "yellow" }}>● {rate}%</strong> :
                               <strong style={{ color: "red" }}>● {rate}%</strong>
                             }
