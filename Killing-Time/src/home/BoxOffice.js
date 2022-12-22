@@ -4,6 +4,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { NumericFormat } from "react-number-format";
 import { Link } from "react-router-dom";
+import BoxOfficeChart from "./BoxOfficeChart";
 import MovieImage from "./MovieImage";
 import MoviePosterItem from "./MoviePosterItem";
 
