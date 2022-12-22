@@ -7,7 +7,7 @@ const DramaItemBlock = styled.div`
 `;
 
 const DramaCreditListCrew = ({ result }) => {
-  const { id, name, character, profile_path, known_for_department, gender } = result;
+  const { id, name, profile_path, known_for_department, gender } = result;
   const img_url = `https://www.themoviedb.org/t/p/w138_and_h175_face/${profile_path}`;
 
   return (
@@ -28,9 +28,9 @@ const DramaCreditListCrew = ({ result }) => {
                   <Link to="/personList/personDetail" state={{ id: id }} style={{textDecoration: "none", color: "black"}}>
                     <h5>{name}</h5>
                   </Link>
-                  <span>{character}</span><br />
+                 
                   <span>{known_for_department}</span><br />
-                  {gender === 1 ? ( <span>Female</span> ) : ( <span>Male</span> ) }<br />
+                  {gender === 1 ? ( <span>Female11</span> ) : ( <span>Male</span> ) }<br />
                 </div>
                 <br />
               </div>
