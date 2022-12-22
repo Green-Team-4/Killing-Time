@@ -6,12 +6,16 @@ const PersonDetail = (props) => {
 
     const location = useLocation();
     const id = location.state.id;
+    const page = location.state.page;
+
+    
     //console.log(id);
+    
 
     return (
         <div>
-            <PersonDetailInfo id={id} />
-            <PersonDetailCast id={id} />
+            <PersonDetailInfo id={id}/>
+            <PersonDetailCast id={id}/>
         </div>
     );
 };

@@ -36,7 +36,7 @@ const DramaCreditList = ({ id }) => {
         <CNavLink
           active={activeKey === 1}
           onClick={() => setActiveKey(1)}
-        > <span style={{fontSize:20, fontWeight:"bold"}}>시리즈 출연진</span>
+        > <span style={{fontSize:20, fontWeight:"bold", color:"#696969"}}>시리즈 출연진</span>
         </CNavLink>
       </CNavItem>
       <CNavItem>
@@ -45,7 +45,7 @@ const DramaCreditList = ({ id }) => {
           active={activeKey === 2}
           onClick={() => setActiveKey(2)}
         >
-          <span style={{fontSize:20, fontWeight:"bold"}} >시리즈 제작진</span>
+          <span style={{fontSize:20, fontWeight:"bold", color:"#696969"}} >시리즈 제작진</span>
         </CNavLink>
       </CNavItem>
       </CNav>

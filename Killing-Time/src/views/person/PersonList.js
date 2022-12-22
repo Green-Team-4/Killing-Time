@@ -27,7 +27,7 @@ const PersonList = (props) => {
                 `https://api.themoviedb.org/3/person/popular?api_key=${ apiKey }&page=${page}&language=${language}`;
                 const response = await axios.get(url);
                 setResults(response.data.results);
-                console.log(response.data.results)
+                //console.log(response.data.results)
                 setPage(response.data.page);
                 setTotal_pages(response.data.total_pages);
                 setPageType("popular");
@@ -40,7 +40,7 @@ const PersonList = (props) => {
                 const searchUrl = 
                 `https://api.themoviedb.org/3/search/person?&api_key=${ apiKey }&page=${page}&language=${language}&query=${searchKeyword}`;
                 const responseSearch = await axios.get(searchUrl);
-                console.log(responseSearch.data);
+                //console.log(responseSearch.data);
                 setSearchResult(responseSearch.data.results);
                 setPage(responseSearch.data.page);
                 setPageType("search");
@@ -50,7 +50,7 @@ const PersonList = (props) => {
     }, [page, searchKeyword, language, apiKey] );
     //console.log(results);
     //console.log(page);
-    //console.log('search keyword: ', searchKeyword);
+    console.log('search keyword: ', searchKeyword);
 
     if (!results) {
         return;
@@ -131,7 +131,7 @@ const PersonList = (props) => {
                             searchResults != null
                             ?
                             searchResults.map( (searchResult) => {
-                                return (<PersonItem key={ searchResult.id } result={ searchResult } />);
+                                return (<PersonItem key={ searchResult.id } result={ searchResult } page={ page }/>);
                             })
                             :
                             <></>

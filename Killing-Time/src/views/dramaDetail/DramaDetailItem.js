@@ -12,9 +12,9 @@ const DramaDetailItem = ({ result, genres1, creators }) => {
     return (
         <CRow>
             <CCol xs={10} style={{ margin: "auto" }}>
-                <CCard className="mb-4">
+                <CCard className="mb-2">
                     <CCardBody>
-                        <div style={{ padding:20, borderRadius: 40, opacity:'1', display: "inline-block"}}>
+                        <div style={{ padding:20, borderRadius: 40, display: "inline-block"}}>
                             <img src={`https://www.themoviedb.org/t/p/w220_and_h330_bestv2${poster_path}`} alt="drama thumbnail" title={id} /><br />
                         </div>
                         <CContainer style={{ width:600, display: "inline-block", verticalAlign:"middle"}}>
@@ -65,10 +65,12 @@ const DramaDetailItem = ({ result, genres1, creators }) => {
                             
                             </CRow>
                         </CContainer>
-                     </CCardBody>
+                        <iframe title="[넷플릭스] 웬즈데이 | 공식 예고편" width="850" height="478" text-items="center" justify-content='center' src="https://play-tv.kakao.com/embed/player/cliplink/432661557?service=player_share" allowfullscreen frameborder="0" scrolling="no" allow="autoplay; fullscreen; encrypted-media"></iframe>                     </CCardBody>
                 </CCard>
              </CCol>
         </CRow>
+
+        
     );
 };
 

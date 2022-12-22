@@ -5,7 +5,7 @@ import { CCard, CCardImage, CCardBody,  } from '@coreui/react';
 
 const DramaItemBlock = styled.div`
   display: inline-block;
-  margin: 10px;
+  margin-bottom: 10px;
   margin-left: 0;
   margin-right: 10px;
   padding: 0;
@@ -17,18 +17,12 @@ const DramaMainCastItem = ({ result }) => {
 
   return (
     <DramaItemBlock>
-      <CCard className='mb-3 border-gray' textColor='dark'>
-        
+      <CCard className='mb-0 border-gray' textColor='dark'>
           <Link to="/personList/personDetail" state={{ id: id }}>
             {profile_path !== null ? (
               <CCardImage src={img_url} alt={name} title={id} style={{ width: 140 }} />
             ) : (
-              <CCardImage
-                src="https://via.placeholder.com/300x450"
-                alt={name}
-                title={id}
-                style={{ width: 140 }}
-              />
+              <CCardImage src="https://via.placeholder.com/220xh330" alt={name} title={id} style={{ width: 140 }} />
             )}
           </Link>
         <CCardBody
