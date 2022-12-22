@@ -1,7 +1,7 @@
 import { CCard, CCardBody, CCol, CRow } from "@coreui/react";
 import styled from "styled-components";
 
-const MovieInfoItem = ({ result, provider, otherResult }) => {
+const MovieInfoItem = ({ result, otherResult, provider, dailyBoxOfficeList, movieInfo }) => {
   const {
     id,
     poster_path,
@@ -15,15 +15,31 @@ const MovieInfoItem = ({ result, provider, otherResult }) => {
     genres,
   } = result;
 
-  let {overview, tagline} = result;
+  const img_url = `https://www.themoviedb.org/t/p/w220_and_h330_face${poster_path}`;
+  const year = release_date.split("-");
+  const rate = Math.floor(vote_average * 10);
+  var name = null;
+  if (production_countries[0] !== undefined) {
+    var { name } = production_countries[0];
+  }
+  
+  const production_country = name;
+  var genre_names = "";
+  for (var i = 0; i < genres.length; i++) {
+    if (i !== 0) genre_names = genre_names + "/";
+    let { name } = genres[i];
+    genre_names = genre_names + name;
+  }
+
+  let { overview, tagline } = result;
   let overview_f = overview;
   let tagline_f = tagline;
   if (tagline === "") {
-    let {tagline} = otherResult;
+    let { tagline } = otherResult;
     tagline_f = tagline;
   }
   if (overview === "") {
-    let {overview} = otherResult;
+    let { overview } = otherResult;
     overview_f = overview;
   }
 
@@ -32,61 +48,63 @@ const MovieInfoItem = ({ result, provider, otherResult }) => {
   let stream_url = "";
   if (provider !== undefined) {
     let { buy, rent, flatrate } = provider;
-    if (buy !== undefined)
+    if (buy !== undefined) {
       buy_url = buy;
-    if (rent !== undefined)
+    }
+    if (rent !== undefined) {
       rent_url = rent;
-    if (flatrate !== undefined)
+    }
+    if (flatrate !== undefined) {
       stream_url = flatrate;
+    }
   }
 
-  function searchMovie (buy) {
+  function searchMovie(buy) {
     const provider_id = buy.provider_id;
     const provider_name = buy.provider_name;
-    switch(provider_id){
+    switch (provider_id) {
       case 3:
-        return `https://play.google.com/store/search?q=${title}&c=movies`
+        return `https://play.google.com/store/search?q=${title}&c=movies`;
       case 8:
       case 1796:
-        return "https://www.netflix.com/"
+        return "https://www.netflix.com/";
       case 96:
-        return `https://serieson.naver.com/v2/search?query=${title}`
+        return `https://serieson.naver.com/v2/search?query=${title}`;
       case 119:
-        return "https://www.primevideo.com/"
+        return "https://www.primevideo.com/";
       case 356:
-        return `https://www.wavve.com/search?searchWord=${title}`
+        return `https://www.wavve.com/search?searchWord=${title}`;
       case 337:
-        return "https://www.disneyplus.com/ko-kr"
+        return "https://www.disneyplus.com/ko-kr";
       default:
-        return `https://www.google.com/search?q=${provider_name}`
+        return `https://www.google.com/search?q=${provider_name}`;
     }
   }
-  function showLogo (buy) {
+
+  function showLogo(buy) {
     return (
-      <img style={ { border: 1,
-                     borderStyle: "solid",
-                     marginRight: 30,
-                     borderRadius: 10, } }
-           width={50}
-           src={ `https://www.themoviedb.org/t/p/original/${buy.logo_path}` }
-           alt="provier thumbnail"
-           title={buy.provider_id} />
-    )
+      <img
+        style={{
+          border: 1,
+          borderStyle: "solid",
+          marginRight: 30,
+          borderRadius: 10,
+        }}
+        width={50}
+        src={`https://www.themoviedb.org/t/p/original/${buy.logo_path}`}
+        alt="provier thumbnail"
+        title={buy.provider_id}
+      />
+    );
   }
   
-  const img_url = `https://www.themoviedb.org/t/p/w220_and_h330_face${poster_path}`;
-  const year = release_date.split("-");
-  const rate = Math.floor(vote_average * 10);
-  let { name } = production_countries[0];
-  const production_country = name;
-  var genre_names = "";
-  for (var i = 0; i < genres.length; i++) {
-    if (i !== 0) {
-      genre_names = genre_names + "/";
+  let boxOffice = null;
+  for (var i = 0; i < dailyBoxOfficeList.length; i++) {
+    if (title === dailyBoxOfficeList[i].movieNm) {
+      boxOffice = dailyBoxOfficeList[i];
     }
-    let { name } = genres[i];
-    genre_names = genre_names + name;
   }
+
 
   const MovieInfoItemBlock = styled.div`
     table {
@@ -105,18 +123,19 @@ const MovieInfoItem = ({ result, provider, otherResult }) => {
   const BackImg = styled.div`
     .ok {
       background-size: cover;
-      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://www.themoviedb.org/t/p/w533_and_h300_bestv2/${backdrop_path});
+      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url(https://www.themoviedb.org/t/p/w533_and_h300_bestv2/${backdrop_path});
       bacground-repeat: no-repeat;
       color: white;
     }
   `;
-  
+
   return (
     <CRow>
       <CCol xs={10} style={{ margin: "auto" }}>
         <BackImg>
           <CCard className="mb-4 ok">
-            <CCardBody style={{paddingLeft: 40, paddingRight: 60}}>
+            <CCardBody style={{ paddingLeft: 40, paddingRight: 60 }}>
               <div style={{ display: "inline-block", marginTop: 20 }}>
                 <img
                   src={img_url}
@@ -138,7 +157,9 @@ const MovieInfoItem = ({ result, provider, otherResult }) => {
                   marginTop: 20,
                 }}
               >
-                <div style={{ textAlign: "left", float: "left", maxWidth: 700 }}>
+                <div
+                  style={{ textAlign: "left", float: "left", maxWidth: 700 }}
+                >
                   <div style={{ textAlign: "center" }}>
                     <h1 style={{ fontWeight: "bold" }}>{title}</h1>
                     <span style={{ fontSize: 14, fontWeight: "bold" }}>
@@ -164,11 +185,19 @@ const MovieInfoItem = ({ result, provider, otherResult }) => {
                             <span>평점</span>
                           </td>
                           <td>
-                            {
-                              rate > 66 ? <strong style={{ color: "#369F36" }}>● {rate}%</strong> :
-                              rate > 33 ? <strong style={{ color: "#FFAF0A" }}>● {rate}%</strong> :
-                              <strong style={{ color: "#EB0000" }}>● {rate}%</strong>
-                            }
+                            {rate > 66 ? (
+                              <strong style={{ color: "#68D168" }}>
+                                ● {rate}%
+                              </strong>
+                            ) : rate > 33 ? (
+                              <strong style={{ color: "#FFAF0A" }}>
+                                ● {rate}%
+                              </strong>
+                            ) : (
+                              <strong style={{ color: "#EB0000" }}>
+                                ● {rate}%
+                              </strong>
+                            )}
                           </td>
                         </tr>
                         <tr>
@@ -179,7 +208,7 @@ const MovieInfoItem = ({ result, provider, otherResult }) => {
                           <td style={{ paddingLeft: 40 }}>
                             <span>누적관객</span>
                           </td>
-                          <td></td>
+                          {/* <td>{boxOffice.audiAcc}명</td> */}
                         </tr>
                         <tr>
                           <td>
@@ -196,6 +225,25 @@ const MovieInfoItem = ({ result, provider, otherResult }) => {
                             <span>러닝타임</span>
                           </td>
                           <td>{runtime}분</td>
+                          
+                            <td style={{ paddingLeft: 40 }}>
+                              {
+                                boxOffice !== null ? <span>박스오피스</span> : ""
+                              }
+                            </td>
+                            <td>
+                              {
+                                boxOffice !== null ? <div>{boxOffice.rank}위
+                                { boxOffice.rankInten > 0 ? 
+                                  (<span style={{ color: "#68D168", marginLeft: 10}}>▲ {boxOffice.rankInten}</span>) :
+                                  (boxOffice.rankInten < 0) ?
+                                  (<span style={{ color: "#EB0000", marginLeft: 10}}>▼ {boxOffice.rankInten}</span>) :
+                                  (<span style={{ color: "lightgray", marginLeft: 10}}>- {boxOffice.rankInten}</span>)
+                                }
+                                </div> : ""
+                              }
+                            </td>
+                          
                         </tr>
                       </tbody>
                     </table>
