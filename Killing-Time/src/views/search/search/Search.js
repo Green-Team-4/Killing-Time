@@ -1,14 +1,12 @@
 import { cilSearch } from '@coreui/icons';
 import CIcon from '@coreui/icons-react';
-import { CButton, CCard, CCol, CNavItem, CNavLink, CRow, CTooltip } from '@coreui/react';
+import { CButton, CCol, CTooltip } from '@coreui/react';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
 import styled from "styled-components";
 import Drama from './Drama';
 import Movie from './Movie';
 import People from './People';
-import TabList from './TabList';
 
 
 
@@ -198,8 +196,8 @@ function Search() {
         }
     ];
     return (
-        <CCol style={{margin: 'auto', paddingLeft:20, paddingRight:35}}>         
-        <SearchBlock style={{paddingLeft:70, backgroundColor:'#F8F8FF', borderRadius:10, marginBottom:30}}>
+        <CCol style={{margin: 'auto', paddingLeft:100, paddingRight:35}}>         
+        <SearchBlock style={{paddingLeft:40, backgroundColor:'#F8F8FF', borderRadius:10, marginBottom:30}}>
             <header>
                 <br />
                 <div className='logo'>
@@ -207,7 +205,7 @@ function Search() {
                         영화 & TV 검색
                     </h1>
                 </div>
-                <br /><br />
+                <br /><br /><br />
                 <form onSubmit={handleOnSubmit}>
                     <div className='msearch'>
                         <label>
