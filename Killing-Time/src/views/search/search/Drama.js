@@ -5,7 +5,10 @@ import { CCard, CCardImage, CCardBody, CCardHeader } from '@coreui/react';
  const IMG_API = "https://image.tmdb.org/t/p/w1280";
 
 //가져올 목록
-const Drama = ({id, name, poster_path, first_air_date, vote_average}) => (
+const Drama = ({id, name, poster_path, first_air_date, vote_average}) => {
+    const rate = vote_average * 10;
+
+    return (
     <CCard className='mb-3 border-dark' textColor='dark' style={{borderRadius:10, borderWidth:1, margin:7, width:202}}>
                 <Link to="/dramaMain/dramaDetails" state={{ id: id }}>  
                         <CCardImage style={{width:200, height: 270, textAlign:'center', borderRadius:10, borderBottomLeftRadius:0, borderBottomRightRadius:0}}
@@ -28,10 +31,17 @@ const Drama = ({id, name, poster_path, first_air_date, vote_average}) => (
                         첫 방영일 :  {first_air_date}
                         <br />
                         회원 점수 :  {vote_average}
+                        <br />
+                        {
+                              rate > 66 ? <strong style={{ color: "#369F36" }}>● {rate}%</strong> :
+                              rate > 33 ? <strong style={{ color: "#FFAF0A" }}>● {rate}%</strong> :
+                              <strong style={{ color: "#EB0000" }}>● {rate}%</strong>
+                            }
                         </span>
                     </CCardBody>
                     <br />
     </CCard>
-);
+    );
+};
 
 export default Drama;

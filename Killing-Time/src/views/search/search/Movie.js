@@ -6,7 +6,8 @@ import { CCard, CCardImage, CCardBody, CCardHeader } from '@coreui/react';
 //가져올 목록
 
 const Movie = ({id, title, poster_path, release_date, vote_average }) => {
-
+    const rate = vote_average * 10;
+    
     return (
     <CCard className='mb-3 border-dark' textColor='dark' style={{borderRadius:10, borderWidth:1, margin:7, width:202}}>
                
@@ -31,6 +32,12 @@ const Movie = ({id, title, poster_path, release_date, vote_average }) => {
                         개봉일 :  {release_date}
                         <br />
                         회원 점수 :  {vote_average}
+                        <br />
+                        {
+                              rate > 66 ? <strong style={{ color: "#369F36" }}>● {rate}%</strong> :
+                              rate > 33 ? <strong style={{ color: "#FFAF0A" }}>● {rate}%</strong> :
+                              <strong style={{ color: "#EB0000" }}>● {rate}%</strong>
+                            }
                         </span>
                     </CCardBody>
                     <br />
