@@ -265,7 +265,7 @@ const _nav = [
   },
   {
     component: CNavItem,
-    name: '드라마',
+    name: 'TV',
     to: '/dramaMain',
     icon: <CIcon icon={cilTv} customClassName="nav-icon" />,
   },

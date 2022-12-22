@@ -10,12 +10,10 @@ const DramaDetails = (props) => {
     return (
         <>
             <DramaDetailList id={id}/>
-            
-            111
-            <DramaMainRecommend id={id} />
-            
-            222
+
             <DramaMainCast id={id} />
+            
+            <DramaMainRecommend id={id} />
            
         </>
         

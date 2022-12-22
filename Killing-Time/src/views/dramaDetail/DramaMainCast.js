@@ -7,21 +7,22 @@ import { CButton, CCard, CCardBody, CCol, CTooltip, CCardHeader  } from "@coreui
 import DramaMainCastItem from "./DramaMainCastItem";
 
 const DramaMainCastBlock = styled.div`
-  overflow: auto;
+   overflow: auto;
   white-space: nowrap;
   ::-webkit-scrollbar {
-    height: 15px;
+    height: 12px;
   }
   ::-webkit-scrollbar-thumb {
     background: #FF1493;
-    border-radius: 0px;
+    border-radius: 5px;
   }
 
   ::-webkit-scrollbar-track {
-    border-radius: 0px;
-    background: #D8BFD8;
+    border-radius: 5px;
+    background: #FFE4E1;
   }
 `;
+
 
 const DramaMainCast = ({ id }) => {
   const [cast, setCast] = useState(null);
@@ -48,7 +49,7 @@ const DramaMainCast = ({ id }) => {
     <CCol xs={10} style={{margin: "auto"}}>
       <CCard className='mb-3 border-gray' textColor='dark' style={{margin:7}}>
         <CCardHeader>
-          <div style={{display: 'inline-block', width:'140px', marginLeft: 20,}}>
+          <div style={{display: 'inline-block', width:'140px', height:'25px', marginLeft: 0}}>
             <h4>주요 출연진</h4>
           </div>
           <div style={{display: 'inline-block', verticalAlign: 'SUPER'}}>
@@ -64,7 +65,7 @@ const DramaMainCast = ({ id }) => {
           </div>
         </CCardHeader>
           <CCardBody>
-          <DramaMainCastBlock style={{marginLeft: 20, marginRight: 20}}>
+          <DramaMainCastBlock style={{}}>
             {cast.map((result) => {
               if (result.order < 10) {
                 return <DramaMainCastItem key={result.id} result={result} />;
