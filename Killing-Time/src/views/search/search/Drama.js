@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { CCard, CCardImage, CCardTitle, CCardText, CCardBody, CCardHeader } from '@coreui/react';
+import { CCard, CCardImage, CCardBody, CCardHeader } from '@coreui/react';
 
  const IMG_API = "https://image.tmdb.org/t/p/w1280";
 
@@ -8,7 +8,7 @@ import { CCard, CCardImage, CCardTitle, CCardText, CCardBody, CCardHeader } from
 const Drama = ({id, name, poster_path, first_air_date, vote_average}) => (
     <CCard className='mb-3 border-dark' textColor='dark' style={{borderRadius:10, borderWidth:1, margin:7, width:202}}>
                 <Link to="/dramaMain/dramaDetails" state={{ id: id }}>  
-                        <CCardImage style={{width:200, height: 270, textAlign:'center', borderRadius:10}}
+                        <CCardImage style={{width:200, height: 270, textAlign:'center', borderRadius:10, borderBottomLeftRadius:0, borderBottomRightRadius:0}}
                         src={
                             poster_path 
                             ? IMG_API + poster_path

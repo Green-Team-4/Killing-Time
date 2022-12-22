@@ -146,8 +146,7 @@ const PersonDetailInfo = ({id}) => {
     const instagramUrl = `https://www.instagram.com/${instagramId}/`;
     const twitterUrl = `https://twitter.com/${twitterId}`;
 
-
-    console.log("약력 길이 :", `${biography}`.length)
+    //console.log("약력 길이 :", `${biography}`.length)
 
 
 
@@ -262,21 +261,39 @@ const PersonDetailInfo = ({id}) => {
                             {
                                 `${facebookId}` !== "null"
                                 ?
-                                <a href={facebookUrl}>Facebook</a>
+                                (
+                                    `${facebookId}` !== ""
+                                    ?
+                                    <a href={facebookUrl}>Facebook</a>
+                                    :
+                                    <></>
+                                )
                                 :
                                 <></>
                             }
                             {
                                 `${instagramId}` !== "null"
                                 ?
-                                <a href={instagramUrl}>Instagram</a>
+                                (
+                                    `${instagramId}` !== ""
+                                    ?
+                                    <a href={instagramUrl}>Instagram</a>
+                                    :
+                                    <></>
+                                )
                                 :
                                 <></>
                             }
                             {
                                 `${twitterId}` !== "null"
                                 ?
-                                <a href={twitterUrl}>Twitter</a>
+                                (
+                                    `${twitterId}` !== ""
+                                    ?
+                                    <a href={twitterUrl}>Twitter</a>
+                                    :
+                                    <></>
+                                )
                                 :
                                 <></>
                             }

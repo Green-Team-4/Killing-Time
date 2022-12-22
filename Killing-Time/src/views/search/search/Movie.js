@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { CCard, CCardImage, CCardTitle, CCardText, CCardBody, CCardHeader, CButton } from '@coreui/react';
-import TabList from './TabList';
+import { CCard, CCardImage, CCardBody, CCardHeader } from '@coreui/react';
 
  const IMG_API = "https://image.tmdb.org/t/p/w1280";
 
@@ -13,7 +11,7 @@ const Movie = ({id, title, poster_path, release_date, vote_average }) => {
     <CCard className='mb-3 border-dark' textColor='dark' style={{borderRadius:10, borderWidth:1, margin:7, width:202}}>
                
                 <Link to="/moviePage/movieDetail" state={{ id: id }}>  
-                        <CCardImage style={{width:200, height: 270, textAlign:'center', borderRadius:10}}
+                        <CCardImage style={{width:200, height: 270, textAlign:'center', borderRadius:10, borderBottomLeftRadius:0, borderBottomRightRadius:0}}
                         src={
                             poster_path 
                             ? IMG_API + poster_path
@@ -28,7 +26,7 @@ const Movie = ({id, title, poster_path, release_date, vote_average }) => {
                         <span style={{fontWeight:'bold'}}>{title}</span>
                     </Link>
                     </CCardHeader>
-                    <CCardBody style={{display:'inline-block', backgroundColor:'#F5FFFA'}}>
+                    <CCardBody style={{display:'inline-block', backgroundColor:'#F8F8FF'}}>
                         <span style={{fontWeight:'bold', fontSize:15}}> 
                         개봉일 :  {release_date}
                         <br />
