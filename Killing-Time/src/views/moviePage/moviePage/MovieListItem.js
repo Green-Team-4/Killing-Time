@@ -21,9 +21,9 @@ const MovieListItem = ({ result }) => {
             
           
         </div>
-        <div style={{fontSize: 14, textDecoration: "none", color: "black", width:220, overflow: "hidden", textOverflow: "ellipsis", textAlign: "center"}}>
+        <div style={{fontSize: 14, textDecoration: "none", color: "black", width:220, textAlign: "center"}}>
           
-            <div>{title}</div>
+            <div style={{ height: 21, overflow: "hidden", textOverflow: "ellipsis",}}>{title}</div>
             <div>
               <span>
               {
@@ -31,8 +31,8 @@ const MovieListItem = ({ result }) => {
                               rate > 33 ? <strong style={{ color: "#FFAF0A" }}>● {rate}%</strong> :
                               <strong style={{ color: "#EB0000" }}>● {rate}%</strong>
                             }
-              </span>
-              {release_date}
+              </span><br />
+              개봉{release_date}
             </div>
           
         </div>
