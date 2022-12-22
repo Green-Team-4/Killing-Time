@@ -18,9 +18,9 @@ const People = ({id, name, profile_path, popularity, gender }) => (
                             }
                             alt={name} />
                 </Link>        
-                <CCardHeader style={{backgroundColor:'#F0F8FF', fontSize:15, color:'black'}} className="movie-info">
+                <CCardHeader style={{backgroundColor:'#F0F8FF', fontSize:15, color:'black', overflow:'hidden', position:'relative'}} className="movie-info">
                 &nbsp;
-                    <Link style={{fontSize:17, textDecoration:'none', color:'black'}} to="/personList/personDetail" state={{ id: id }}>
+                    <Link style={{fontSize:17, textDecoration:'none', color:'black', position:'absolute'}} to="/personList/personDetail" state={{ id: id }}>
                         <span style={{fontWeight:'bold'}}>{name}</span>
                     </Link>
                     </CCardHeader>

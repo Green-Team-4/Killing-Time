@@ -19,7 +19,6 @@ const MovieList = (props) => {
       const response = await axios.get(url);
       setResults(response.data.results);
       setPage(response.data.page);
-      
     };
     loadMoiveList();
   }, [page]);
