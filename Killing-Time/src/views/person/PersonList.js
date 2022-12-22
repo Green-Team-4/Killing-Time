@@ -50,7 +50,7 @@ const PersonList = (props) => {
     }, [page, searchKeyword, language, apiKey] );
     //console.log(results);
     //console.log(page);
-    //console.log('search keyword: ', searchKeyword);
+    console.log('search keyword: ', searchKeyword);
 
     if (!results) {
         return;
@@ -131,7 +131,7 @@ const PersonList = (props) => {
                             searchResults != null
                             ?
                             searchResults.map( (searchResult) => {
-                                return (<PersonItem key={ searchResult.id } result={ searchResult } />);
+                                return (<PersonItem key={ searchResult.id } result={ searchResult } page={ page }/>);
                             })
                             :
                             <></>
