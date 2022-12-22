@@ -55,7 +55,7 @@ const TabList = (props) => {
         {
             tabTitle:(
                 <CTooltip 
-                    content="박스오피스 누적 관객수를 확인하세요"
+                    content="일일 박스오피스 관객수를 그래프로 확인하세요."
                     placement="bottom">
                 <CButton color='light' style={{ fontSize: 18}} className={activeIndex===3 ? "is-active" : ""} onClick={()=>tabClickHandler(3)}> 박스오피스 그래프</CButton>
                 </CTooltip>

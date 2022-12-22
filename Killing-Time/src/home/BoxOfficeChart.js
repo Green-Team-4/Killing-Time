@@ -9,7 +9,6 @@ const BoxOfficeChart = (props) => {
     let today = new Date();
     let year = today.getFullYear(); // 년도
     let month = today.getMonth() + 1;  // 월
-    let date1 = today.getDate() ;  // 날짜
     let date2 = today.getDate() - 1;  // 날짜
     let date3 = today.getDate() - 2;  // 날짜
     let date4 = today.getDate() - 3;  // 날짜
@@ -69,97 +68,30 @@ const BoxOfficeChart = (props) => {
     },[]);
     
 
-const [activeIndex, setActiveIndex]=useState(0);
-
-const tabClickHandler=(index)=>{
-    setActiveIndex(index);
-};
-
-
-    
-// const tabContArr=[
-    
-//     {
-//         tabTitle:(
-          
-//             <CTooltip 
-//                 content="일일 박스 오피스를 확인하세요."
-//                 placement="bottom">
-//             <CButton color='light' style={{ fontSize: 18}} className={activeIndex=== 0 ? "is-active" : ""} onClick={()=>tabClickHandler(0)}>                
-//             <small> {boxOfficeChart.dailyBoxOfficeList[0].movieNm}</small>
-//                 </CButton>
-//             </CTooltip>
-            
-                 
-//         ),
-//         tabCont:(
-
-//          <div> <CCardBody>
-//             <CChartLine
-//              data={{
-//                labels: [`${month}-${date1}`, `${month}-${date2}`, `${month}-${date3}`, `${month}-${date4}`, `${month}-${date5}`, `${month}-${date6}`, `${month}-${date7}`,`${month}-${date8}`],
-//                datasets: [                 
-//                  {
-//                    label: 'My Second dataset',
-//                    backgroundColor: 'rgba(151, 187, 205, 0.2)',
-//                    borderColor: 'rgba(151, 187, 205, 1)',
-//                    pointBackgroundColor: 'rgba(151, 187, 205, 1)',
-//                    pointBorderColor: '#fff',
-//                    data: [22,33,44,55,66,77,88],
-//                  },
-//                ],
-//              }}
-//             />
-//             </CCardBody> 
-//             </div>
-
-//         )
-//     }
-// ];
-
-// return (
-//     <div>
-    //   <div className="tabs">
-    //     {tabContArr.map((section, index)=>{
-    //         return section.tabTitle
-    //     })}
-    //   </div>
-//       <br />
-//       <div>
-//           {tabContArr[activeIndex].tabCont}
-//       </div>
-//     </div>
-// );
-
     return (
         <>
         <CCol xs={10} style={{margin: "auto"}}>
         <CCard className="mb-4">
           <CCardHeader><strong>영화별 일일 관객수</strong>  <div className="tabs">
-            {/* {tabContArr.map((section, index)=>{
-              return section.tabTitle
-        })} */}
-      </div></CCardHeader>
-        <div>
-           {/* {tabContArr[activeIndex].tabCont} */}
+      </div>
+        </CCardHeader>
            <CCardBody>
-             <CChartLine
+             <CChartLine 
              data={{
                labels: [`${month}-${date2}`, `${month}-${date3}`, `${month}-${date4}`, `${month}-${date5}`, `${month}-${date6}`, `${month}-${date7}`, `${month}-${date8}`],
                datasets: boxOfficeChart?.map( (boxOfficeByMovie, idx) => {
                 return {
                   label: boxOfficeByMovie.movieNm,
                   backgroundColor: 'rgba(151, 187, 205, 0.2)',
-                  borderColor: 'rgba(151, 187, 205, 1)',
-                  pointBackgroundColor: 'rgba(151, 187, 205, 1)',
-                  pointBorderColor: '#fff',
+                  borderColor: ["	#FF69B4","#6495ED","#90EE90","#FFA07A","#8A2BE2"],
+                  pointBackgroundColor: '#E6E6FA',
+                  pointBorderColor: '#',
                   data: boxOfficeByMovie.audiCntList
                 }
                })
              }}
             />
             </CCardBody>
-        </div>
         </CCard>
       </CCol>
         </>
