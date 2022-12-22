@@ -76,7 +76,7 @@ const MovieInfoItem = ({ result, provider, otherResult }) => {
   
   const img_url = `https://www.themoviedb.org/t/p/w220_and_h330_face${poster_path}`;
   const year = release_date.split("-");
-  const rate = Math.floor(vote_average * 10) / 10;
+  const rate = Math.floor(vote_average * 10);
   let { name } = production_countries[0];
   const production_country = name;
   var genre_names = "";
@@ -138,7 +138,7 @@ const MovieInfoItem = ({ result, provider, otherResult }) => {
                   marginTop: 20,
                 }}
               >
-                <div style={{ textAlign: "left", float: "left" }}>
+                <div style={{ textAlign: "left", float: "left", maxWidth: 700 }}>
                   <div style={{ textAlign: "center" }}>
                     <h1 style={{ fontWeight: "bold" }}>{title}</h1>
                     <span style={{ fontSize: 14, fontWeight: "bold" }}>
@@ -164,8 +164,11 @@ const MovieInfoItem = ({ result, provider, otherResult }) => {
                             <span>평점</span>
                           </td>
                           <td>
-                            <strong style={{ color: "red" }}>★ </strong>
-                            {rate}
+                            {
+                              rate > 66 ? <strong style={{ color: "#369F36" }}>● {rate}%</strong> :
+                              rate > 33 ? <strong style={{ color: "#FFAF0A" }}>● {rate}%</strong> :
+                              <strong style={{ color: "#EB0000" }}>● {rate}%</strong>
+                            }
                           </td>
                         </tr>
                         <tr>
