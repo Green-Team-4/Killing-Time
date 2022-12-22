@@ -100,7 +100,7 @@ function Search() {
                     content="영화 정보를 확인하세요."
                     placement="bottom">
                     <CButton color='dark' style={{ fontSize: 18, 
-                                                    height:50,
+                                                    height:45,
                                                     borderRadius:15,
                                                     width:150
                                                   }} className={activeIndex===0 ? "is-active" : ""} 
@@ -134,7 +134,7 @@ function Search() {
                     placement="bottom">
                     <CButton color='dark' style={{ fontSize: 18,
                                                     borderRadius:15,
-                                                    height:50, 
+                                                    height:45, 
                                                     width:150
                                                   }} className={activeIndex===1 ? "is-active" : ""} 
                                                     onClick={()=>tabClickHandler(1)}> 
@@ -170,7 +170,7 @@ function Search() {
                     placement="bottom">
                     <CButton color='dark' style={{ fontSize: 18,
                                                     borderRadius:15, 
-                                                    height:50, 
+                                                    height:45, 
                                                     width:150
                                                   }} className={activeIndex===2 ? "is-active" : ""} 
                                                     onClick={()=>tabClickHandler(2)}> 
@@ -199,7 +199,7 @@ function Search() {
     ];
     return (
         <CCol style={{margin: 'auto', paddingLeft:20, paddingRight:35}}>         
-        <SearchBlock style={{paddingLeft:70, backgroundColor:'#F8F8FF', borderRadius:10}}>
+        <SearchBlock style={{paddingLeft:70, backgroundColor:'#F8F8FF', borderRadius:10, marginBottom:30}}>
             <header>
                 <br />
                 <div className='logo'>

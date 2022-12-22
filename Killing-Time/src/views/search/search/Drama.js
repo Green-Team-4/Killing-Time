@@ -17,9 +17,9 @@ const Drama = ({id, name, poster_path, first_air_date, vote_average}) => (
                             }
                             alt={name} />
                 </Link>        
-                <CCardHeader style={{backgroundColor:'#F0F8FF', fontSize:15, color:'black'}} className="movie-info">
+                <CCardHeader style={{backgroundColor:'#F0F8FF', fontSize:15, color:'black', overflow:'hidden', position:'relative'}} className="movie-info">
                 &nbsp;
-                    <Link style={{fontSize:17, textDecoration:'none', color:'black'}} to="/dramaMain/dramaDetails" state={{ id: id }}>
+                    <Link style={{fontSize:17, textDecoration:'none', color:'black', position:'absolute'}} to="/dramaMain/dramaDetails" state={{ id: id }}>
                         <span style={{fontWeight:'bold'}}>{name}</span>
                     </Link>
                     </CCardHeader>
