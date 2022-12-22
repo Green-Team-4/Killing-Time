@@ -9,7 +9,7 @@ import { CCard, CCardImage, CCardTitle, CCardText, CCardBody, CCardHeader } from
 const People = ({id, name, profile_path, popularity, gender }) => (
     <CCard className='mb-3 border-dark' textColor='dark' style={{borderRadius:10, borderWidth:1, margin:7, width:202}}>
                 <Link to="/personList/personDetail" state={{ id: id }}>  
-                        <CCardImage style={{width:200, height: 270, textAlign:'center', borderRadius:10}}
+                        <CCardImage style={{width:200, height: 270, textAlign:'center', borderRadius:10, borderBottomLeftRadius:0, borderBottomRightRadius:0}}
                         src={
                             profile_path 
                             ? IMG_API + profile_path
