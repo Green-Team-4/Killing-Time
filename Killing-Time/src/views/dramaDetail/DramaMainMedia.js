@@ -1,12 +1,11 @@
-
 import axios from "axios";
 import { useEffect, useState } from "react";
-
 import styled from "styled-components";
 import { CCard, CCardBody, CCol, CCardHeader, CNav, CNavItem, CNavLink, CTabContent, CTabPane  } from "@coreui/react";
 import DramaMainMediaVideo from "./DramaMainMediaVideo";
 import DramaMainMediaBackground from "./DramaMainMediaBackground"
 import DramaMainMediaPoster from "./DramaMainMediaPoster"
+import React from 'react';
 
 const DramaMainMediaBlock = styled.div`
   overflow: auto;
@@ -26,14 +25,13 @@ const DramaMainMediaBlock = styled.div`
 `;
 
 const DramaMainMedia = ({ id }) => {
-  const [media, setMedia] = useState(null);
- 
+  const [video, setVideo] = useState(null);
+  const [background, setBackground] = useState(null);
+  const [poster, setPoster] = useState(null);
   const [activeKey, setActiveKey] = useState(1)
 
-
-  // useEffect : mount(초기화), update(상태변화) 이벤트 처리기 등록
   useEffect(() => {
-    const loadMainMedia = async (e) => {
+    const loadMainMediaVideo = async (e) => {
       const language = "en-US";
       const apiKey = "da88cf78c356139f9420b764c0d77208";
       const baseUrl = "https://api.themoviedb.org/3/tv";
@@ -41,15 +39,42 @@ const DramaMainMedia = ({ id }) => {
                        //https://api.themoviedb.org/3/tv/119051/recommendations?api_key
       const response = await axios.get(url);
       
-      setMedia(response.data);
-
+      setVideo(response.data);
       //console.log(response.data.results);
-      
     };
-    loadMainMedia();
+    loadMainMediaVideo();
+
   }, [id]);
 
-  if (!media) {
+  useEffect(() => {
+    const loadMainMediaBackground = async (e) => {
+      const language = "en-US";
+      const apiKey = "da88cf78c356139f9420b764c0d77208";
+      const baseUrl = "https://api.themoviedb.org/3/tv";
+      const url = `${baseUrl}/${id}/images?api_key=${apiKey}&language=${language}`;
+      const response = await axios.get(url);
+        
+      setBackground(response.data);
+      console.log(response.data.backdrops);
+    };
+    loadMainMediaBackground();
+  }, [id]);
+
+  useEffect(() => {
+    const loadMainMediaPoster = async (e) => {
+      const language = "en-US";
+      const apiKey = "da88cf78c356139f9420b764c0d77208";
+      const baseUrl = "https://api.themoviedb.org/3/tv";
+      const url = `${baseUrl}/${id}/images?api_key=${apiKey}&language=${language}`;
+      const response = await axios.get(url);
+      
+      setPoster(response.data);
+      //console.log(response.data.results);
+    };
+    loadMainMediaPoster();
+  }, [id]);
+
+  if (!video) {
     return;
   }
   
@@ -85,10 +110,10 @@ const DramaMainMedia = ({ id }) => {
     <CCardBody>
       <CTabContent>
         <CTabPane role="동영상탭" aria-labelledby="" visible={activeKey === 1}>
-          <CCol xs={15} style={{margin: ""}}>
-            <CCardBody style={{}}>
+          <CCol xs={15}>
+            <CCardBody>
               <DramaMainMediaBlock>
-               {media.results.reverse().map((result) => {
+               {video.results.reverse().map((result) => {
                     return (
                       <DramaMainMediaVideo result={result} />
                     );
@@ -98,24 +123,25 @@ const DramaMainMedia = ({ id }) => {
           </CCol>
         </CTabPane>
         <CTabPane role="배경" aria-labelledby="" visible={activeKey === 2}>
-          <CCol xs={15} style={{margin: ""}}>
-            <CCardBody style={{overflow: "hidden", textOverflow: "ellipsis"}}>
-              <DramaMainMediaBlock style={{}}>
-              {media.results.reverse().map((result) => {
+          <CCol xs={15}>
+            <CCardBody>
+              <DramaMainMediaBlock>
+              {background.backdrops.reverse().map((result) => {
                     return (
-                      <DramaMainMediaVideo result={result} />
+                      <DramaMainMediaBackground result={result} />
                     );
                   })}
               </DramaMainMediaBlock>
             </CCardBody>
           </CCol>
-        </CTabPane> <CTabPane role="포스터" aria-labelledby="" visible={activeKey === 3}>
-          <CCol xs={15} style={{margin: ""}}>
-            <CCardBody style={{overflow: "hidden", textOverflow: "ellipsis"}}>
+        </CTabPane> 
+        <CTabPane role="포스터" aria-labelledby="" visible={activeKey === 3}>
+          <CCol xs={15}>
+            <CCardBody>
               <DramaMainMediaBlock style={{}}>
-              {media.results.reverse().map((result) => {
+              {poster.posters.reverse().map((result) => {
                     return (
-                      <DramaMainMediaVideo result={result} />
+                      <DramaMainMediaPoster result={result} />
                     );
                   })}
               </DramaMainMediaBlock>

@@ -18,15 +18,14 @@ const DramaMediaBlock = styled.div`
 const DramaMainMediaVideo = (props) => {
   
   const {result} = props;
-  const { key } = result;
-  console.log(result);
-  console.log(result.key);
+ 
+  
   const video_url = `https://www.youtube.com/watch?v=${result.key}`;
  
   return (
     <DramaMediaBlock>
             {result.key !== null ? (
-              <ReactPlayer style={{width:200}} url={video_url} controls />
+              <ReactPlayer url={video_url} controls />
             ) : (
               ""
             )}
