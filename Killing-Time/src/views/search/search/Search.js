@@ -2,6 +2,7 @@ import { cilReload, cilSearch } from '@coreui/icons';
 import CIcon from '@coreui/icons-react';
 import { CButton, CCard, CCol, CTooltip } from '@coreui/react';
 import axios from 'axios';
+import { relativeTimeRounding } from 'moment';
 import React, { useEffect, useState } from 'react';
 import styled from "styled-components";
 import Drama from './Drama';
@@ -35,8 +36,6 @@ function Search() {
     const [movieTitle, setMovieTitle] = useState("");
     const [tvTitle, setTvTitle] = useState("");
     const [actor, setActor] = useState("");
-
-    
 
     useEffect( () => {
         getContents(URL1, "movie");
@@ -74,19 +73,11 @@ function Search() {
             getContents(URL4 + search,'drama');
             getContents(URL5 + search,'actor'); 
 
+            setMovieTitle(`"${search}" 영화 검색 결과`);
+            setTvTitle(`"${search}" TV 프로그램 검색 결과`);
+            setActor(`"${search}" 배우 검색 결과`);
         }
-
-        setMovieTitle(`"${search}" 영화 검색 결과`);
-        setTvTitle(`"${search}" TV 프로그램 검색 결과`);
-        setActor(`"${search}" 배우 검색 결과`);
-        
     },[search]);
-   
-    useEffect(() => {        
-        setMovieTitle("인기 영화 TOP 20");
-        setTvTitle("인기 TV TOP 20");
-        setActor("인기 배우 TOP 20");
-    },[]);
 
     useEffect(() => {
         if (search === "") {
@@ -213,10 +204,10 @@ function Search() {
             )
         }
     ];
-    console.log(search);
+    
     return (
-        <CCol xs={12} style={{margin: 'auto', paddingLeft:100, paddingRight:35}}>         
-        <SearchBlock style={{paddingLeft:40, backgroundColor:'#F8F8FF', borderRadius:10, marginBottom:30}}>
+        <CCol xs={12} style={{margin: 'auto', paddingLeft:80, paddingRight:35}}>         
+        <SearchBlock style={{paddingLeft:50, backgroundColor:'#F8F8FF', borderRadius:20, marginBottom:30}}>
             <header>
                 <br />
                 <div className='logo'>
@@ -244,8 +235,8 @@ function Search() {
                 <br />
             </header>
             <div className="tabs" style={{width:800}}>
-            {tabContArr.map((section, index)=>{
-                return section.tabTitle
+            {tabContArr.map((list)=>{
+                return list.tabTitle
             })}
           </div>                     
             &nbsp;<hr />&nbsp;
