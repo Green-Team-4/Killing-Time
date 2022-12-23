@@ -13,7 +13,7 @@ const DramaDetailList = ({id}) => {
             const baseUrl = "https://api.themoviedb.org/3/tv";
             const url = `${baseUrl}/${id}?api_key=${apiKey}&language=${language}`;
             const response = await axios.get(url)
-            console.log(response.data);
+            //console.log(response.data);
             setResult(response.data);
         }
         loadDramaDetail();

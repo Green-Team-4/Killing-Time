@@ -65,7 +65,7 @@ const DramaDetailItem = ({ result, genres1, creators }) => {
                             
                             </CRow>
                         </CContainer>
-                        <iframe title="[넷플릭스] 웬즈데이 | 공식 예고편" width="850" height="478" text-items="center" justify-content='center' src="https://play-tv.kakao.com/embed/player/cliplink/432661557?service=player_share" allowfullscreen frameborder="0" scrolling="no" allow="autoplay; fullscreen; encrypted-media"></iframe>                     </CCardBody>
+                    </CCardBody>
                 </CCard>
              </CCol>
         </CRow>

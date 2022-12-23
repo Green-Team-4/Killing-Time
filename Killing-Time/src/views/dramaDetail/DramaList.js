@@ -19,7 +19,7 @@ const DramaList = (props) => {
             const language = 'ko-KR';
             const apiKey = "da88cf78c356139f9420b764c0d77208";
             const baseUrl = 'https://api.themoviedb.org/3/tv';
-            const url = `${ baseUrl }/popular?api_key=${ apiKey }&language=${ language }&page=${ page }`;
+            const url = `${ baseUrl }/top_rated?api_key=${ apiKey }&language=${ language }&page=${ page }`;
             //https://api.themoviedb.org/3/tv/popular?api_key=<<api_key>>&language=en-US&page=1
             const response = await axios.get(url)
             setResults(response.data.results);

@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom";
 import DramaDetailList from "./DramaDetailList";
 import DramaMainCast from "./DramaMainCast";
+import DramaMainMedia from "./DramaMainMedia";
 import DramaMainRecommend from "./DramaMainRecommend";
 
 const DramaDetails = (props) => {
@@ -13,8 +14,10 @@ const DramaDetails = (props) => {
 
             <DramaMainCast id={id} />
             
+            <DramaMainMedia id={id} />
+
             <DramaMainRecommend id={id} />
-           
+
         </>
         
         
