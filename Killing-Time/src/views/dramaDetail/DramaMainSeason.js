@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { CButton, CCard, CCardBody, CCol, CTooltip, CCardHeader  } from "@coreui/react";
 import DramaMainSeasonItem from "./DramaMainSeasonItem";
+import { object } from "prop-types";
 
 const DramaMainCastBlock = styled.div`
    overflow: auto;
@@ -26,7 +27,6 @@ const DramaMainCastBlock = styled.div`
 const DramaMainSeason = ({ id }) => {
   const [season, setSeason] = useState(null);
 
-  // useEffect : mount(초기화), update(상태변화) 이벤트 처리기 등록
   useEffect(() => {
     const loadMainSeason = async (e) => {
       const language = "ko-KR";
@@ -35,14 +35,14 @@ const DramaMainSeason = ({ id }) => {
       const url = `${baseUrl}/${id}?api_key=${apiKey}&language=${language}`;
       
       const response = await axios.get(url);
-      setSeason(response.data.season);
-      console.log(response.data);
+      setSeason(response.data);
+      console.log(response.data.seasons);
     };
     loadMainSeason();
   }, [id]);
 
   if (!season) {
-    return "season=null";
+    return "null null ";
   }
 
   return (
