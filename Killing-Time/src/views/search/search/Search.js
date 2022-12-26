@@ -63,7 +63,7 @@ function Search() {
         setSearch(e.target.value)
         setMovieTitle(`"${search}" 영화 검색 결과`);
         setTvTitle(`"${search}" TV 프로그램 검색 결과`);
-        setActor(`"${search}" 배우 검색 결과`);
+        setActor(`"${search}" 인물 검색 결과`);
     }
 
     useEffect (() =>{
@@ -75,7 +75,7 @@ function Search() {
 
             setMovieTitle(`"${search}" 영화 검색 결과`);
             setTvTitle(`"${search}" TV 프로그램 검색 결과`);
-            setActor(`"${search}" 배우 검색 결과`);
+            setActor(`"${search}" 인물 검색 결과`);
         }
     },[search]);
 
@@ -87,8 +87,8 @@ function Search() {
             getContents(URL6 + search,'actor'); 
 
             setMovieTitle("인기 영화 TOP 20");
-            setTvTitle("인기 TV TOP 20");
-            setActor("인기 배우 TOP 20");
+            setTvTitle("인기 TV 프로그램 TOP 20");
+            setActor("인기 인물 TOP 20");
         }
     },[search]);
     
