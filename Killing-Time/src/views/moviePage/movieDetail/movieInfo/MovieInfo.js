@@ -48,8 +48,18 @@ const MovieInfo = ({ id }) => {
       const kofic_listUrl = `${kofic_baseUrl}/movie/searchMovieList.json?key=${koficApiKey}&movieNm=${title}&openStartDt=${release_year[0]}`
       // http://kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json?key=90a160cca5ef62691042e238a946dd8e&movieNm=블랙아담&openStartDt=2022
       const resp_searchByTitle = await axios.get(kofic_listUrl);
-      if (resp_searchByTitle.data.movieListResult.movieList[0] !== undefined) {
-        const movieCd = resp_searchByTitle.data.movieListResult.movieList[0].movieCd;
+      let list = resp_searchByTitle.data.movieListResult.movieList;
+      
+      if ( list[0] !== undefined) {
+        for (var i = 0; i < list.length; i++) {
+          if (list[i].movieNmEn !== "Package Screening") {
+            list = resp_searchByTitle.data.movieListResult.movieList[i]
+            break;
+          }
+        }
+      }
+      if (list !== undefined && list.length !== 0) {
+        const movieCd = list.movieCd;
         const kofic_infoUrl = `${kofic_baseUrl}/movie/searchMovieInfo.json?key=${koficApiKey}&movieCd=${movieCd}`
         // http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json?key=90a160cca5ef62691042e238a946dd8e&movieCd=20226886
         const resp_searchByCode = await axios.get(kofic_infoUrl);
@@ -61,7 +71,7 @@ const MovieInfo = ({ id }) => {
       setAllData(data);
     };
     loadMoiveDetail();
-  }, []);
+  }, [id]);
 
   if (!allData) {
     return;

@@ -31,7 +31,7 @@ const MovieList = (props) => {
     <>
       <CCol xs={10} style={{margin: "auto"}}>
       <CCard className="mb-4">
-        <CCardBody style={{margin: "auto", textAlign: "center"}}>
+        <CCardBody style={{margin: "auto", marginTop: 20, textAlign: "center"}}>
       {results.map((result) => {
         return <MovieListItem key={result.id} result={result} />
       })}

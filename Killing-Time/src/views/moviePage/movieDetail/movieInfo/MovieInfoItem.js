@@ -70,6 +70,8 @@ const MovieInfoItem = ({ result, otherResult, provider, dailyBoxOfficeList, movi
         return "https://www.netflix.com/";
       case 96:
         return `https://serieson.naver.com/v2/search?query=${title}`;
+      case 97:
+        return `https://watcha.com/`;
       case 119:
         return "https://www.primevideo.com/";
       case 356:

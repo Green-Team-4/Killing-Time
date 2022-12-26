@@ -20,7 +20,7 @@ const MovieCreditListCast = ({ result }) => {
         <CCardBody>
       <div>
         <div style={{display: "inline-block"}}>
-        <Link to="/personDetail" state={{ id: id }}>
+        <Link to="/personList/personDetail" state={{ id: id }}>
         {profile_path !== null ? (
               <img src={img_url} alt={name} title={id} style={{ borderRadius: 10 }} />
             ) : (
