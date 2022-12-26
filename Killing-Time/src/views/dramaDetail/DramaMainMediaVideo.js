@@ -9,21 +9,22 @@ const DramaMediaBlock = styled.div`
   display: inline-block;
   margin-bottom: 10px;
   margin-left: 0px;
-  margin-right: 5px;
+  margin-right: 0px;
   padding: 0;
   border-radius: 20;
 `;
 
 const DramaMainMediaVideo = (props) => {
   const {result} = props;
-  const [visibleXL, setVisibleXL] = useState(false)
+  const [visibleXL, setVisibleXL] = useState(false);
+  
   const video_url = `https://www.youtube.com/watch?v=${result.key}`;
   const img_url = `https://img.youtube.com/vi/${result.key}/0.jpg`
   return (
     <> 
       <DramaMediaBlock>
         <RiYoutubeFill style={{position: "relative", display:"inline-block", left:"42%",}} onClick={() => setVisibleXL(!visibleXL)}  size={70} color='red'/>
-        <img onClick={() => setVisibleXL(!visibleXL)} style={{width:400, height:250, display:"inline-block", marginLeft:'-65px'}} src={img_url} />
+        <img onClick={() => setVisibleXL(!visibleXL)} style={{width:400, height:250, display:"inline-block", marginLeft:'-65px'}} alt={""}  src={img_url} />
       </DramaMediaBlock>
       <CModal size="xl" alignment="center" visible={visibleXL} onClose={() => setVisibleXL(false)}>
         <CModalBody>

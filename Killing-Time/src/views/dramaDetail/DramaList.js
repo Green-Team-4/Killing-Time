@@ -13,14 +13,12 @@ const DramaList = (props) => {
     const [page, setPage] = useState(null);
     const [total_pages, setTotal_pages] = useState(null);
 
-    // useEffect : mount(초기화), update(상태변화) 이벤트 처리기 등록
     useEffect( () => {
         const loadDramaList = async (e) => {
             const language = 'ko-KR';
             const apiKey = "da88cf78c356139f9420b764c0d77208";
             const baseUrl = 'https://api.themoviedb.org/3/tv';
             const url = `${ baseUrl }/top_rated?api_key=${ apiKey }&language=${ language }&page=${ page }`;
-            //https://api.themoviedb.org/3/tv/popular?api_key=<<api_key>>&language=en-US&page=1
             const response = await axios.get(url)
             setResults(response.data.results);
             setPage(response.data.page);
