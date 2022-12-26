@@ -1,4 +1,4 @@
-import { CCard, CCardBody, CCarousel, CCarouselItem, CCol, CRow } from "@coreui/react";
+import { CCard, CCardBody, CCardHeader, CCarousel, CCarouselItem, CCol, CRow } from "@coreui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import MovieTrailerItem from "./MovieTrailerItem";
@@ -18,7 +18,8 @@ const MovieTrailer = ({ id }) => {
         url = `${baseUrl}/${id}/videos?api_key=${apiKey}`;
         response = await axios.get(url);
       }
-      setResults(response.data.results);
+      const result = response.data.results.slice(0).reverse().map(num => num);
+      setResults(result);
     };
     loadMoiveTrailer();
   }, [id]);
@@ -29,11 +30,16 @@ const MovieTrailer = ({ id }) => {
 
   return (
     <>
+      {
+        results.length >= 1 ?
+      
       <CRow>
         <CCol xs={10} style={{ margin: "auto" }}>
           <CCard className="mb-4">
+            <CCardHeader>
+            <span style={{ fontSize: 18, fontWeight: "bold", color: "#696969", paddingLeft: 10 }}>동영상</span>
+            </CCardHeader>
             <CCardBody style={{ paddingLeft: 40, paddingRight: 40, marginTop: 20, marginBottom: 20, textAlign: "center" }}>
-              <h2 style={{ textAlign: "left" }}>동영상</h2><br />
               { 
                 results.length === 1 ? <MovieTrailerItem key={results[0].id} result={results[0]} /> :
                 <CCarousel controls indicators style={{ backgroundColor: "black"}}>
@@ -52,6 +58,8 @@ const MovieTrailer = ({ id }) => {
           </CCard>
         </CCol>
       </CRow>
+      : ""
+      }
     </>
   );
 };

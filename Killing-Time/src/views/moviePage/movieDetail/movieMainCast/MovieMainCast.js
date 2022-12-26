@@ -1,4 +1,4 @@
-import { CButton, CCard, CCardBody, CCol } from "@coreui/react";
+import { CButton, CCard, CCardBody, CCardHeader, CCol } from "@coreui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -33,6 +33,7 @@ const MovieMainCast = ({ id }) => {
       const url = `${baseUrl}/${id}/credits?api_key=${apiKey}&language=${language}`;
       // https://api.themoviedb.org/3/movie/436270/credits?api_key=403cc00da7a7725917c9acd69484bde6&language=ko-KR
       const response = await axios.get(url);
+      console.log(response.data.cast)
       setCast(response.data.cast);
     };
     loadMainCast();
@@ -43,11 +44,15 @@ const MovieMainCast = ({ id }) => {
   }
 
   return (
-    
+    <>
+      {
+        cast.length !== 0 ?
     <CCol xs={10} style={{margin: "auto"}}>
       <CCard className="mb-4">
+        <CCardHeader>
+        <span style={{ fontSize: 18, fontWeight: "bold", color: "#696969", paddingLeft: 10 }}>주요 출연진</span>
+        </CCardHeader>
         <CCardBody>
-    <h2>주요 출연진</h2>
     <MovieMainCastBlock style={{marginLeft: 20, marginRight: 20}}>
       <table>
         <tbody>
@@ -80,8 +85,9 @@ const MovieMainCast = ({ id }) => {
     </MovieMainCastBlock>
     </CCardBody>
     </CCard>
-    </CCol>
-    
+    </CCol> : ""
+      }
+    </>
   );
 };
 
