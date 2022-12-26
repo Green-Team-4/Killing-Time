@@ -33,9 +33,9 @@ const Drama = ({id, name, poster_path, first_air_date, vote_average}) => {
                         회원 점수 :
                         &nbsp;
                         {
-                              rate > 70 ? <strong style={{ color: "#369F36" }}>● {rate}%</strong> :
-                              rate > 50 ? <strong style={{ color: "#DAA520" }}>● {rate}%</strong> :
-                              rate > 20 ? <strong style={{ color: "#FF8200" }}>● {rate}%</strong> :
+                              rate >= 70 ? <strong style={{ color: "#369F36" }}>● {rate}%</strong> :
+                              rate >= 50 ? <strong style={{ color: "#DAA520" }}>● {rate}%</strong> :
+                              rate >= 20 ? <strong style={{ color: "#E56D29" }}>● {rate}%</strong> :
                               <strong style={{ color: "#EB0000" }}>● {rate}%</strong>
                             }
                         </span>
