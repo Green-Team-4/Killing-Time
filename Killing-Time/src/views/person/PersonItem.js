@@ -43,7 +43,7 @@ const PersonItemBlock = styled.div`
     }
 `;
 
-const PersonItem = ({ result, page }) => {
+const PersonItem = ({ result, page, history }) => {
 
     const { id, profile_path, name, } = result;
     const img_url =`https://www.themoviedb.org/t/p/w235_and_h235_face${ profile_path }`;
@@ -83,7 +83,7 @@ const PersonItem = ({ result, page }) => {
                     }
                 </Link><br/>
                 <h5>
-                    <Link to="/personList/personDetail" state={{ id: id, page: `${page}` }}>
+                    <Link to="/personList/personDetail" state={{ id: id, page: `${page}`, history:`${history}` }}>
                         { name.slice(0, 20)}
                     {
                         nameLength < 20
