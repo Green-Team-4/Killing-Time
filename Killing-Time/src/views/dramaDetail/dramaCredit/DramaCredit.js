@@ -11,7 +11,6 @@ const DramaCredit = (props) => {
       <DramaCreditList id={id} />
     </>
   );
-
 };
 
 export default DramaCredit;

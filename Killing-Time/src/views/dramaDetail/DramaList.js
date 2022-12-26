@@ -10,7 +10,7 @@ import { CCol } from '@coreui/react';
 const DramaList = (props) => {
 
     const [results, setResults] = useState(null);
-    const [page, setPage] = useState(1);
+    const [page, setPage] = useState(null);
     const [total_pages, setTotal_pages] = useState(null);
 
     // useEffect : mount(초기화), update(상태변화) 이벤트 처리기 등록

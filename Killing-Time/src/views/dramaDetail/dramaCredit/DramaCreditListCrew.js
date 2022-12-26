@@ -21,14 +21,13 @@ const DramaCreditListCrew = ({ result }) => {
                   {profile_path !== null ? (
                     <CImage align="start" rounded src={img_url} alt={name} title={id} />
                   ) : (
-                    <CImage align="start" rounded src={"https://via.placeholder.com/138x175"} />
+                    <CImage align="start" rounded src={"https://via.placeholder.com/138x175?text=No Image"} alt={name} title={id}/>
                   )}
                 </Link>
                 <div style={{ marginLeft:160 }}>
                   <Link to="/personList/personDetail" state={{ id: id }} style={{textDecoration: "none", color: "black"}}>
                     <h5>{name}</h5>
                   </Link>
-                 
                   <span>{known_for_department}</span><br />
                   {gender === 1 ? ( <span>Female11</span> ) : ( <span>Male</span> ) }<br />
                 </div>

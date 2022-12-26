@@ -7,7 +7,7 @@ const DramaRecommendItemBlock = styled.div`
   display: inline-block;
   margin: 0px;
   margin-left: 0;
-  margin-right: 10px;
+  margin-right: 5px;
   padding: 0;
 `;
 
@@ -20,25 +20,25 @@ const DramaMainRecommendItem = ({ result }) => {
       <CCard className='mb-2 border-gray'>
       <Link to="/dramaMain/dramaDetails" state={{ id: id }}>
             {backdrop_path !== null ? (
-              <CCardImage src={img_url} alt={name} title={id} />
+              <CCardImage orientation="top" src={img_url} alt={name} title={id} />
             ) : (
               <CCardImage src="https://via.placeholder.com/250xh141" alt={name} title={id} />
             )}
           </Link>
-      <CWidgetStatsC
-        className="mb-0"
-        progress={{ color: 'warning', value: vote_average * 10 }}
-        
+          {}
+      <CWidgetStatsC 
+        className="border-white"
+        progress={{color: 'warning', value: vote_average * 10 }}
         title={<Link
           to="/dramaMain/dramaDetails"
           state={{ id: id }}
           style={{ textDecoration: "none", color: "black" }}
         >
-          <strong>{name}</strong>
+          <div style={{ marginTop:'-9px', marginBottom:'-10px', width: 170, overflow: "hidden", textOverflow: "ellipsis"}}><strong>{name}</strong></div>
         </Link>}
         value= {<NumericFormat value={vote_average * 10} decimalScale={1} 
         displayType={'text'}      
-        renderText={(value) => <div>
+        renderText={(value) => <div style={{ marginLeft:'200px', position:"absolute", top:'-5%', right:'5%'}}>
           { 
             vote_average * 10 >= 80 ? <span style={{ fontSize: 16, color:'#FF6347' }}>{value}%</span> :
             vote_average * 10 >= 60 ? <span style={{ fontSize: 16, color:'orange' }}>{value}%</span> :

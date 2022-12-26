@@ -8,7 +8,7 @@ import DramaMainCastItem from "./DramaMainCastItem";
 
 const DramaMainCastBlock = styled.div`
    overflow: auto;
-  white-space: nowrap;
+   white-space: nowrap;
   ::-webkit-scrollbar {
     height: 12px;
   }
@@ -22,7 +22,6 @@ const DramaMainCastBlock = styled.div`
     background: #FFE4E1;
   }
 `;
-
 
 const DramaMainCast = ({ id }) => {
   const [cast, setCast] = useState(null);
@@ -49,23 +48,23 @@ const DramaMainCast = ({ id }) => {
     <CCol xs={10} style={{margin: "auto"}}>
       <CCard className='mb-3 border-gray' textColor='dark' style={{margin:7}}>
         <CCardHeader>
-          <div style={{display: 'inline-block', width:'140px', height:'25px', marginLeft: 0}}>
-            <h4>주요 출연진</h4>
+          <div style={{display: 'inline-block', width:'140px', height:'0px', fontSize:18, fontWeight:"bold", color:"#696969"}}>
+            주요 출연진({cast.length})
           </div>
           <div style={{display: 'inline-block', verticalAlign: 'SUPER'}}>
             <Link to="/dramaMain/dramaCredit" state={{ id: id }}>
                       {/* moviePage/movieCredit */}
             <CTooltip
               content="더 많은 출연진을 원하시면 클릭하세요."
-              placement="top"
+              placement="right"
             >
-              <CButton size="sm" color="secondary">More</CButton>
+              <CButton size="sm" color='warning' style={{ marginTop:'0px'}}>More</CButton>
             </CTooltip>
             </Link>
           </div>
         </CCardHeader>
           <CCardBody>
-          <DramaMainCastBlock style={{}}>
+          <DramaMainCastBlock>
             {cast.map((result) => {
               if (result.order < 10) {
                 return <DramaMainCastItem key={result.id} result={result} />;

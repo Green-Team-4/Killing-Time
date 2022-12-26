@@ -91,9 +91,7 @@ function Pagination({ total, page, setPage }) {
                 <CPaginationItem onClick={() => setPage(page + 1)} disabled={page === total}>
                     <span style={{color:"#3399ff"}} >Next</span>
                 </CPaginationItem>
-                
-                <div style={{width:30}}></div>
-
+                    <div style={{width:30}}></div>
                 <CForm>
                     <CCol>
                         <CInputGroup style={{width:170}}>
@@ -103,15 +101,8 @@ function Pagination({ total, page, setPage }) {
                     </CCol>
                  </CForm>
             </CPagination>
-
-            
         </>
     );
 }
-
-
-
-
-
 
 export default Pagination;

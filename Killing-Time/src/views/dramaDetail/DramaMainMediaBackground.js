@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { CCard, CCardImage  } from '@coreui/react';
 
-
 const DramaMediaItemBlock = styled.div`
   display: inline-block;
   margin-bottom: 10px;
@@ -10,17 +9,15 @@ const DramaMediaItemBlock = styled.div`
   padding: 0;
 `;
 
-const DramaMainMediaBackground = ({ backDrop }) => {
-  
-  const img_url = `https://www.themoviedb.org/t/p/w130_and_h195_bestv2${backDrop}`;
+const DramaMainMediaBackground = ({ result }) => {
+  const { id, name, poster_path } = result;
+
+   	//https://www.themoviedb.org/t/p/w533_and_h300_bestv2/nTvM4mhqNlHIvUkI1gVnW6XP7GG.jpg
+  const img_url = `https://www.themoviedb.org/t/p/w500_and_h282_face${poster_path}`;
   return (
     <DramaMediaItemBlock>
       <CCard className='mb-0 border-gray' textColor='dark'>
-            {backDrop !== null ? (
-              <CCardImage src={img_url}  style={{ }} />
-            ) : (
-              <CCardImage src="https://via.placeholder.com/130x195" />
-            )}
+        <CCardImage src={img_url}  style={{ width:140}} />
       </CCard>
     </DramaMediaItemBlock> 
   );

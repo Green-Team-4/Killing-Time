@@ -7,7 +7,6 @@ const DramaDetailItem = ({ result, genres1, creators }) => {
     const { id, poster_path, name,first_air_date, original_name, overview, number_of_episodes, number_of_seasons, origin_country} = result;
     const genres = genres1 + "";
     const creator = creators + "";
-    
   
     return (
         <CRow>
@@ -57,20 +56,17 @@ const DramaDetailItem = ({ result, genres1, creators }) => {
                                 <div className="p-1"><h6>{creator}</h6></div>
                                 </CCol>
                                 <CCol xs={{ span: 12 }}>
-                                <div className="p-0"><h3>개요</h3></div>
+                                <div className="p-0" ><h3>개요</h3></div>
                                 </CCol>
                                 <CCol xs={{ span: 12 }}>
-                                <div className="p-0 ">{overview}</div>
+                                <div className="p-0 " style={{ height: 100, overflow: "hidden", textOverflow: "ellipsis"}}>{overview}</div>
                                 </CCol>
-                            
                             </CRow>
                         </CContainer>
                     </CCardBody>
                 </CCard>
              </CCol>
         </CRow>
-
-        
     );
 };
 
