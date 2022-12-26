@@ -15,7 +15,6 @@ const PersonList = (props) => {
     const [searchKeyword, setSearchKeyword] = useState(null);
     const [searchResults, setSearchResult] = useState(null);
     const [pageType, setPageType] = useState(null);
-
     const [page, setPage] = useState(1);
     const [total_pages, setTotal_pages] = useState(null);
 
@@ -86,7 +85,7 @@ const PersonList = (props) => {
                         <br/>
                         {
                             results.map( (result) => {
-                                return (<PersonItem key={ result.id } result={ result } />);
+                                return (<PersonItem key={ result.id } result={ result } page={page} history={props.history}/>);
                             })
                         }
                         <Pagination

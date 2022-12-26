@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CCard, CCardImage, CCardTitle, CCardText, CCardBody, CCardHeader } from '@coreui/react';
+import {IoMdFemale} from 'react-icons/io'
+import {IoMdMale} from 'react-icons/io'
 
  const IMG_API = "https://www.themoviedb.org/t/p/w300";
 
 
 //가져올 목록
-const People = ({id, name, profile_path, popularity, gender }) => (
+const People = ({id, name, profile_path, popularity, gender }) => {
+
+    return (
     <CCard className='mb-3 border-dark' textColor='dark' style={{borderRadius:10, borderWidth:1, margin:7, width:202}}>
                 <Link to="/personList/personDetail" state={{ id: id }}>  
                         <CCardImage style={{width:200, height: 270, textAlign:'center', borderRadius:10, borderBottomLeftRadius:0, borderBottomRightRadius:0}}
@@ -27,15 +31,14 @@ const People = ({id, name, profile_path, popularity, gender }) => (
                     <CCardBody style={{display:'inline-block', backgroundColor:'#F5FFFA'}}>
                         <span style={{fontWeight:'bold', fontSize:15}}> 
                         회원 선호도 :  {popularity}
-                        <br />
                         {
                                 `${gender}` === "2"
                                 ?
-                                <p>성별 : 남성</p>
+                                <p>성별 : <IoMdMale style={{color:'blue'}} size={20}/> (남)</p>
                                 : (
                                     `${gender}` === "1"
                                     ?
-                                    <p>성별 : 여성</p>
+                                    <p>성별 : <IoMdFemale style={{color:'red'}} size={20}/> (여)</p>
                                     : 
                                     <p>-</p>
                                 )
@@ -44,6 +47,7 @@ const People = ({id, name, profile_path, popularity, gender }) => (
                     </CCardBody>
                     <br />
     </CCard>
-);
+    )
+};
 
 export default People;

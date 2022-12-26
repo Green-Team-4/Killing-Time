@@ -48,12 +48,14 @@ const MovieInfo = ({ id }) => {
       const kofic_listUrl = `${kofic_baseUrl}/movie/searchMovieList.json?key=${koficApiKey}&movieNm=${title}&openStartDt=${release_year[0]}`
       // http://kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json?key=90a160cca5ef62691042e238a946dd8e&movieNm=블랙아담&openStartDt=2022
       const resp_searchByTitle = await axios.get(kofic_listUrl);
-      const movieCd = resp_searchByTitle.data.movieListResult.movieList[0].movieCd;
-      const kofic_infoUrl = `${kofic_baseUrl}/movie/searchMovieInfo.json?key=${koficApiKey}&movieCd=${movieCd}`
-      // http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json?key=90a160cca5ef62691042e238a946dd8e&movieCd=20226886
-      const resp_searchByCode = await axios.get(kofic_infoUrl);
+      if (resp_searchByTitle.data.movieListResult.movieList[0] !== undefined) {
+        const movieCd = resp_searchByTitle.data.movieListResult.movieList[0].movieCd;
+        const kofic_infoUrl = `${kofic_baseUrl}/movie/searchMovieInfo.json?key=${koficApiKey}&movieCd=${movieCd}`
+        // http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json?key=90a160cca5ef62691042e238a946dd8e&movieCd=20226886
+        const resp_searchByCode = await axios.get(kofic_infoUrl);
+        data.movieInfo = resp_searchByCode.data.movieInfoResult.movieInfo;
+      }
       
-      data.movieInfo = resp_searchByCode.data.movieInfoResult.movieInfo;
       data.provider = resp_provider.data.results.KR;
       data.dailyBoxOfficeList = resp_boxoffice.data.boxOfficeResult.dailyBoxOfficeList;
       setAllData(data);

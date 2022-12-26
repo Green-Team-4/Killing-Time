@@ -23,7 +23,7 @@ const MovieInfoItem = ({ result, otherResult, provider, dailyBoxOfficeList, movi
     var { name } = production_countries[0];
   }
   
-  const production_country = name;
+  let production_country = name;
   var genre_names = "";
   for (var i = 0; i < genres.length; i++) {
     if (i !== 0) genre_names = genre_names + "/";
@@ -105,6 +105,15 @@ const MovieInfoItem = ({ result, otherResult, provider, dailyBoxOfficeList, movi
     }
   }
 
+  // [boxOffice.audiAcc].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+  var audits = null;
+  var nations = null;
+  if (movieInfo !== undefined) {
+    var { audits } = movieInfo;
+    var {nations} = movieInfo;
+    production_country = nations[0].nationNm;
+  }
 
   const MovieInfoItemBlock = styled.div`
     table {
@@ -205,10 +214,18 @@ const MovieInfoItem = ({ result, otherResult, provider, dailyBoxOfficeList, movi
                             <span>장르</span>
                           </td>
                           <td>{genre_names}</td>
+                          
                           <td style={{ paddingLeft: 40 }}>
-                            <span>누적관객</span>
+                          {
+                            boxOffice !== null ? <span>누적관객</span> : ""
+                          }
+                            
                           </td>
-                          {/* <td>{boxOffice.audiAcc}명</td> */}
+                          <td>
+                            {
+                              boxOffice !== null ? <div>{[boxOffice.audiAcc].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}명</div> : ""
+                            }
+                          </td>
                         </tr>
                         <tr>
                           <td>
@@ -216,9 +233,15 @@ const MovieInfoItem = ({ result, otherResult, provider, dailyBoxOfficeList, movi
                           </td>
                           <td>{production_country}</td>
                           <td style={{ paddingLeft: 40 }}>
-                            <span>등급</span>
+                            {
+                              audits !== null ? <span>등급</span> : ""
+                            }
                           </td>
-                          <td></td>
+                          <td>
+                            {
+                              audits !== null ? <div>{audits[0].watchGradeNm}</div> : ""
+                            }
+                          </td>
                         </tr>
                         <tr>
                           <td>
