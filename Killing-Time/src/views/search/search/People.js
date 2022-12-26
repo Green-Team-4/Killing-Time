@@ -40,7 +40,7 @@ const People = ({id, name, profile_path, popularity, gender }) => {
                                     ?
                                     <p>성별 : <IoMdFemale style={{color:'red'}} size={20}/> (여)</p>
                                     : 
-                                    <p>-</p>
+                                    <p>성별 : 정보 없음</p>
                                 )
                             }
                         </span>
