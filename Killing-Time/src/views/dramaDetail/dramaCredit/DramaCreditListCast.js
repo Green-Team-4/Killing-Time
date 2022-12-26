@@ -17,11 +17,11 @@ const DramaCreditListCast = ({ result }) => {
           <CCardBody>
             <div>
               <div>
-                <Link to="/personDetail" state={{ id: id }}>
+                <Link to="/personList/personDetail" state={{ id: id }}>
                   {profile_path !== null ? (
                     <CImage align="start" rounded src={img_url} alt={name} title={id} />
                   ) : (
-                    <CImage align="start" rounded src={"https://via.placeholder.com/138x175"} />
+                    <CImage align="start" rounded src={"https://via.placeholder.com/138x175?text=No Image"} alt={name} title={id} />
                   )}
                 </Link>
                 <div style={{ marginLeft:160 }}>
@@ -31,7 +31,6 @@ const DramaCreditListCast = ({ result }) => {
                   <span>{character}</span><br />
                   {gender === 1 ? ( <span>Female</span> ) : ( <span>Male</span> ) }<br />
                   <span>{known_for_department}</span><br />
-                  
                 </div>
                 <br />
               </div>
