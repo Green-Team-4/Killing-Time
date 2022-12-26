@@ -3,6 +3,7 @@ import DramaDetailList from "./DramaDetailList";
 import DramaMainCast from "./DramaMainCast";
 import DramaMainMedia from "./DramaMainMedia";
 import DramaMainRecommend from "./DramaMainRecommend";
+import DramaMainSeason from "./DramaMainSeason";
 
 const DramaDetails = (props) => {
     const location = useLocation();
@@ -17,6 +18,9 @@ const DramaDetails = (props) => {
             <DramaMainMedia id={id} />
 
             <DramaMainRecommend id={id} />
+
+            <DramaMainSeason id={id} />
+
 
         </>
         
