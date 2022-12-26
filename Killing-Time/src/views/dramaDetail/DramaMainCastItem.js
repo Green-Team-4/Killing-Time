@@ -7,7 +7,7 @@ const DramaItemBlock = styled.div`
   display: inline-block;
   margin-bottom: 10px;
   margin-left: 0;
-  margin-right: 10px;
+  margin-right: 5px;
   padding: 0;
 `;
 
@@ -20,13 +20,13 @@ const DramaMainCastItem = ({ result }) => {
       <CCard className='mb-0 border-gray' textColor='dark'>
           <Link to="/personList/personDetail" state={{ id: id }}>
             {profile_path !== null ? (
-              <CCardImage src={img_url} alt={name} title={id} style={{ width: 140 }} />
+              <CCardImage orientation="top" src={img_url} alt={name} title={id} style={{ width: 140 }} />
             ) : (
-              <CCardImage src="https://via.placeholder.com/220xh330" alt={name} title={id} style={{ width: 140 }} />
+              <CCardImage orientation="top" src="https://via.placeholder.com/220xh330" alt={name} title={id} style={{ width: 140 }} />
             )}
           </Link>
         <CCardBody
-          style={{ width: 140, overflow: "hidden", textOverflow: "ellipsis" }}
+          style={{ width: 140, overflow: "hidden", textOverflow: "ellipsis", marginTop:"-10px", marginBottom:"-10px" }}
         >
           <Link
             to="/personList/personDetail"

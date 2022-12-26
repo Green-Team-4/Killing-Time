@@ -1,7 +1,6 @@
 
 import axios from "axios";
 import { useEffect, useState } from "react";
-
 import styled from "styled-components";
 import { CCard, CCardBody, CCol, CCardHeader  } from "@coreui/react";
 import DramaMainRecommendItem from "./DramaMainRecommendItem";
@@ -50,9 +49,9 @@ const DramaMainRecommend = ({ id }) => {
   if (recommend)return (
     <CCol xs={10} style={{margin: "auto"}}>
       <CCard className='mb-3 border-gray' textColor='dark' style={{margin:7}}>
-        <CCardHeader>
-          <div style={{display: 'inline-block', marginLeft: 0, height:'25px'}}>
-            <h4>추천 드라마</h4>
+        <CCardHeader >
+          <div style={{ height:'25px', fontSize:18, fontWeight:"bold", color:"#696969"}}>
+            <span>추천 드라마({recommend.results.length})</span>
           </div>
         </CCardHeader>
           <CCardBody style={{overflow: "hidden", textOverflow: "ellipsis"}}>

@@ -2,27 +2,26 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { CCard, CCardImage, CCardBody,  } from '@coreui/react';
 
-
 const DramaMediaItemBlock = styled.div`
   display: inline-block;
   margin-bottom: 10px;
   margin-left: 0;
-  margin-right: 10px;
+  margin-right: 5px;
   padding: 0;
 `;
 
-const DramaMainMediaItem = ({ result }) => {
-  const { id, name, profile_path, character } = result;
-  const img_url = `https://www.themoviedb.org/t/p/w220_and_h330_face${profile_path}`;
+const DramaMainMediaPoster = ({ result2 }) => {
+  const { id, name, poster_path } = result2;
+  const img_url = `https://www.themoviedb.org/t/p/w220_and_h330_face${poster_path}`;
 
   return (
     <DramaMediaItemBlock>
       <CCard className='mb-0 border-gray' textColor='dark'>
-          <Link to="/personList/personDetail" state={{ id: id }}>
-            {profile_path !== null ? (
-              <CCardImage src={img_url} alt={name} title={id} style={{ width: 140 }} />
+          <Link to="/dramaMain/dramaDetails" state={{ id: id }}>
+            {poster_path !== null ? (
+              <CCardImage src={img_url} alt={name} title={id} style={{ width: 200 }} />
             ) : (
-              <CCardImage src="https://via.placeholder.com/220xh330" alt={name} title={id} style={{ width: 140 }} />
+              <CCardImage src="https://via.placeholder.com/220xh330" alt={name} title={id} style={{ width: 200 }} />
             )}
           </Link>
         <CCardBody
@@ -36,11 +35,11 @@ const DramaMainMediaItem = ({ result }) => {
             <strong>{name}</strong>
           </Link>
           <br />
-          <span style={{ fontSize: 14 }}>{character}</span>
+          <span style={{ fontSize: 14 }}></span>
         </CCardBody>
       </CCard>
     </DramaMediaItemBlock> 
   );
 };
 
-export default DramaMainMediaItem;
+export default DramaMainMediaPoster;
