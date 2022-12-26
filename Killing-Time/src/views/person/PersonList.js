@@ -15,12 +15,21 @@ const PersonList = (props) => {
     const [searchKeyword, setSearchKeyword] = useState(null);
     const [searchResults, setSearchResult] = useState(null);
     const [pageType, setPageType] = useState(null);
-
     const [page, setPage] = useState(1);
     const [total_pages, setTotal_pages] = useState(null);
 
+    // useEffect( () => {
+    //     console.log('props.page: ', page)
+    //     if(props.page > 1 && props.page != null ) {
+    //         return(
+    //             setPage(props.page)
+    //         );
+    //     }
+    // }, [props.page] )
+
     // useEffect : mount(초기화), update(상태변화) 이벤트 처리기 등록
     useEffect( () => {
+
         if (searchKeyword === null | searchKeyword === "") {
             const loadPersonList = async (e) => {
                 const url = 
@@ -48,9 +57,9 @@ const PersonList = (props) => {
             searchPersonList();
         }
     }, [page, searchKeyword, language, apiKey] );
-    //console.log(results);
-    //console.log(page);
-    console.log('search keyword: ', searchKeyword);
+    // console.log(results);
+    // console.log(page);
+    // console.log('search keyword: ', searchKeyword);
 
     if (!results) {
         return;
@@ -86,7 +95,7 @@ const PersonList = (props) => {
                         <br/>
                         {
                             results.map( (result) => {
-                                return (<PersonItem key={ result.id } result={ result } />);
+                                return (<PersonItem key={ result.id } result={ result } page={page}/>);
                             })
                         }
                         <Pagination

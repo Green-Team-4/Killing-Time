@@ -31,11 +31,12 @@ const Movie = ({id, title, poster_path, release_date, vote_average }) => {
                         <span style={{fontWeight:'bold', fontSize:15}}> 
                         개봉일 :  {release_date}
                         <br />
-                        회원 점수 :  {vote_average}
-                        <br />
+                        회원 점수 :
+                        &nbsp;
                         {
-                              rate > 66 ? <strong style={{ color: "#369F36" }}>● {rate}%</strong> :
-                              rate > 33 ? <strong style={{ color: "#FFAF0A" }}>● {rate}%</strong> :
+                              rate >= 70 ? <strong style={{ color: "#369F36" }}>● {rate}%</strong> :
+                              rate >= 50 ? <strong style={{ color: "#DAA520" }}>● {rate}%</strong> :
+                              rate >= 20 ? <strong style={{ color: "#E56D29" }}>● {rate}%</strong> :
                               <strong style={{ color: "#EB0000" }}>● {rate}%</strong>
                             }
                         </span>

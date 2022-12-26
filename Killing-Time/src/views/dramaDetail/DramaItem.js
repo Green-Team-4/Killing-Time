@@ -10,7 +10,6 @@ const DramaItem = ({ result }) => {
   
     return (
         <>
-        
             <CCard className='mb-3 border-gray' textColor='dark' style={{margin:7}}>
                 <Link to="/dramaMain/dramaDetails" state={{ id:id }}>
                     <CCardImage orientation="top" style={{padding:0}} src={ img_url } alt="drama thumbnail" />
@@ -23,7 +22,6 @@ const DramaItem = ({ result }) => {
                     회원 점수 : { vote_average }
                 </CCardBody>
             </CCard>
-        
         </>
     );
 

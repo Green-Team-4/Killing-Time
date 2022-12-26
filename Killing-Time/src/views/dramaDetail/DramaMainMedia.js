@@ -27,59 +27,31 @@ const DramaMainMediaBlock = styled.div`
 `;
 
 const DramaMainMedia = ({ id }) => {
-  const [video, setVideo] = useState(null);
-  const [background, setBackground] = useState(null);
-  const [poster, setPoster] = useState(null);
+ 
+  const [allData, setAllData] = useState(null);
   const [activeKey, setActiveKey] = useState(1)
 
   useEffect(() => {
-    const loadMainMediaVideo = async (e) => {
+    const loadAllData = async (e) => {
       const language = "en-US";
       const apiKey = "da88cf78c356139f9420b764c0d77208";
       const baseUrl = "https://api.themoviedb.org/3/tv";
-      const url = `${baseUrl}/${id}/videos?api_key=${apiKey}&language=${language}`;
-                       //https://api.themoviedb.org/3/tv/119051/recommendations?api_key
-      const response = await axios.get(url);
+      const url1 = `${baseUrl}/${id}/videos?api_key=${apiKey}&language=${language}`;
+      const response1 = await axios.get(url1);
+      const url2 = `${baseUrl}/${id}/images?api_key=${apiKey}&language=${language},null`;
+      const response2 = await axios.get(url2);     
+
+      setAllData({ "video": response1.data, "background": response2.data })
       
-      setVideo(response.data);
-      //console.log(response.data.results);
     };
-    loadMainMediaVideo();
+    loadAllData();
 
   }, [id]);
 
-  useEffect(() => {
-    const loadMainMediaBackground = async (e) => {
-      const language = "en-US";
-      const apiKey = "da88cf78c356139f9420b764c0d77208";
-      const baseUrl = "https://api.themoviedb.org/3/tv";
-      const url = `${baseUrl}/${id}?api_key=${apiKey}&language=${language}`;
-      const response = await axios.get(url);
-        
-      setBackground(response.data);
-      console.log(response.data);
-    };
-    loadMainMediaBackground();
-  }, [id]);
-
-  useEffect(() => {
-    const loadMainMediaPoster = async (e) => {
-      const language = "en-US";
-      const apiKey = "da88cf78c356139f9420b764c0d77208";
-      const baseUrl = "https://api.themoviedb.org/3/tv";
-      const url = `${baseUrl}/${id}?api_key=${apiKey}&language=${language}`;
-      const response = await axios.get(url);
-      
-      setPoster(response.data);
-      //console.log(response.data.seasons);
-    };
-    loadMainMediaPoster();
-  }, [id]);
-
-  if (!video) {
-    return;
+  if (!allData) {
+    return "video=null";
   }
-  
+
   return (
   
   <CCol xs={10} style={{margin: "auto"}}>
@@ -90,21 +62,23 @@ const DramaMainMedia = ({ id }) => {
             <CNavLink style={{height:'42px'}}
               active={activeKey === 1}
               onClick={() => setActiveKey(1)}
-            > <span style={{fontSize:18, fontWeight:"bold", color:"#696969", }}>동영상({video.results.length})</span>
+            > <span style={{fontSize:18, fontWeight:"bold", color:"#696969", }}>동영상({allData.video.results.length})</span>
             </CNavLink>
           </CNavItem>
           <CNavItem>
             <CNavLink style={{height:'42px'}}
               active={activeKey === 2}
               onClick={() => setActiveKey(2)}
-            > <span style={{fontSize:18, fontWeight:"bold", color:"#696969"}} >배경</span>
+            >
+              <span style={{fontSize:18, fontWeight:"bold", color:"#696969"}} >배경({allData.background.backdrops.length})
+            </span>
             </CNavLink>
           </CNavItem>
           <CNavItem>
             <CNavLink style={{height:'42px'}}
               active={activeKey === 3}
               onClick={() => setActiveKey(3)}
-            > <span style={{fontSize:18, fontWeight:"bold", color:"#696969"}}>포스터({poster.seasons.length})</span>
+            > <span style={{fontSize:18, fontWeight:"bold", color:"#696969"}}>포스터({allData.background.posters.length})</span>
             </CNavLink>
           </CNavItem>
         </CNav>
@@ -115,35 +89,35 @@ const DramaMainMedia = ({ id }) => {
             <CCol xs={15}>
               <CCardBody>
                 <DramaMainMediaBlock style={{ marginTop:-15, marginBottom:-15}}>
-                {video.results.reverse().map((result) => {
+                {allData.video.results.reverse().map((result) => {
                       return (
-                        <DramaMainMediaVideo result={result} />
+                        <DramaMainMediaVideo key={result.id} result={result} />
                       );
                   })}
                 </DramaMainMediaBlock>
               </CCardBody>
             </CCol>
           </CTabPane>
-          {/* <CTabPane role="배경" aria-labelledby="" visible={activeKey === 2}>
+          <CTabPane role="배경" aria-labelledby="" visible={activeKey === 2}>
             <CCol xs={15}>
               <CCardBody>
-                <DramaMainMediaBlock>
-                {background.networks.map((result) => {
+                <DramaMainMediaBlock style={{ marginTop:-15, marginBottom:-15}}>
+                {allData.background.backdrops.map((result1) => {
                       return (
-                        <DramaMainMediaBackground result={result} />
+                        <DramaMainMediaBackground key={result1.id} result1={result1} />
                       );
                     })}
                 </DramaMainMediaBlock>
               </CCardBody>
             </CCol>
-          </CTabPane>  */}
+          </CTabPane> 
           <CTabPane role="포스터" aria-labelledby="" visible={activeKey === 3}>
             <CCol xs={15}>
               <CCardBody>
                 <DramaMainMediaBlock style={{marginTop:-15, marginBottom:-15}}>
-                {poster.seasons.map((result2) => {
+                {allData.background.posters.map((result2) => {
                       return (
-                        <DramaMainMediaPoster result2={result2} />
+                        <DramaMainMediaPoster key={result2.id} result2={result2} />
                       );
                     })}
                 </DramaMainMediaBlock>

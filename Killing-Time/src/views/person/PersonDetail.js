@@ -6,11 +6,8 @@ const PersonDetail = (props) => {
 
     const location = useLocation();
     const id = location.state.id;
-    const page = location.state.page;
-
-    
-    //console.log(id);
-    
+    // const page = location.state.page;
+    // console.log('page: ', page);
 
     return (
         <div>

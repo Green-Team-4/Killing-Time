@@ -15,17 +15,18 @@ const SearchBlock = styled.div`
 
 `;
 // const category = 'movie';
-// const language = 'ko';
 // const page = 1;
 // const query = 'black';
+const language = 'ko-KR';
+const comAPI = 'https://api.themoviedb.org';
 const apiKey = 'e937a96ff64a1a83e17dac4c4abc7d43';
 
-const URL1 = "https://api.themoviedb.org/3/discover/movie?&language=ko-KR&api_key=e937a96ff64a1a83e17dac4c4abc7d43&page=";
-const URL2 = "https://api.themoviedb.org/3/discover/tv?&language=ko-KR&api_key=e937a96ff64a1a83e17dac4c4abc7d43&page=";
+const URL1 = `${comAPI}/3/movie/popular?&language=${language}&api_key=${apiKey}`;
+const URL2 = `${comAPI}/3/tv/popular?&language=${language}&api_key=${apiKey}`;
 const URL3 = "https://api.themoviedb.org/3/search/movie?&api_key=e937a96ff64a1a83e17dac4c4abc7d43&language=ko-KR&page=&query=";
 const URL4 = "https://api.themoviedb.org/3/search/tv?&api_key=e937a96ff64a1a83e17dac4c4abc7d43&language=ko-KR&page=&query=";
-const URL5 = `https://api.themoviedb.org/3/search/person?&api_key=${apiKey}&language=ko-KR&page=&query=$`;
-const URL6 = `https://api.themoviedb.org/3/person/popular?api_key=${apiKey}`;
+const URL5 = `${comAPI}/3/search/person?&api_key=${apiKey}&language=${language}&page=&query=`;
+const URL6 = `${comAPI}/3/person/popular?&api_key=${apiKey}`;
 
 function Search() {
 
@@ -63,7 +64,7 @@ function Search() {
         setSearch(e.target.value)
         setMovieTitle(`"${search}" 영화 검색 결과`);
         setTvTitle(`"${search}" TV 프로그램 검색 결과`);
-        setActor(`"${search}" 배우 검색 결과`);
+        setActor(`"${search}" 인물 검색 결과`);
     }
 
     useEffect (() =>{
@@ -75,7 +76,7 @@ function Search() {
 
             setMovieTitle(`"${search}" 영화 검색 결과`);
             setTvTitle(`"${search}" TV 프로그램 검색 결과`);
-            setActor(`"${search}" 배우 검색 결과`);
+            setActor(`"${search}" 인물 검색 결과`);
         }
     },[search]);
 
@@ -87,8 +88,8 @@ function Search() {
             getContents(URL6 + search,'actor'); 
 
             setMovieTitle("인기 영화 TOP 20");
-            setTvTitle("인기 TV TOP 20");
-            setActor("인기 배우 TOP 20");
+            setTvTitle("인기 TV 프로그램 TOP 20");
+            setActor("인기 인물 TOP 20");
         }
     },[search]);
     
