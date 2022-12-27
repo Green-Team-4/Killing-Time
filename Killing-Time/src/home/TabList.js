@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import BoxOffice from './BoxOffice';
 import BoxOffice2 from './BoxOffice2';
 import BoxOfficeChart from './BoxOfficeChart';
+import BoxOfficeChart2 from './BoxOfficeChart2';
 import DramaChart from './DramaChart';
 import DramaChart2 from './DramaChart2';
 import MovieNews from './MovieNews';
@@ -81,7 +82,16 @@ const TabList = (props) => {
                 </CTooltip>
             ),
             tabCont:(
-                <div><BoxOfficeChart /></div>
+                <div>
+                    <CCarousel controls indicators dark>
+                    <CCarouselItem>
+                        <BoxOfficeChart />
+                    </CCarouselItem>
+                    <CCarouselItem>
+                        <BoxOfficeChart2 />
+                    </CCarouselItem>
+                    </CCarousel>
+                </div>
             )
         }
     ];
