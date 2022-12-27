@@ -31,18 +31,13 @@ const AppSidebar = () => {
     >
       <CSidebarBrand className="d-none d-md-flex" to="/">
         {/* 사이드바 최상단 부분 */}
-        {/* <CIcon className="sidebar-brand-full" icon={logoNegative} height={35} /> */}
-        {/* <CIcon className="sidebar-brand-narrow" icon={sygnet} height={35} /> */}
+        <strong className="sidebar-brand-full" style={{fontSize:"30px"}}>KILLING-TIME</strong>
       </CSidebarBrand>
       <CSidebarNav>
         <SimpleBar>
           <AppSidebarNav items={navigation} />
         </SimpleBar>
       </CSidebarNav>
-      <CSidebarToggler
-        className="d-none d-lg-flex"
-        onClick={() => dispatch({ type: 'set', sidebarUnfoldable: !unfoldable })}
-      />
     </CSidebar>
   )
 }
