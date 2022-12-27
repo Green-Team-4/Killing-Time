@@ -67,6 +67,8 @@ const BoxOfficeChart = (props) => {
       boxOfficeChartLoad();
     },[]);
     
+    
+      // 일일박스오피스 차트
 
     return (
         <>
@@ -78,15 +80,15 @@ const BoxOfficeChart = (props) => {
            <CCardBody>
              <CChartLine 
              data={{
-               labels: [`${month}-${date2}`, `${month}-${date3}`, `${month}-${date4}`, `${month}-${date5}`, `${month}-${date6}`, `${month}-${date7}`, `${month}-${date8}`],
+               labels: [`${month}-${date8}`, `${month}-${date7}`, `${month}-${date6}`, `${month}-${date5}`, `${month}-${date4}`, `${month}-${date3}`, `${month}-${date2}`],
                datasets: boxOfficeChart?.map( (boxOfficeByMovie, idx) => {
                 return {
                   label: boxOfficeByMovie.movieNm,
                   backgroundColor: 'rgba(151, 187, 205, 0.2)',
                   borderColor: ["	#FF69B4","#6495ED","#90EE90","#FFA07A","#8A2BE2"],
                   pointBackgroundColor: '#E6E6FA',
-                  pointBorderColor: '#',
-                  data: boxOfficeByMovie.audiCntList
+                  pointBorderColor: '#000',
+                  data: boxOfficeByMovie.audiCntList.reverse()
                 }
                })
              }}

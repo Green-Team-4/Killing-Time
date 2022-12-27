@@ -1,8 +1,10 @@
-import { CButton, CTooltip } from '@coreui/react';
+import { CButton, CCarousel, CCarouselItem, CTooltip } from '@coreui/react';
 import React, { useState } from 'react';
 import BoxOffice from './BoxOffice';
+import BoxOffice2 from './BoxOffice2';
 import BoxOfficeChart from './BoxOfficeChart';
 import DramaChart from './DramaChart';
+import DramaChart2 from './DramaChart2';
 import MovieNews from './MovieNews';
 
 
@@ -25,7 +27,16 @@ const TabList = (props) => {
                 </CTooltip>
             ),
             tabCont:(
-                <div><BoxOffice /></div>
+                <div>
+                <CCarousel controls indicators dark>
+                <CCarouselItem>
+                    <BoxOffice />
+                </CCarouselItem>
+                <CCarouselItem>
+                   <BoxOffice2 />
+                </CCarouselItem>
+                </CCarousel>
+                </div>
             )
         },
         {
@@ -37,7 +48,16 @@ const TabList = (props) => {
                 </CTooltip>
             ),
             tabCont:(
-                <div><DramaChart /></div>
+                <div>
+                    <CCarousel controls indicators dark>
+                    <CCarouselItem>
+                        <DramaChart />
+                    </CCarouselItem>
+                    <CCarouselItem>
+                        <DramaChart2 />
+                    </CCarouselItem>
+                    </CCarousel>
+                </div>
             )
         },
         {

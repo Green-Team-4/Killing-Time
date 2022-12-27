@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 
-const DramaChart = (props) => {
+const DramaChart2 = (props) => {
   
 
   const [dramaChart, setDramaChart] = useState(null);
@@ -15,7 +15,7 @@ const DramaChart = (props) => {
         const api_key = "6b4c779cba85c26ce5e2fc716ac93b81";
         const url = `https://api.themoviedb.org/3/tv/top_rated?api_key=${api_key}&language=ko-KR&page=1`;         
         const response = await axios.get(url);
-        setDramaChart(response.data.results.splice(0,5));
+        setDramaChart(response.data.results.splice(5,5));
         
       }
       loadDramaChart();
@@ -45,7 +45,7 @@ const DramaChart = (props) => {
                     dramaChart.map( (dramaChart, idx) => {
                       return (
                     <CTableRow>
-                      <CTableHeaderCell style={{textAlign:'center'}}>{idx + 1}</CTableHeaderCell>
+                      <CTableHeaderCell style={{textAlign:'center'}}>{idx + 6}</CTableHeaderCell>
                       <CTableDataCell style={{textAlign:'center'}}><Link to="/dramaMain/dramaDetails" state={{ id: dramaChart.id }}><img style={{width:101}} src={`https://www.themoviedb.org/t/p/w220_and_h330_face${dramaChart.poster_path}`} alt=""></img></Link></CTableDataCell>
                       <CTableDataCell style={{textAlign:'center'}}>{dramaChart.name}</CTableDataCell>
                       <CTableDataCell style={{textAlign:'center'}}>{dramaChart.first_air_date}</CTableDataCell>
@@ -65,4 +65,4 @@ const DramaChart = (props) => {
 
 };
 
-export default DramaChart;
+export default DramaChart2;
