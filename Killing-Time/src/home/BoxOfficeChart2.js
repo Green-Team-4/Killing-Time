@@ -30,10 +30,10 @@ const BoxOfficeChart = (props) => {
           dt.setDate(dt.getDate() - 1);
 
           const targetDt = `${dt.getFullYear()}${dt.getMonth() + 1}${dt.getDate()}`;
-          const itemPerPage = 5;
+          const itemPerPage = 10;
           const url = `http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=${apikey}&targetDt=${targetDt}&itemPerPage=${itemPerPage}`
           const response = await axios.get(url);
-          results.push(response.data.boxOfficeResult.dailyBoxOfficeList);
+          results.push(response.data.boxOfficeResult.dailyBoxOfficeList.splice(5, 5));
         }
 
         const boxOfficeData = results[0].map( (movie, idx) => {

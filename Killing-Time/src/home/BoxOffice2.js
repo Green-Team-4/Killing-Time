@@ -10,7 +10,7 @@ import MoviePosterItem from "./MoviePosterItem";
 
 const { CCol, CCard, CCardHeader, CCardBody, CTable, CTableRow, CTableHead, CTableHeaderCell, CTableBody, CTableDataCell, CTooltip } = require("@coreui/react")
 
-const BoxOffice = (props) => {
+const BoxOffice2 = (props) => {
 
   const [ boxOffice, setBoxOffice ] = useState(null);
 
@@ -23,13 +23,18 @@ const BoxOffice = (props) => {
       let month = today.getMonth() + 1;  // 월
       let date = today.getDate() - 1;  // 날짜
 
+      
 
+      
+      
       const apikey = "9ec0af98ce7854a7d4109bd050f4e2cf";
       const targetDt = `${year}${month}${date}`;
-      const itemPerPage = 5;
+      const itemPerPage = 10;
       const url = `http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=${apikey}&targetDt=${targetDt}&itemPerPage=${itemPerPage}`
-      const response = await axios.get(url);
-      setBoxOffice(response.data.boxOfficeResult);
+      const response = await axios.get(url);      
+      setBoxOffice(response.data.boxOfficeResult.dailyBoxOfficeList.splice(5, 5));
+      
+      
     }
     boxOfficeLoad();
   },[]);
@@ -55,20 +60,20 @@ const BoxOffice = (props) => {
                 <CTableBody style={{verticalAlign: 'middle'}}>                  
                     {
                       // {dailyBoxOfficeLists.audiCnt}명
-                       boxOffice ?  
-                        boxOffice.dailyBoxOfficeList.map((dailyBoxOfficeLists, idx) => {
-                          return (
-                            <CTableRow key={idx}>
-                              <CTableHeaderCell style={{textAlign:'center', fontWeight:'bold'}}>{dailyBoxOfficeLists.rank}</CTableHeaderCell>                              
+                       boxOffice ?
+                        boxOffice.map((boxOffice, idx) => {
+                            return(
+                            <CTableRow >
+                              <CTableHeaderCell style={{textAlign:'center', fontWeight:'bold'}}>{boxOffice.rank}</CTableHeaderCell>                              
                               <CTableDataCell style={{width:141, height:91, textAlign:'center'}}>
-                                <MovieImage movieName={dailyBoxOfficeLists.movieNm} openDate={dailyBoxOfficeLists.openDt}/>
+                                <MovieImage movieName={boxOffice.movieNm} openDate={boxOffice.openDt}/>
                                 <MoviePosterItem />
                               </CTableDataCell>
-                              <CTableDataCell style={{textAlign:'center', fontWeight:'bold'}}>{dailyBoxOfficeLists.movieNm}</CTableDataCell>
-                              <CTableDataCell style={{textAlign:'center', fontWeight:'bold'}}>{dailyBoxOfficeLists.openDt}</CTableDataCell>
+                              <CTableDataCell style={{textAlign:'center', fontWeight:'bold'}}>{boxOffice.movieNm}</CTableDataCell>
+                              <CTableDataCell style={{textAlign:'center', fontWeight:'bold'}}>{boxOffice.openDt}</CTableDataCell>
                               <CTableDataCell style={{textAlign:'center' , fontWeight:'bold'}}>
                                 <NumericFormat
-                                  value={dailyBoxOfficeLists.audiCnt}
+                                  value={boxOffice.audiCnt}
                                   displayType={'text'}
                                   thousandSeparator={true}
                                   renderText={(value) => <>{value}명</>}
@@ -76,7 +81,7 @@ const BoxOffice = (props) => {
                               </CTableDataCell>
                             </CTableRow>
                           )
-                        })           
+                        })         
                      : "박스 오피스 로드 실패"
                      }                  
                 </CTableBody>
@@ -87,4 +92,4 @@ const BoxOffice = (props) => {
     );
 };
 
-export default BoxOffice;
+export default BoxOffice2;
