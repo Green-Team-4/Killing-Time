@@ -251,12 +251,6 @@ const _nav = [
     to: '/movieNewsList',
     icon: <CIcon icon={cilNewspaper} customClassName="nav-icon" />,
   },
-  // {
-  //   component: CNavItem,
-  //   name: '영화관 찾기',
-  //   to: '/location',
-  //   icon: <CIcon icon={cilNewspaper} customClassName="nav-icon" />,
-  // },
   {
     component: CNavItem,
     name: '영화 & TV 검색',
