@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { CCard, CCardImage, CCardBody,  } from '@coreui/react';
+import { CCard,CImage, CCardImage, CCardBody, CRow,CCardTitle, CCardText, CCol  } from '@coreui/react';
 
 
 const DramaItemBlock = styled.div`
@@ -12,12 +12,44 @@ const DramaItemBlock = styled.div`
 `;
 
 const DramaMainCastItem = ({ result }) => {
-  const { id, name, profile_path, character } = result;
-  const img_url = `https://www.themoviedb.org/t/p/w220_and_h330_face${profile_path}`;
-
+  const {   overview, air_date, poster_path, season_number, episode_count} = result;
+  const img_url = `https://www.themoviedb.org/t/p/w130_and_h195_bestv2${poster_path}`;
+  
+	//https://www.themoviedb.org/t/p/w130_and_h195_bestv2/phv2Jc4H8cvRzvTKb9X1uKMboTu.jpg
   return (
     <DramaItemBlock>
-      asdfadfsa
+      <CCard className="mb-0" style={{ maxWidth: '1000px' }}>
+        <CRow className="g-5">
+          <CCol md={4}>
+            <CCardImage src={img_url} style={{width:'135px'}} />
+          </CCol>
+          <CCol md={8}>
+            <CCardBody style={{}}>
+              <CCardTitle>시즌 {season_number}</CCardTitle>
+              <CCardText>
+        
+              {overview == null ? (
+                  <span>{air_date} / {episode_count }화 <br /> {overview} </span>
+              ) : (
+                <span>{air_date} 에 방영되었습니다. / {episode_count }화 <br /> {overview} </span>
+              )} 
+              </CCardText>
+              <CCardText>
+                <small className="text-medium-emphasis">Last updated 3 mins ago</small>
+              </CCardText>
+            </CCardBody>
+          </CCol>
+        </CRow>
+      </CCard>
+
+
+
+
+
+
+
+
+      
       {/* <CCard className='mb-0 border-gray' textColor='dark'>
           <Link to="/personList/personDetail" state={{ id: id }}>
             {profile_path !== null ? (
