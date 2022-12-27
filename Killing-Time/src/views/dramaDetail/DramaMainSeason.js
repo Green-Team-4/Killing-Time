@@ -1,16 +1,8 @@
 
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import { CButton, CCard, CCardBody, CCol, CTooltip, CCardHeader  } from "@coreui/react";
+import { CCard, CCardBody, CCol, CCardHeader  } from "@coreui/react";
 import DramaMainSeasonItem from "./DramaMainSeasonItem";
-
-
-const DramaMainCastBlock = styled.div`
-
-
-`;
 
 const DramaMainSeason = ({ id }) => {
   const [season, setSeason] = useState(null);
@@ -38,7 +30,6 @@ const DramaMainSeason = ({ id }) => {
   }
 
   return (
-      
     <CCol xs={10} style={{margin: "auto"}}>
       <CCard className='mb-3 border-gray' textColor='dark' style={{margin:7}}>
         <CCardHeader>
@@ -48,13 +39,11 @@ const DramaMainSeason = ({ id }) => {
           
         </CCardHeader>
           <CCardBody>
-          <DramaMainCastBlock>
             {season.number_of_seasons > 1 ? (
               <DramaMainSeasonItem result={season.seasons[season.number_of_seasons-1]} id={id} />
             ) : (
               <DramaMainSeasonItem result={season.seasons[0]} id={id} />
             )}
-          </DramaMainCastBlock>
         </CCardBody>
       </CCard>
     </CCol>

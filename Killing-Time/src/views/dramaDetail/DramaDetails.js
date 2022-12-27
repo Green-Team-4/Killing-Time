@@ -17,13 +17,11 @@ const DramaDetails = (props) => {
             
             <DramaMainMedia id={id} />
 
-            <DramaMainRecommend id={id} />
-
             <DramaMainSeason id={id} />
 
+            <DramaMainRecommend id={id} />
 
         </>
-        
         
     );
 

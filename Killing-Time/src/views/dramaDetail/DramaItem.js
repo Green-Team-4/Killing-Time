@@ -1,6 +1,5 @@
 
 import { Link } from 'react-router-dom';
-
 import { CCard, CCardImage, CCardTitle, CCardBody, CCardHeader } from '@coreui/react';
 
 const DramaItem = ({ result }) => {

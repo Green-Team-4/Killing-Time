@@ -9,14 +9,12 @@ const DramaCreditList = ({ id }) => {
   const [crew, setCrew] = useState(null);
   const [activeKey, setActiveKey] = useState(1)
 
-  // useEffect : mount(초기화), update(상태변화) 이벤트 처리기 등록
   useEffect(() => {
     const loadMainCast = async (e) => {
       const language = "en-US";
       const apiKey = "da88cf78c356139f9420b764c0d77208";
       const baseUrl = "https://api.themoviedb.org/3/tv";
       const url = `${baseUrl}/${id}/credits?api_key=${apiKey}&language=${language}`;
-      // https://api.themoviedb.org/3/movie/436270/credits?api_key=403cc00da7a7725917c9acd69484bde6&language=ko-KR
       const response = await axios.get(url);
       setCast(response.data.cast);
       setCrew(response.data.crew);

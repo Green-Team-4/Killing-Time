@@ -2,10 +2,7 @@ import { useEffect, useState } from "react";
 import DramaItem from "./DramaItem";
 import axios from "axios";
 import Pagination from "./DramaPage";
-
 import { CCol } from '@coreui/react';
-
-
 
 const DramaList = (props) => {
 
@@ -13,7 +10,6 @@ const DramaList = (props) => {
     const [page, setPage] = useState(null);
     const [total_pages, setTotal_pages] = useState(null);
 
-    // useEffect : mount(초기화), update(상태변화) 이벤트 처리기 등록
     useEffect( () => {
         const loadDramaList = async (e) => {
             const language = 'ko-KR';
@@ -50,9 +46,6 @@ const DramaList = (props) => {
                         return (<DramaItem key={ result.id } result={ result } />);
                     })
                 }
-                
-                
-               
             </div>
             <div> 
                 <Pagination 
@@ -65,9 +58,6 @@ const DramaList = (props) => {
             </CCol>    
         </>
     );
-
-
-
 };
 
 export default DramaList;
