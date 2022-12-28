@@ -15,7 +15,7 @@ const MovieNews = (props) => {
     useEffect(() => {
         const start = 1;
         const display = 10;
-        const url = `http://192.168.200.201:8080/web-scraping/movie-news?start=${start}&display=${display}`;
+        const url = `/web-scraping/movie-news?start=${start}&display=${display}`;
         axios.get(url)
              .then( (response) => {
                 if (response.data.result === "success") {

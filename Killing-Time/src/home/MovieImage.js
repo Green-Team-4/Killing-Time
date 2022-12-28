@@ -13,6 +13,9 @@ const MovieImage = (props) => {
             if (movieName === "신비아파트 극장판 차원도깨비와 7개의 세계") {
                 movieName = "신비아파트: 차원도깨비와 7개의 세계";
             }
+            if (movieName === "극장판 뽀로로와 친구들: 바이러스를 없애줘!") {
+                movieName = "뽀로로와 친구들 극장판 바이러스를 없애줘!";
+            }
             const apikey = "e937a96ff64a1a83e17dac4c4abc7d43";
             const url = `https://api.themoviedb.org/3/search/movie?api_key=${apikey}&language=ko&page=1&primary_release_year=${openDate}&query=${movieName}`;
             const response = await axios.get(url);
