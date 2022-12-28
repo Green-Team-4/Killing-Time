@@ -15,7 +15,7 @@ const MovieNews = (props) => {
     useEffect(() => {
         const start = 1;
         const display = 10;
-        const url = `/web-scraping/movie-news?start=${start}&display=${display}`;
+        const url = `/Killing-Time/movie-news?start=${start}&display=${display}`;
         axios.get(url)
              .then( (response) => {
                 if (response.data.result === "success") {
